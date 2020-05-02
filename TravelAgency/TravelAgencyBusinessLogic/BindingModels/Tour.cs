@@ -1,10 +1,11 @@
-﻿using System;
+﻿using TravelAgencyBusinessLogic.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace TravelAgencyBusinessLogic.BindingModels
 {
-    class Tour
+    public class Tour
     {
         public int? Id { get; set; }
         public string TourName { get; set; }

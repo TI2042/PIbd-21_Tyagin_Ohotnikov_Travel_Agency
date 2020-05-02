@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TravelAgencyBusinessLog3ic.Enums
+namespace TravelAgencyBusinessLogic.Enums
 {
     public enum Status
     {
