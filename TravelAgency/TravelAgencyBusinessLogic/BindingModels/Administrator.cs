@@ -4,7 +4,10 @@ using System.Text;
 
 namespace TravelAgencyBusinessLogic.BindingModels
 {
-    class Administrator
+    public class Administrator
     {
+        public int? Id { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

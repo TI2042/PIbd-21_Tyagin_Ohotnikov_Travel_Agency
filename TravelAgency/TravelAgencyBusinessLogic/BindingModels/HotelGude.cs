@@ -4,7 +4,10 @@ using System.Text;
 
 namespace TravelAgencyBusinessLogic.BindingModels
 {
-    class HotelGude
+    public class HotelGude
     {
+        public int? Id { get; set; }
+        public int HotelId { get; set; }
+        public int GuideId { get; set; }
     }
 }
