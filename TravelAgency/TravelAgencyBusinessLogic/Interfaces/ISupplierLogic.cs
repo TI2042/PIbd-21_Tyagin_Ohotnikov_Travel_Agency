@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TravelAgencyBusinessLogic.Interfaces
 {
-    class ISupplierLogic
+    public class ISupplierLogic
     {
     }
 }

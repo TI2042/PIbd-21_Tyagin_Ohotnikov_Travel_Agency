@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TravelAgencyBusinessLogic.ViewModels
 {
-    class SupplierViewModel
+    public class SupplierViewModel
     {
     }
 }

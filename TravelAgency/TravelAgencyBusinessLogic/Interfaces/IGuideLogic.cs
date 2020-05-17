@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using TravelAgencyBusinessLogic.ViewModels;
 
 namespace TravelAgencyBusinessLogic.Interfaces
 {
-    interface IGuideLogic
+    public interface IGuideLogic
     {
+        List<GuideViewModel> Read(GuideViewModel model);
+        void CreateOrUpdate(GuideViewModel model);
+        void Delete(GuideViewModel model);
     }
 }

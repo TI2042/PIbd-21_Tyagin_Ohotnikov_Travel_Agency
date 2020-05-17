@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TravelAgencyBusinessLogic.BindingModels
 {
-    class SupplierBindingModel
+    public class SupplierBindingModel
     {
     }
 }
