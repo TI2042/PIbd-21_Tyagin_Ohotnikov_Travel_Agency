@@ -5,16 +5,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TravelAgencyDatabaseImplement.Models
 {
-    public class HotelGuide
+    public class TourGuide
     {
         public int Id { get; set; }
-        public int HotelId { get; set; }
-        public int GuideId { get; set; }
         [Required]
         public int Count { get; set; }
-        [Required]
-        public int IsReserved { get; set; }
-        public Hotel Hotel { get; set; }
+        public int GuideId { get; set; }
+        public int TourId { get; set; }
         public Guide Guide { get; set; }
+        public Tour Tour { get; set; }
     }
 }

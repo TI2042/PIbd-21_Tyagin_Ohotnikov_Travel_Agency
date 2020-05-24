@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
-using TravelAgencyBusinessLogic.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelAgencyDatabaseImplement.Models
 {
@@ -10,14 +10,12 @@ namespace TravelAgencyDatabaseImplement.Models
     {
         public int Id { get; set; }
         [Required]
-        public DateTime CreationDate { get; set; }
+        public string TourName { get; set; }
         [Required]
-        public decimal Amount { get; set; }
-        [Required]
-        public DateTime? CompletionDate { get; set; }
-        [Required]
-        public Status Status { get; set; }
-        public int HotelId { get; set; }
-        public Hotel Hotel { get; set; }
+        public decimal Price { get; set; }
+        [ForeignKey("TourId")]
+        public virtual List<Order> Orders { get; set; }
+        [ForeignKey("TourId")]
+        public virtual List<TourGuide> TourGuides { get; set; }
     }
 }

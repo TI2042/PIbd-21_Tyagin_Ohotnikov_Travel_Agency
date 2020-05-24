@@ -12,10 +12,10 @@ namespace TravelAgencyDatabaseImplement.Models
         [Required]
         public string HotelName { get; set; }
         [Required]
-        public decimal Price { get; set; }
-        [ForeignKey("TourId")]
-        public virtual List<Tour> Tours { get; set; }
-        [ForeignKey("GuideId")]
+        public int Capacity { get; set; }
+        public string Country { get; set; }
+        [ForeignKey("HotelId")]
         public virtual List<HotelGuide> HotelGuides { get; set; }
+        public Supplier Supplier { get; set; }
     }
 }
