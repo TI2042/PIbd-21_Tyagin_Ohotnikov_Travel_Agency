@@ -5,12 +5,12 @@ using System.ComponentModel;
 
 namespace TravelAgencyBusinessLogic.ViewModels
 {
-    public class GuideViewModel
+    class TourGuideViewModel
     {
         public int Id { get; set; }
-        [DisplayName("Имя гида")]
-        public string GuideName { get; set; }
-        [DisplayName("Цена")]
-        public decimal Price { get; set; }
+        public int GuideId { get; set; }
+        public int TourId { get; set; }
+        [DisplayName("Количество")]
+        public int Count { get; set; }
     }
 }
