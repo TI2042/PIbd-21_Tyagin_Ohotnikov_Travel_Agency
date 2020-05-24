@@ -4,10 +4,11 @@ using System.Text;
 
 namespace TravelAgencyBusinessLogic.BindingModels
 {
-    public class HotelTour
+    public class RequestGuideBindingModel
     {
         public int? Id { get; set; }
-        public int HotelId { get; set; }
-        public int TourId { get; set; }
+        public int RequestId { get; set; }
+        public int GuideId { get; set; }
+        public int Count { get; set; }
     }
 }

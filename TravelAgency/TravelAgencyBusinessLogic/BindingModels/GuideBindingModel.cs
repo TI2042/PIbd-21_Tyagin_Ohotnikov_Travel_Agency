@@ -4,12 +4,10 @@ using System.Text;
 
 namespace TravelAgencyBusinessLogic.BindingModels
 {
-    public class Guide
+    public class GuideBindingModel
     {
         public int? Id { get; set; }
-        public string FIO { get; set; }
-        public string Country { get; set; }
-        public string Hotel { get; set; }
-        public int ProviderId { get; set; }
+        public string GuideName { get; set; }
+        public decimal Price { get; set; }
     }
 }
