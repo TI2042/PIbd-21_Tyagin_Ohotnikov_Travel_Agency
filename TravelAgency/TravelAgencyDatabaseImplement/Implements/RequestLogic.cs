@@ -32,7 +32,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                             else if (model.Status == RequestStatus.Created)
                             {
                                 var requestGuide = context.RequestGuides
-                                    .Where(rec => rec.RequestId == model.Id.Value).ToList();
+                                    .Where(rec => rec.RequestID == model.Id.Value).ToList();
                                 context.RequestGuides.RemoveRange(requestGuide.Where(rec => !model.Guides.ContainsKey(rec.GuideId)).ToList());
                                 foreach (var updGuide in requestGuide)
                                 {
@@ -61,7 +61,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                         {
                             context.RequestGuides.Add(new RequestGuide
                             {
-                                RequestId = request.Id,
+                                RequestID = request.Id,
                                 GuideId = Guide.Key,
                                 Count = Guide.Value.Item2
                             });
@@ -88,7 +88,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                         try
                         {
                             context.RequestGuides.RemoveRange(context.RequestGuides.Where(rec =>
-                            rec.RequestId == model.Id));
+                            rec.RequestID == model.Id));
                             Request element = context.Requests.FirstOrDefault(rec => rec.Id
                             == model.Id);
                             if (element != null)
@@ -130,7 +130,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                         Status = rec.Status,
                         Guides = context.RequestGuides
                             .Include(recRC => recRC.Guide)
-                            .Where(recRC => recRC.RequestId == rec.Id)
+                            .Where(recRC => recRC.RequestID == rec.Id)
                             .ToDictionary(recRC => recRC.GuideId, recPC =>
                             (recPC.Guide?.GuideName, recPC.Count))
                     })
