@@ -16,6 +16,7 @@ namespace TravelAgencyDatabaseImplement.Models
         public string Country { get; set; }
         [ForeignKey("HotelId")]
         public virtual List<HotelGuide> HotelGuides { get; set; }
-        public Supplier Supplier { get; set; }
+        public int SupplierId { get; set; }
+        public virtual Supplier SupplierID { get; set; }
     }
 }

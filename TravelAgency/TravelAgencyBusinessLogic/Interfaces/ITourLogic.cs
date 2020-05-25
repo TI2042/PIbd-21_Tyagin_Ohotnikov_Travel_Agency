@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.ViewModels;
 
 namespace TravelAgencyBusinessLogic.Interfaces
 {
-    public interface IOrder
+    public interface ITourLogic
     {
-        List<TourViewModel> Read(TourViewModel model);
-        void CreateOrUpdate(TourViewModel model);
-        void Delete(TourViewModel model);
+        List<TourViewModel> Read(TourBindingModel model);
+        void CreateOrUpdate(TourBindingModel model);
+        void Delete(TourBindingModel model);
     }
 }

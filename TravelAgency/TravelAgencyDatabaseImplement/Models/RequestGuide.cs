@@ -12,7 +12,7 @@ namespace TravelAgencyDatabaseImplement.Models
         public int GuideId { get; set; }
         [Required]
         public int Count { get; set; }
-        public Guide Guide { get; set; }
-        public Request Request { get; set; }
+        public virtual Guide Guide { get; set; }
+        public virtual Request Request { get; set; }
     }
 }

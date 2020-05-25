@@ -13,8 +13,8 @@ namespace TravelAgencyDatabaseImplement.Models
         [Required]
         public int Count { get; set; }
         [Required]
-        public int IsReserved { get; set; }
-        public Hotel Hotel { get; set; }
-        public Guide Guide { get; set; }
+        public int Reserved { get; set; }
+        public virtual Hotel Hotel { get; set; }
+        public virtual Guide Guide { get; set; }
     }
 }

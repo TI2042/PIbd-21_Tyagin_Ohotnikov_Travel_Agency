@@ -22,7 +22,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 }
                 if (model.Id.HasValue)
                 {
-                    element = context.Foods.FirstOrDefault(rec => rec.Id ==
+                    element = context.Guides.FirstOrDefault(rec => rec.Id ==
                    model.Id);
                     if (element == null)
                     {
@@ -32,7 +32,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 else
                 {
                     element = new Guide();
-                    context.Foods.Add(element);
+                    context.Guides.Add(element);
                 }
                 element.GuideName = model.GuideName;
                 element.Price = model.Price;
@@ -43,7 +43,7 @@ namespace TravelAgencyDatabaseImplement.Implements
         {
             using (var context = new TravelAgencyDatabase())
             {
-                Guide element = context.Foods.FirstOrDefault(rec => rec.Id ==
+                Guide element = context.Guides.FirstOrDefault(rec => rec.Id ==
                model.Id);
                 if (element != null)
                 {
@@ -60,7 +60,7 @@ namespace TravelAgencyDatabaseImplement.Implements
         {
             using (var context = new TravelAgencyDatabase())
             {
-                return context.Foods
+                return context.Guides
                 .Where(rec => model == null || rec.Id == model.Id)
                 .Select(rec => new GuideViewModel
                 {

@@ -6,12 +6,9 @@ namespace TravelAgencyBusinessLogic.Enums
 {
     public enum Status
     {
-        Создан = 0,
-
-        Оформляется = 1,
-
-        Выполняется = 2,
-
-        Завершен = 3
+        Принят = 0,
+        Выполняется = 1,
+        Готов = 2,
+        Оплачен = 3
     }
 }

@@ -10,6 +10,5 @@ namespace TravelAgencyBusinessLogic.BindingModels
         public string HotelName { get; set; }
         public int Capacity { get; set; }
         public string Country { get; set; }
-        public List<HotelGuideBindingModel> HotelGuides { get; set; }
     }
 }

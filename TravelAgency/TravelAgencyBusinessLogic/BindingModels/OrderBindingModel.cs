@@ -14,5 +14,7 @@ namespace TravelAgencyBusinessLogic.BindingModels
         public DateTime? CompletionDate { get; set; }
         public Status Status { get; set; }
         public int TourId { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 }

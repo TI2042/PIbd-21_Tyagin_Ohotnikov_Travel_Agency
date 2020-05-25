@@ -14,7 +14,7 @@ namespace TravelAgencyDatabaseImplement.Models
         [Required]
         public decimal Price { get; set; }
         [ForeignKey("GuideId")]
-        public virtual List<TourGuide> TourGuides { get; set; }
+        public virtual List<HotelGuide> HotelGuides { get; set; }
         [ForeignKey("GuideId")]
         public virtual List<RequestGuide> RequestGuides { get; set; }
     }

@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency", "TravelAgency\TravelAgency.csproj", "{2B2F44D7-5215-495B-9C19-0B5B8AF558A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgencyView", "TravelAgency\TravelAgencyView.csproj", "{2B2F44D7-5215-495B-9C19-0B5B8AF558A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgencyBusinessLogic", "TravelAgencyBusinessLogic\TravelAgencyBusinessLogic.csproj", "{15176F90-0724-46E1-8331-E149EA968AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgencyDatabaseImplement", "TravelAgencyDatabaseImplement\TravelAgencyDatabaseImplement.csproj", "{2D92CFF5-23E1-49FE-8B54-1F37B423C530}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgencyDatabaseImplement", "TravelAgencyDatabaseImplement\TravelAgencyDatabaseImplement.csproj", "{2D92CFF5-23E1-49FE-8B54-1F37B423C530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupplierWEB", "SupplierWEB\SupplierWEB.csproj", "{C7A1BEF4-6379-479A-A860-C2C5D08BAD6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{2D92CFF5-23E1-49FE-8B54-1F37B423C530}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D92CFF5-23E1-49FE-8B54-1F37B423C530}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D92CFF5-23E1-49FE-8B54-1F37B423C530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7A1BEF4-6379-479A-A860-C2C5D08BAD6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7A1BEF4-6379-479A-A860-C2C5D08BAD6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7A1BEF4-6379-479A-A860-C2C5D08BAD6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7A1BEF4-6379-479A-A860-C2C5D08BAD6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

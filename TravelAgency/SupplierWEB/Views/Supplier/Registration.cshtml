@@ -1,0 +1,15 @@
+﻿@model SupplierWEB.Models.RegistrationModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<h1>Registration</h1>
+
+@using (Html.BeginForm("Registration", "Supplier"))
+{
+    <p>ФИО: @Html.TextBoxFor(x => x.SupplierFIO)</p>
+    <p>Пароль: @Html.TextBoxFor(x => x.Password)</p>
+    <p>E-Mail: @Html.TextBoxFor(x => x.Email)</p>
+    @Html.ValidationSummary()
+    <input type="submit" value="Зарегистрироваться" />
+}

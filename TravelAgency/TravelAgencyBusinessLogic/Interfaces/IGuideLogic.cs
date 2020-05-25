@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.ViewModels;
 
 namespace TravelAgencyBusinessLogic.Interfaces
 {
     public interface IGuideLogic
     {
-        List<GuideViewModel> Read(GuideViewModel model);
-        void CreateOrUpdate(GuideViewModel model);
-        void Delete(GuideViewModel model);
+        List<GuideViewModel> Read(GuideBindingModel model);
+        void CreateOrUpdate(GuideBindingModel model);
+        void Delete(GuideBindingModel model);
     }
 }

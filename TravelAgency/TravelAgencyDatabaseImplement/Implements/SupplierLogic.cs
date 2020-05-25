@@ -6,6 +6,7 @@ using TravelAgencyBusinessLogic.Interfaces;
 using TravelAgencyBusinessLogic.ViewModels;
 using TravelAgencyDatabaseImplement.Models;
 using TravelAgencyDatabaseImplement;
+using System.Linq;
 
 namespace TravelAgencyDatabaseImplement.Implements
 {
@@ -15,7 +16,7 @@ namespace TravelAgencyDatabaseImplement.Implements
         {
             using (var context = new TravelAgencyDatabase())
             {
-                Supplier element = context.Suppliers.FirstOrDefault(rec => rec.Email == model.Email && rec.Id != model.Id);
+                Supplier element = context.Suppliers.FirstOrDefault(rec => rec.SupplierFIO == model.SupplierFIO && rec.Id != model.Id);
                 if (element != null)
                 {
                     throw new Exception("Уже есть поставщик с таким логином");
@@ -33,9 +34,9 @@ namespace TravelAgencyDatabaseImplement.Implements
                     element = new Supplier();
                     context.Suppliers.Add(element);
                 }
-                element.Login = model.Login;
                 element.SupplierFIO = model.SupplierFIO;
                 element.Password = model.Password;
+                element.Email = model.Email;
                 context.SaveChanges();
             }
         }
@@ -62,17 +63,13 @@ namespace TravelAgencyDatabaseImplement.Implements
             using (var context = new TravelAgencyDatabase())
             {
                 return context.Suppliers
-                .Where(
-                    rec => model == null
-                    || rec.Id == model.Id
-                    || rec.Login == model.Login && rec.Password == model.Password
-                )
+                .Where(rec => (rec.SupplierFIO == model.SupplierFIO) && (model.Password == null || rec.Password == model.Password))
                 .Select(rec => new SupplierViewModel
                 {
                     Id = rec.Id,
                     SupplierFIO = rec.SupplierFIO,
-                    Login = rec.Login,
-                    Password = rec.Password
+                    Password = rec.Password,
+                    Email = rec.Email
                 })
                 .ToList();
             }

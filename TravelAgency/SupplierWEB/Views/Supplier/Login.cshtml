@@ -1,0 +1,13 @@
+﻿@model SupplierWEB.Models.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <p>ФИО: @Html.EditorFor(x => x.SupplierFIO)</p>
+    <p>Пароль: @Html.EditorFor(x => x.Password)</p>
+    <button type="submit">Войти</button>
+}
