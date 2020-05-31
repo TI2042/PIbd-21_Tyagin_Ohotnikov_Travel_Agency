@@ -76,7 +76,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             return list;
         }
 
-        public void SaveDishesToWordFile(ReportBindingModel model)
+        public void SaveToursToWordFile(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
             {
@@ -98,7 +98,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             });
         }
 
-        public void SaveDishFoodsToPdfFile(ReportBindingModel model)
+        public void SaveTourGuidesToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PdfInfo
             {
@@ -109,7 +109,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             });
         }
 
-        public void SaveFridgesToWordFile(ReportBindingModel model)
+        public void SaveHotelsToWordFile(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
             {
@@ -120,7 +120,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             });
         }
 
-        public void SaveFridgeFoodsToExcelFile(ReportBindingModel model)
+        public void SaveHotelGuidesToExcelFile(ReportBindingModel model)
         {
             SaveToExcel.CreateDoc(new ExcelInfo
             {
@@ -131,7 +131,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             });
         }
 
-        public void SaveFoodsToPdfFile(ReportBindingModel model)
+        public void SaveGuidesToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PdfInfo
             {

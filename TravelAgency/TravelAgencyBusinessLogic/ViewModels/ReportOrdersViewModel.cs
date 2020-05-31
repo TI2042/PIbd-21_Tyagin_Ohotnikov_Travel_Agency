@@ -8,7 +8,7 @@ namespace TravelAgencyBusinessLogic.ViewModels
     public class ReportOrdersViewModel
     {
         public DateTime CreationDate { get; set; }
-        public string DishName { get; set; }
+        public string TourName { get; set; }
         public int Count { get; set; }
         public decimal Amount { get; set; }
         public Status Status { get; set; }

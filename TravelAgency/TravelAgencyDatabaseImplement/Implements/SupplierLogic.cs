@@ -63,8 +63,8 @@ namespace TravelAgencyDatabaseImplement.Implements
             using (var context = new TravelAgencyDatabase())
             {
                 return context.Suppliers
-                 .Where(rec => model == null || rec.Id == model.Id
-                || rec.Login == model.Email && rec.Password == model.Password)
+                 .Where(rec => model == null || rec.Id == model.Id || (rec.Login == model.Email) &&
+                 (model.Password == null || rec.Password == model.Password))
                 .Select(rec => new SupplierViewModel
                 {
                     Id = rec.Id,

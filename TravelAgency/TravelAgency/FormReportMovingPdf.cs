@@ -49,7 +49,7 @@ namespace TravelAgency
                 {
                     try
                     {
-                        logic.SaveDishFoodsToPdfFile(new ReportBindingModel
+                        logic.SaveTourGuidesToPdfFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName
                         });

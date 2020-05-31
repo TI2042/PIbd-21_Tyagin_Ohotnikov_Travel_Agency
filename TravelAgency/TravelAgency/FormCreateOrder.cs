@@ -33,12 +33,12 @@ namespace TravelAgency
         {
             try
             {
-                var listDishses = logicP.Read(null);
-                if (listDishses != null)
+                var listTours = logicP.Read(null);
+                if (listTours != null)
                 {
                     comboBoxTour.DisplayMember = "TourName";
                     comboBoxTour.ValueMember = "Id";
-                    comboBoxTour.DataSource = listDishses;
+                    comboBoxTour.DataSource = listTours;
                     comboBoxTour.SelectedItem = null;
                 }
             }

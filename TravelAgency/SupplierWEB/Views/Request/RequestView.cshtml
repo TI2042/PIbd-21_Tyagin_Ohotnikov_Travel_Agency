@@ -51,7 +51,7 @@
                     @Html.DisplayFor(modelItem => item.Value.Item2)
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-sm btn-block" asp-action="" asp-route-id="@item.Key">Зарезервировать</a>
+                    <a class="btn btn-primary btn-sm btn-block" asp-action="ReserveGuides" asp-route-id="@item.Key">Зарезервировать</a>
                 </td>
             </tr>
         }

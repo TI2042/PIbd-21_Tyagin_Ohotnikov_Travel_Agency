@@ -62,7 +62,7 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateFridge([Bind("HotelName,Capacity,Country")] Hotel hotel)
+        public IActionResult CreateHotel([Bind("HotelName,Capacity,Country")] Hotel hotel)
         {
             if (Program.Supplier == null)
             {
@@ -158,7 +158,7 @@ namespace SupplierWEB.Controllers
             return View(hotel);
         }
 
-        public IActionResult DeleteFridge(int? id)
+        public IActionResult DeleteHotel(int? id)
         {
             if (Program.Supplier == null)
             {
@@ -211,7 +211,7 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddFood([Bind("HotelId, GuideId, Count")] ReserveGuideBindingModel model)
+        public IActionResult AddGuide([Bind("HotelId, GuideId, Count")] ReserveGuideBindingModel model)
         {
             if (Program.Supplier == null)
             {
@@ -231,6 +231,29 @@ namespace SupplierWEB.Controllers
                         guideId = model.GuideId,
                         hotelId = model.HotelId
                     });
+                }
+            }
+            return RedirectToAction("Details", new { id = model.HotelId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ReserveGuides([Bind("GuideId, Count")] ReserveGuideBindingModel model)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    hotelLogic.ReserveGuides(model);
+                }
+                catch (Exception exception)
+                {
+                    TempData["ErrorLackGuides"] = exception.Message;
+
                 }
             }
             return RedirectToAction("Details", new { id = model.HotelId });

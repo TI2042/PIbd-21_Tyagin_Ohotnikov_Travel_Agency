@@ -11,5 +11,6 @@ namespace TravelAgencyBusinessLogic.HelperModels
         public string Title { get; set; }
         public List<TourViewModel> Tours { get; set; }
         public List<HotelViewModel> Hotels { get; set; }
+        public List<RequestViewModel> Guides { get; set; }
     }
 }

@@ -49,13 +49,13 @@ namespace TravelAgency
             dataGridView.Update();
         }
 
-        private void FoodsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GuidesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormGuides>();
             form.ShowDialog();
         }
 
-        private void DishesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToursToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormTours>();
             form.ShowDialog();
@@ -137,7 +137,7 @@ namespace TravelAgency
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    report.SaveDishesToWordFile(new ReportBindingModel
+                    report.SaveToursToWordFile(new ReportBindingModel
                     {
                         FileName = dialog.FileName
                     });

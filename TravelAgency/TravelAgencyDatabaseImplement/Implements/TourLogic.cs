@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TravelAgencyDatabaseImplement;
 
-namespace RestaurantDatabaseImplement.Implements
+namespace TravelAgencyDatabaseImplement.Implements
 {
     public class TourLogic : ITourLogic
     {

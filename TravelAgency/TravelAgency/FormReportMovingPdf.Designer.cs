@@ -64,11 +64,11 @@
             reportDataSource1.Name = "DataSetMoving";
             reportDataSource1.Value = this.ReportOrdersViewModelBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "RestaurantView.ReportMoving.rdlc";
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "TravelAgencyView.ReportMoving.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(3, 39);
             this.reportViewer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reportViewer.Name = "reportViewer";
-            this.reportViewer.ServerReport.BearerToken = null;
+            //this.reportViewer.ServerReport.BearerToken = null;
             this.reportViewer.Size = new System.Drawing.Size(802, 403);
             this.reportViewer.TabIndex = 4;
             this.reportViewer.Load += new System.EventHandler(this.FormReportTourGuides_Load);

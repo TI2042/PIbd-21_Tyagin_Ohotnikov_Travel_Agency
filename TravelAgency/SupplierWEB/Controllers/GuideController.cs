@@ -39,7 +39,7 @@ namespace SupplierWEB.Controllers
             }
             if (TempData["ErrorLackInHotel"] != null)
             {
-                ModelState.AddModelError("", TempData["ErrorLackInFridge"].ToString());
+                ModelState.AddModelError("", TempData["ErrorLackInHotel"].ToString());
             }
             var guide = guideLogic.Read(new GuideBindingModel
             {

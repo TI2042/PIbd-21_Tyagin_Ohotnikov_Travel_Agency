@@ -68,7 +68,7 @@ namespace TravelAgency
                 {
                     try
                     {
-                        logic.SaveFridgeFoodsToExcelFile(new ReportBindingModel
+                        logic.SaveHotelGuidesToExcelFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName
                         });

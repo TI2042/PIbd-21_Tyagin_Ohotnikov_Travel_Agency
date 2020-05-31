@@ -22,7 +22,7 @@ namespace TravelAgency
         {
             InitializeComponent();
             dataGridViewComponents.Columns.Add("Id", "Id");
-            dataGridViewComponents.Columns.Add("FoodName", "Материал");
+            dataGridViewComponents.Columns.Add("GuideName", "Материал");
             dataGridViewComponents.Columns.Add("Count", "Количество");
             dataGridViewComponents.Columns[0].Visible = false;
             dataGridViewComponents.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;

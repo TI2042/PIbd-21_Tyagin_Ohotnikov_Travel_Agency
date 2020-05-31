@@ -88,14 +88,14 @@
             this.компонентыToolStripMenuItem.Name = "компонентыToolStripMenuItem";
             this.компонентыToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.компонентыToolStripMenuItem.Text = "Гиды";
-            this.компонентыToolStripMenuItem.Click += new System.EventHandler(this.FoodsToolStripMenuItem_Click);
+            this.компонентыToolStripMenuItem.Click += new System.EventHandler(this.GuidesToolStripMenuItem_Click);
             // 
             // изделияToolStripMenuItem
             // 
             this.изделияToolStripMenuItem.Name = "изделияToolStripMenuItem";
             this.изделияToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.изделияToolStripMenuItem.Text = "Туры";
-            this.изделияToolStripMenuItem.Click += new System.EventHandler(this.DishesToolStripMenuItem_Click);
+            this.изделияToolStripMenuItem.Click += new System.EventHandler(this.ToursToolStripMenuItem_Click);
             // 
             // отчетыToolStripMenuItem
             // 
