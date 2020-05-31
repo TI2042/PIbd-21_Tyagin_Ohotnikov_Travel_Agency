@@ -9,7 +9,7 @@ namespace TravelAgencyDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-JQJN4MA\SQLSERVER;
+                optionsBuilder.UseSqlServer(@"Data Source=HOME-PC\SQLSERVER;
                     Initial Catalog=TravelAgencyDatabase;
                     Integrated Security=True;MultipleActiveResultSets=True;");
             }

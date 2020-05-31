@@ -8,6 +8,7 @@ namespace TravelAgencyBusinessLogic.ViewModels
 {
     public class RequestViewModel
     {
+        [DisplayName("Номер заявки")]
         public int Id { get; set; }
         public int SupplierId { get; set; }
         [DisplayName("ФИО")]
