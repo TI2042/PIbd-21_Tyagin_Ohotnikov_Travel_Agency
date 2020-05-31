@@ -7,10 +7,10 @@ using TravelAgencyBusinessLogic.Interfaces;
 
 namespace TravelAgencyBusinessLogic.BusinessLogic
 {
-    public class SupplierLogic
+    public class SupplierBusinessLogic
     {
         private readonly IRequestLogic requestLogic;
-        public SupplierLogic(IRequestLogic requestLogic)
+        public SupplierBusinessLogic(IRequestLogic requestLogic)
         {
             this.requestLogic = requestLogic;
         }

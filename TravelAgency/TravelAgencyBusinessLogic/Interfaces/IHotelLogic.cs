@@ -10,6 +10,6 @@ namespace TravelAgencyBusinessLogic.Interfaces
         void CreateOrUpdate(HotelBindingModel model);
         void Delete(HotelBindingModel model);
         void AddGuide(ReserveGuideBindingModel model);
-        void RemoveGuides(OrderViewModel model);
+        void ReserveGuides(ReserveGuideBindingModel model);
     }
 }

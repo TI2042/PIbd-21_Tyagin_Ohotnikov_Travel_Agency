@@ -10,13 +10,10 @@ namespace TravelAgencyBusinessLogic.ViewModels
         public int Id { get; set; }
         [DisplayName("Название отеля")]
         public string HotelName { get; set; }
-        public int SupplierId { get; set; }
-        [DisplayName("Поставщик")]
-        public string SupplierName { get; set; }
         [DisplayName("Вместимость")]
         public int Capacity { get; set; }
         [DisplayName("Страна отеля")]
         public string Country { get; set; }
-        public Dictionary<int, (string, int)> Guides { get; set; }
+        public Dictionary<int, (string, int, int)> Guides { get; set; }
     }
 }

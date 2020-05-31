@@ -1,0 +1,45 @@
+﻿@model TravelAgencyDatabaseImplement.Models.Hotel
+@{
+    ViewData["Title"] = "Удаление Отеля";
+}
+
+    <h3>Удаление Отеля №@Model.Id</h3>
+
+<div class="text-left">
+    <h5>Вы уверены, что хотите удалить отель?</h5>
+</div>
+
+<hr />
+<div>
+    <a class="text-dark" asp-action="ListHotels">Вернуться назад</a>
+</div>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HotelName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HotelName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Capacity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Capacity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteHotel">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-dark" />
+    </form>
+</div>
+

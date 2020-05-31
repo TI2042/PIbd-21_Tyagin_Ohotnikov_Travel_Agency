@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TravelAgencyBusinessLogic.ViewModels.GuideViewModel>
+@{
+    ViewData["Title"] = "Список гидов";
+}
+
+<div class="text-left">
+    <h4>Пополнение Отеля №@ViewBag.HotelId</h4>
+</div>
+
+<hr />
+<div>
+    <a class="text-dark" asp-controller="Hotel" asp-action="Details" asp-route-id="@ViewBag.HotelId">Вернуться назад</a>
+</div>
+<hr />
+
+<table class="table table-striped table-bordered">
+    <thead class="thead thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GuideName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GuideName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm btn-block" asp-action="AddGuide" asp-route-guideId="@item.Id" asp-route-hotelId="@ViewBag.HotelId">Пополнить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

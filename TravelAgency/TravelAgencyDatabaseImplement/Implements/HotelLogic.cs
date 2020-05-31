@@ -13,6 +13,30 @@ namespace TravelAgencyDatabaseImplement.Implements
 {
     public class HotelLogic : IHotelLogic
     {
+        public List<HotelViewModel> Read(HotelBindingModel model)
+        {
+            using (var context = new TravelAgencyDatabase())
+            {
+                return context.Hotels
+                .Where(rec => model == null || rec.Id == model.Id
+                    || rec.SupplierId == model.SupplierId)
+                .ToList()
+                .Select(rec => new HotelViewModel
+                {
+                    Id = rec.Id,
+                    HotelName = rec.HotelName,
+                    Capacity = rec.Capacity,
+                    Country = rec.Country,
+                    Guides = context.HotelGuides
+                            .Include(recCC => recCC.Guide)
+                            .Where(recCC => recCC.HotelId == rec.Id)
+                            .ToDictionary(recCC => recCC.GuideId, recCC =>
+                            (recCC.Guide?.GuideName, recCC.Count, recCC.Reserved))
+                })
+                    .ToList();
+            }
+        }
+
         public void CreateOrUpdate(HotelBindingModel model)
         {
             using (var context = new TravelAgencyDatabase())
@@ -20,14 +44,22 @@ namespace TravelAgencyDatabaseImplement.Implements
                 Hotel element = context.Hotels.FirstOrDefault(rec => rec.HotelName == model.HotelName && rec.Id != model.Id);
                 if (element != null)
                 {
-                    throw new Exception("Уже есть отель с таким названием");
+                    throw new Exception("Уже существует холодильник с таким названием");
                 }
                 if (model.Id.HasValue)
                 {
                     element = context.Hotels.FirstOrDefault(rec => rec.Id == model.Id);
+                    int free = context.HotelGuides.Where(rec =>
+                    rec.HotelId == model.Id).Sum(rec => rec.Count);
+                    int res = context.HotelGuides.Where(rec =>
+                    rec.HotelId == model.Id).Sum(rec => rec.Reserved);
+                    if ((free + res) > model.Capacity)
+                    {
+                        throw new Exception("Вместимость не может быть меньше количества продуктов в холодильнике");
+                    }
                     if (element == null)
                     {
-                        throw new Exception("Элемент не найден");
+                        throw new Exception("Холодильник не найден");
                     }
                 }
                 else
@@ -35,7 +67,10 @@ namespace TravelAgencyDatabaseImplement.Implements
                     element = new Hotel();
                     context.Hotels.Add(element);
                 }
+                element.SupplierId = model.SupplierId;
                 element.HotelName = model.HotelName;
+                element.Capacity = model.Capacity;
+                element.Country = model.Country;
                 context.SaveChanges();
             }
         }
@@ -57,7 +92,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                         }
                         else
                         {
-                            throw new Exception("Элемент не найден");
+                            throw new Exception("Холодильник не найден");
                         }
                         transaction.Commit();
                     }
@@ -74,85 +109,58 @@ namespace TravelAgencyDatabaseImplement.Implements
         {
             using (var context = new TravelAgencyDatabase())
             {
-                var HotelGuide = context.HotelGuides
-                    .FirstOrDefault(sm => sm.GuideId == model.GuideId && sm.HotelId == model.HotelId);
-                if (HotelGuide != null)
-                    HotelGuide.Count += model.Count;
-                else
-                
-                    context.HotelGuides.Add(new HotelGuide()
+                var hotelGuides = context.HotelGuides.FirstOrDefault(rec =>
+                 rec.HotelId == model.HotelId && rec.GuideId == model.GuideId);
+                var hotel = context.Hotels.FirstOrDefault(rec => rec.Id == model.HotelId);
+
+                int free = context.HotelGuides.Where(rec =>
+                rec.HotelId == model.HotelId).Sum(rec => rec.Count);
+                int res = context.HotelGuides.Where(rec =>
+                rec.HotelId == model.HotelId).Sum(rec => rec.Reserved);
+                if ((free + res + model.Count) > hotel.Capacity)
+                {
+                    throw new Exception("Недостаточно места в холодильнике");
+                }
+                if (hotelGuides == null)
+                {
+                    context.HotelGuides.Add(new HotelGuide
                     {
-                        GuideId = model.GuideId,
                         HotelId = model.HotelId,
-                        Count = model.Count
+                        GuideId = model.GuideId,
+                        Count = model.Count,
+                        Reserved = 0
                     });
-                
+                }
+                else
+                {
+                    hotelGuides.Count += model.Count;
+                }
                 context.SaveChanges();
             }
         }
 
-        public List<HotelViewModel> Read(HotelBindingModel model)
+        public void ReserveGuides(ReserveGuideBindingModel model)
         {
             using (var context = new TravelAgencyDatabase())
             {
-                return context.Hotels
-                .Where(rec => model == null || rec.Id == model.Id)
-                .ToList()
-                .Select(rec => new HotelViewModel
+                var hotelGuides = context.HotelGuides.FirstOrDefault(rec =>
+                rec.HotelId == model.HotelId && rec.GuideId == model.GuideId);
+                if (hotelGuides != null)
                 {
-                    Id = rec.Id,
-                    HotelName = rec.HotelName,
-                    Capacity = rec.Capacity,
-                    Country = rec.Country,
-                    Guides = context.HotelGuides
-                    .Include(recCC => recCC.Guide)
-                    .Where(recCC => recCC.HotelId == rec.Id)
-                    .ToDictionary(recCC => recCC.GuideId, recCC => (
-                    recCC.Guide?.GuideName, recCC.Count))
-                })
-                .ToList();
-            }
-        }
-
-        public void RemoveGuides(OrderViewModel order)
-        {
-            using (var context = new TravelAgencyDatabase())
-            {
-                using (var transaction = context.Database.BeginTransaction())
+                    if (hotelGuides.Count >= model.Count)
+                    {
+                        hotelGuides.Count -= model.Count;
+                        hotelGuides.Reserved += model.Count;
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        throw new Exception("Недостаточно продуктов для резервирования");
+                    }
+                }
+                else
                 {
-                    try
-                    {
-                        var tourGuides = context.TourGuides.Where(dm => dm.TourId == order.TourId).ToList();
-                        var HotelGuides = context.TourGuides.ToList();
-                        foreach (var guide in tourGuides)
-                        {
-                            var guideCount = guide.Count * order.Count;
-                            foreach(var df in tourGuides)
-                            {
-                                if (df.GuideId ==guide.GuideId && df.Count>= guideCount)
-                                {
-                                    df.Count -= guideCount;
-                                    guideCount = 0;
-                                    break;
-                                }
-                                else if(df.GuideId==guide.GuideId && df.Count < guideCount)
-                                {
-                                    guideCount -= df.Count ;
-                                    df.Count = 0;
-                                    context.SaveChanges();
-                                }
-                            }
-                            if (guideCount > 0)
-                            {
-                                throw new Exception("В отелях недостаточно гидов ");
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
+                    throw new Exception("На складе не существует таких продуктов");
                 }
             }
         }

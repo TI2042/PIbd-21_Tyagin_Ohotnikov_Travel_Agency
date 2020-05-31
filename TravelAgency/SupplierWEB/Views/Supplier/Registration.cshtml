@@ -1,15 +1,45 @@
-﻿@model SupplierWEB.Models.RegistrationModel
+﻿@model TravelAgencyDatabaseImplement.Models.Supplier
 @{
     ViewData["Title"] = "Регистрация";
 }
 
 <h1>Registration</h1>
 
-@using (Html.BeginForm("Registration", "Supplier"))
-{
-    <p>ФИО: @Html.TextBoxFor(x => x.SupplierFIO)</p>
-    <p>Пароль: @Html.TextBoxFor(x => x.Password)</p>
-    <p>E-Mail: @Html.TextBoxFor(x => x.Email)</p>
-    @Html.ValidationSummary()
-    <input type="submit" value="Зарегистрироваться" />
+@section Links {
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Главная страница</a>
+            </li>
+        </ul>
+    </div>
 }
+
+<h1>Регистрация</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Registration">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SupplierFIO" class="control-label"></label>
+                <input asp-for="SupplierFIO" class="form-control" />
+                <span asp-validation-for="SupplierFIO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label"></label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зарегистрироваться" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>

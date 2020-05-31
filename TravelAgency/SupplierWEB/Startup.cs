@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TravelAgencyBusinessLogic.BusinessLogic;
 using TravelAgencyBusinessLogic.Interfaces;
 using TravelAgencyDatabaseImplement.Implements;
 
@@ -26,10 +27,11 @@ namespace SupplierWEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<ISupplierLogic, SupplierLogic>();
+            services.AddTransient<ISupplierLogic, TravelAgencyDatabaseImplement.Implements.SupplierLogic>();
             services.AddTransient<IRequestLogic, RequestLogic>();
             services.AddTransient<IGuideLogic, GuideLogic>();
             services.AddTransient<IHotelLogic, HotelLogic>();
+            services.AddTransient<SupplierBusinessLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

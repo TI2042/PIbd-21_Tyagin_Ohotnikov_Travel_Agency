@@ -6,79 +6,75 @@ using Microsoft.AspNetCore.Mvc;
 using SupplierWEB.Models;
 using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.Interfaces;
+using TravelAgencyDatabaseImplement.Models;
 
 namespace SupplierWEB.Controllers
 {
     public class SupplierController : Controller
     {
-        private readonly ISupplierLogic _supplier;
+        private readonly ISupplierLogic supplierLogic;
 
-        public SupplierController(ISupplierLogic supplier)
+        public SupplierController(ISupplierLogic supplierLogic)
         {
-            _supplier = supplier;
+            this.supplierLogic = supplierLogic;
         }
-        public IActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Login(LoginModel supplier)
-        {
-            var supplierView = _supplier.Read(new SupplierBindingModel
-            {
-                SupplierFIO = supplier.SupplierFIO,
-                Password = supplier.Password
-            }).FirstOrDefault();
-            if (supplierView == null)
-            {
-                ModelState.AddModelError("", "Вы ввели неверный пароль, либо пользователь не найден");
-                return View(supplier);
-            }
-            Program.Supplier = supplierView;
-            return RedirectToAction("Index", "Home");
-        }
+
         public IActionResult Logout()
         {
             Program.Supplier = null;
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginModel supplier)
+        {
+            if (String.IsNullOrEmpty(supplier.Login)
+                || String.IsNullOrEmpty(supplier.Password))
+            {
+                return View(supplier);
+            }
+            var supplierView = supplierLogic.Read(new SupplierBindingModel
+            {
+                Email = supplier.Login,
+                Password = supplier.Password
+            }).FirstOrDefault();
+            if (supplierView == null)
+            {
+                ModelState.AddModelError("", "Неверный логин или пароль");
+                return View(supplier);
+            }
+            Program.Supplier = supplierView;
+            return RedirectToAction("Request", "Request");
+        }
+
+        [HttpGet]
         public IActionResult Registration()
         {
             return View();
         }
+
         [HttpPost]
-        public ViewResult Registration(RegistrationModel supplier)
+        public IActionResult Registration(Supplier supplier)
         {
-            if (ModelState.IsValid)
+            if (String.IsNullOrEmpty(supplier.SupplierFIO)
+            || String.IsNullOrEmpty(supplier.Login)
+            || String.IsNullOrEmpty(supplier.Password))
             {
-                var existSupplier = _supplier.Read(new SupplierBindingModel
-                {
-                    SupplierFIO = supplier.SupplierFIO
-                }).FirstOrDefault();
-                if (existSupplier != null)
-                {
-                    ModelState.AddModelError("", "Данный логин уже занят");
-                    return View(supplier);
-                }
-                existSupplier = _supplier.Read(new SupplierBindingModel
-                {
-                    Email = supplier.Email
-                }).FirstOrDefault();
-                if (existSupplier != null)
-                {
-                    ModelState.AddModelError("", "Данный E-Mail уже занят");
-                    return View(supplier);
-                }
-                _supplier.CreateOrUpdate(new SupplierBindingModel
-                {
-                    SupplierFIO = supplier.SupplierFIO,
-                    Password = supplier.Password,
-                    Email = supplier.Email
-                });
-                ModelState.AddModelError("", "Вы успешно зарегистрированы");
-                return View("Registration", supplier);
+                return View(supplier);
             }
-            return View(supplier);
+            supplierLogic.CreateOrUpdate(new SupplierBindingModel
+            {
+                SupplierFIO = supplier.SupplierFIO,
+                Email = supplier.Login,
+                Password = supplier.Password
+            });
+            return RedirectToAction("Index", "Home");
         }
     }
 }

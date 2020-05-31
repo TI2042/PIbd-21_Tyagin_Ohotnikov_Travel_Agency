@@ -1,0 +1,60 @@
+﻿@model Dictionary<int, (string, int)>
+@{
+    ViewData["Title"] = "Заявка";
+}
+
+@section Links {
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Request" asp-action="Request">Список заявок</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Hotel" asp-action="ListHotel">Отели</a>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="text-left">
+    <h4>Заявка № @ViewBag.RequestId</h4>
+</div>
+
+<hr />
+
+<div class="text-left">
+    <h6>Поставщик - @Program.Supplier.SupplierFIO</h6>
+</div>
+
+<hr />
+
+<table class="table table-striped table-bordered">
+    <thead class="thead thead-dark">
+        <tr>
+            <th>
+                Гид
+            </th>
+            <th>
+                Количество
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value.Item1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value.Item2)
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm btn-block" asp-action="" asp-route-id="@item.Key">Зарезервировать</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

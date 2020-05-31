@@ -16,17 +16,17 @@ namespace TravelAgencyDatabaseImplement.Implements
         {
             using (var context = new TravelAgencyDatabase())
             {
-                Supplier element = context.Suppliers.FirstOrDefault(rec => rec.SupplierFIO == model.SupplierFIO && rec.Id != model.Id);
+                Supplier element = context.Suppliers.FirstOrDefault(rec => rec.Login == model.Email && rec.Id != model.Id);
                 if (element != null)
                 {
-                    throw new Exception("Уже есть поставщик с таким логином");
+                    throw new Exception("Поставщик с таким логином уже существует");
                 }
                 if (model.Id.HasValue)
                 {
                     element = context.Suppliers.FirstOrDefault(rec => rec.Id == model.Id);
                     if (element == null)
                     {
-                        throw new Exception("Элемент не найден");
+                        throw new Exception("Поставщик не найден");
                     }
                 }
                 else
@@ -35,8 +35,8 @@ namespace TravelAgencyDatabaseImplement.Implements
                     context.Suppliers.Add(element);
                 }
                 element.SupplierFIO = model.SupplierFIO;
+                element.Login = model.Email;
                 element.Password = model.Password;
-                element.Email = model.Email;
                 context.SaveChanges();
             }
         }
@@ -53,7 +53,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 }
                 else
                 {
-                    throw new Exception("Элемент не найден");
+                    throw new Exception("Поставщик не найден");
                 }
             }
         }
@@ -63,13 +63,14 @@ namespace TravelAgencyDatabaseImplement.Implements
             using (var context = new TravelAgencyDatabase())
             {
                 return context.Suppliers
-                .Where(rec => (rec.SupplierFIO == model.SupplierFIO) && (model.Password == null || rec.Password == model.Password))
+                 .Where(rec => model == null || rec.Id == model.Id
+                || rec.Login == model.Email && rec.Password == model.Password)
                 .Select(rec => new SupplierViewModel
                 {
                     Id = rec.Id,
                     SupplierFIO = rec.SupplierFIO,
-                    Password = rec.Password,
-                    Email = rec.Email
+                    Email = rec.Login,
+                    Password = rec.Password
                 })
                 .ToList();
             }
