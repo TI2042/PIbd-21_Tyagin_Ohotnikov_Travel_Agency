@@ -30,19 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.ReportOrdersViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonCreateToPdf = new System.Windows.Forms.Button();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ReportOrdersViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
+            // ReportOrdersViewModelBindingSource
+            // 
+            this.ReportOrdersViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel);
+            // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(252, 4);
-            this.buttonCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCreate.Location = new System.Drawing.Point(189, 3);
             this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(124, 25);
+            this.buttonCreate.Size = new System.Drawing.Size(93, 20);
             this.buttonCreate.TabIndex = 2;
             this.buttonCreate.Text = "Сформировать";
             this.buttonCreate.UseVisualStyleBackColor = true;
@@ -50,10 +53,9 @@
             // 
             // buttonCreateToPdf
             // 
-            this.buttonCreateToPdf.Location = new System.Drawing.Point(425, 4);
-            this.buttonCreateToPdf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCreateToPdf.Location = new System.Drawing.Point(319, 3);
             this.buttonCreateToPdf.Name = "buttonCreateToPdf";
-            this.buttonCreateToPdf.Size = new System.Drawing.Size(112, 25);
+            this.buttonCreateToPdf.Size = new System.Drawing.Size(84, 20);
             this.buttonCreateToPdf.TabIndex = 3;
             this.buttonCreateToPdf.Text = "В PDF";
             this.buttonCreateToPdf.UseVisualStyleBackColor = true;
@@ -64,28 +66,22 @@
             reportDataSource1.Name = "DataSetMoving";
             reportDataSource1.Value = this.ReportOrdersViewModelBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "TravelAgencyView.ReportMoving.rdlc";
-            this.reportViewer.Location = new System.Drawing.Point(3, 39);
-            this.reportViewer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "TravelAgency.ReportMoving.rdlc";
+            this.reportViewer.Location = new System.Drawing.Point(2, 32);
             this.reportViewer.Name = "reportViewer";
-            //this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(802, 403);
+            this.reportViewer.ServerReport.BearerToken = null;
+            this.reportViewer.Size = new System.Drawing.Size(602, 328);
             this.reportViewer.TabIndex = 4;
             this.reportViewer.Load += new System.EventHandler(this.FormReportTourGuides_Load);
             // 
-            // ReportOrdersViewModelBindingSource
-            // 
-            this.ReportOrdersViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel);
-            // 
             // FormReportMovingPdf
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 443);
+            this.ClientSize = new System.Drawing.Size(604, 360);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.buttonCreateToPdf);
             this.Controls.Add(this.buttonCreate);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormReportMovingPdf";
             this.Text = "Гиды по турам";
             this.Load += new System.EventHandler(this.FormReportTourGuides_Load);

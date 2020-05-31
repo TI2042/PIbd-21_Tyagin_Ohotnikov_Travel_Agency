@@ -44,7 +44,7 @@ namespace TravelAgency
                 (new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ITourLogic, TourLogic>
                 (new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ISupplierLogic, TravelAgencyDatabaseImplement.Implements.SupplierLogic>
+            currentContainer.RegisterType<ISupplierLogic, SupplierLogic>
                 (new HierarchicalLifetimeManager());
             return currentContainer;
         }

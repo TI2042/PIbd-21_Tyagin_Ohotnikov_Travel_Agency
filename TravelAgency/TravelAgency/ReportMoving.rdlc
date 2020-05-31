@@ -6,24 +6,24 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.1223cm</Width>
+              <Width>4.1973cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.1223cm</Width>
+              <Width>4.1973cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.1223cm</Width>
+              <Width>4.1973cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.1223cm</Width>
+              <Width>3.29772cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.1223cm</Width>
+              <Width>2.37829cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>1.46783cm</Height>
+              <Height>1.48635cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -147,7 +147,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox7">
+                    <Textbox Name="Textbox11">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -161,7 +161,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox7</rd:DefaultName>
+                      <rd:DefaultName>Textbox11</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -178,7 +178,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>1.46783cm</Height>
+              <Height>1.48635cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -354,10 +354,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetMoving</DataSetName>
-        <Top>1.2192cm</Top>
-        <Left>0.54187cm</Left>
-        <Height>2.93567cm</Height>
-        <Width>15.6115cm</Width>
+        <Top>0.65828cm</Top>
+        <Left>0.66146cm</Left>
+        <Height>2.97271cm</Height>
+        <Width>18.26792cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -368,7 +368,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>6.5in</Width>
+  <Width>8.41084in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -386,7 +386,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>48b4dcc3-8c49-4a12-b332-c32036e3756f</rd:DataSourceID>
+      <rd:DataSourceID>3286f532-2aea-4443-ae73-167271d3edaa</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -408,13 +408,13 @@
           <DataField>CreationDate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="TourName">
-          <DataField>Tourname</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="Status">
           <DataField>Status</DataField>
           <rd:TypeName>TravelAgencyBusinessLogic.Enums.Status</rd:TypeName>
+        </Field>
+        <Field Name="TourName">
+          <DataField>TourName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -425,5 +425,5 @@
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>a4045c7a-52b5-47a0-8d61-ffddd578b3eb</rd:ReportID>
+  <rd:ReportID>048cb0fe-c177-452c-9145-1ad0b6ef729d</rd:ReportID>
 </Report>
