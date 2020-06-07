@@ -9,56 +9,61 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 using TravelAgencyBusinessLogic.Interfaces;
+using TravelAgencyBusinessLogic.BusinessLogic;
 using TravelAgencyBusinessLogic.ViewModels;
 using TravelAgencyBusinessLogic.BindingModels;
-using TravelAgencyBusinessLogic.BusinessLogic;
 
 namespace TravelAgency
 {
     public partial class FormAddGuides : Form
     {
-        private readonly MainLogic mainLogic;
-        private readonly IRequestLogic requestLogic;
-        private readonly IGuideLogic guideLogic;
-        private List<RequestViewModel> requestViews;
-        private List<GuideViewModel> guideViews;
-
-        public FormAddGuides(MainLogic mainLogic, IRequestLogic requestLogic, IGuideLogic guideLogic)
+        [Dependency]
+        public new IUnityContainer Container { get; set; }
+        public int Id
         {
-            InitializeComponent();
-            this.mainLogic = mainLogic;
-            this.requestLogic = requestLogic;
-            this.guideLogic = guideLogic;
-            LoadData();
+            get { return Convert.ToInt32(comboBoxGuide.SelectedValue); }
+            set { comboBoxGuide.SelectedValue = value; }
+        }
+        public string GuideName { get { return comboBoxGuide.Text; } }
+        public int Count
+        {
+            get { return Convert.ToInt32(textBoxCount.Text); }
+            set { textBoxCount.Text = value.ToString(); }
         }
 
-        private void LoadData()
+        public FormAddGuides(IGuideLogic logic)
         {
-            requestViews = requestLogic.Read(null);
-            if (requestViews != null)
+            InitializeComponent();
+            List<GuideViewModel> list = logic.Read(null);
+            if (list != null)
             {
-                comboBoxHotels.DataSource = requestViews;
-                comboBoxHotels.DisplayMember = "SupplierName";
-            }
-            guideViews = guideLogic.Read(null);
-            if (guideViews != null)
-            {
-                comboBoxComponent.DataSource = guideViews;
-                comboBoxComponent.DisplayMember = "GuideName";
+                comboBoxGuide.DisplayMember = "GuideName";
+                comboBoxGuide.ValueMember = "Id";
+                comboBoxGuide.DataSource = list;
+                comboBoxGuide.SelectedItem = null;
             }
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (textBoxCountComponent.Text == string.Empty)
-                throw new Exception("Введите количество продуктов");
-
-            mainLogic.ReplanishHotel(new ReserveGuideBindingModel()
+            if (string.IsNullOrEmpty(textBoxCount.Text))
             {
-                HotelId = (comboBoxHotels.SelectedItem as HotelViewModel).Id,
-                GuideId = (comboBoxComponent.SelectedItem as GuideViewModel).Id,
-                Count = Convert.ToInt32(textBoxCountComponent.Text)
-            });
+                MessageBox.Show(
+                    "Поле \"Количество\" не заполнено",
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            if (comboBoxGuide.SelectedValue == null)
+            {
+                MessageBox.Show(
+                    "Не выбран гид",
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
             DialogResult = DialogResult.OK;
             Close();
         }

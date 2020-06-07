@@ -33,7 +33,7 @@ namespace TravelAgency
         {
             try
             {
-                var listTours = logicP.Read(null);
+                List<TourViewModel> listTours = logicP.Read(null);
                 if (listTours != null)
                 {
                     comboBoxTour.DisplayMember = "TourName";

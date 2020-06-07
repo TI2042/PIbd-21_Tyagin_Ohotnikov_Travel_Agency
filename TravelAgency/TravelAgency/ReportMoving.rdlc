@@ -328,6 +328,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -356,8 +357,8 @@
         <DataSetName>DataSetMoving</DataSetName>
         <Top>0.65828cm</Top>
         <Left>0.66146cm</Left>
-        <Height>2.97271cm</Height>
-        <Width>18.26792cm</Width>
+        <Height>2.9727cm</Height>
+        <Width>18.26791cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

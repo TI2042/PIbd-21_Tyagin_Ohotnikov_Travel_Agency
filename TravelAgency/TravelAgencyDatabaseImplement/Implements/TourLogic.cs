@@ -125,9 +125,12 @@ namespace TravelAgencyDatabaseImplement.Implements
                     Id = rec.Id,
                     TourName = rec.TourName,
                     Price = rec.Price,
-                    TourGuides = context.TourGuides.Include(recPC => recPC.Guide)
-                                                           .Where(recPC => recPC.TourId == rec.Id)
-                                                           .ToDictionary(recPC => recPC.GuideId, recPC => (recPC.Guide?.GuideName, recPC.Count))
+                    TourGuides = context.TourGuides
+                                        .Include(recPC => recPC.Guide)
+                                        .Where(recPC => recPC.TourId == rec.Id)
+                                        .ToDictionary(recPC => recPC.GuideId, recPC => (
+                                            recPC.Guide?.GuideName, recPC.Count
+                                         ))
                 }).ToList();
             }
         }

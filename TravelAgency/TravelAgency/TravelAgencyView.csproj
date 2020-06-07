@@ -219,6 +219,12 @@
     <Compile Include="FormCreateOrder.Designer.cs">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCreateRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateRequest.Designer.cs">
+      <DependentUpon>FormCreateRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormGuide.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,11 +249,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOrder.cs">
+    <Compile Include="FormRequest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOrder.Designer.cs">
-      <DependentUpon>FormOrder.cs</DependentUpon>
+    <Compile Include="FormRequest.Designer.cs">
+      <DependentUpon>FormRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="FormReportMovingPdf.cs">
       <SubType>Form</SubType>
@@ -260,6 +266,12 @@
     </Compile>
     <Compile Include="FormReportTourXls.Designer.cs">
       <DependentUpon>FormReportTourXls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRequestGuide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRequestGuide.Designer.cs">
+      <DependentUpon>FormRequestGuide.cs</DependentUpon>
     </Compile>
     <Compile Include="FormTour.cs">
       <SubType>Form</SubType>
@@ -287,6 +299,9 @@
     <EmbeddedResource Include="FormCreateOrder.resx">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCreateRequest.resx">
+      <DependentUpon>FormCreateRequest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,14 +311,17 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOrder.resx">
-      <DependentUpon>FormOrder.cs</DependentUpon>
+    <EmbeddedResource Include="FormRequest.resx">
+      <DependentUpon>FormRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportMovingPdf.resx">
       <DependentUpon>FormReportMovingPdf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportTourXls.resx">
       <DependentUpon>FormReportTourXls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRequestGuide.resx">
+      <DependentUpon>FormRequestGuide.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTour.resx">
       <DependentUpon>FormTour.cs</DependentUpon>

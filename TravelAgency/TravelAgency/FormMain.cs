@@ -161,7 +161,7 @@ namespace TravelAgency
 
         private void посмотретьДоступныеПродуктыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormOrder>();
+            var form = Container.Resolve<FormRequest>();
             form.ShowDialog();
         }
     }

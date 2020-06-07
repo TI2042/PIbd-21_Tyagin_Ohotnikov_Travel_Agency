@@ -10,12 +10,12 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        private readonly IHotelLogic hotelLogic;
+        private readonly IRequestLogic requestLogic;
 
-        public MainLogic(IOrderLogic orderLogic, IHotelLogic hotelLogic)
+        public MainLogic(IOrderLogic orderLogic, IRequestLogic requestLogic)
         {
             this.orderLogic = orderLogic;
-            this.hotelLogic = hotelLogic;
+            this.requestLogic = requestLogic;
         }
 
         public void CreateOrder(OrderBindingModel model)
@@ -100,9 +100,15 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             });
         }
 
-        public void ReplanishHotel(ReserveGuideBindingModel model)
+        public void CreateOrUpdateRequest(RequestBindingModel model)
         {
-            hotelLogic.AddGuide(model);
+            requestLogic.CreateOrUpdate(new RequestBindingModel
+            {
+                Id = model.Id,
+                SupplierId = model.SupplierId,
+                Status = RequestStatus.Created,
+                Guides = model.Guides
+            });
         }
     }
 }

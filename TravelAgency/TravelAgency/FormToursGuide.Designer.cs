@@ -36,20 +36,20 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // labelComponentName
+            // labelGuideName
             // 
             this.labelComponentName.AutoSize = true;
             this.labelComponentName.Location = new System.Drawing.Point(49, 25);
-            this.labelComponentName.Name = "labelComponentName";
+            this.labelComponentName.Name = "labelGuideName";
             this.labelComponentName.Size = new System.Drawing.Size(28, 13);
             this.labelComponentName.TabIndex = 0;
             this.labelComponentName.Text = "Гид:";
             // 
-            // labelCountComponent
+            // labelCountGuide
             // 
             this.labelCountComponent.AutoSize = true;
             this.labelCountComponent.Location = new System.Drawing.Point(12, 61);
-            this.labelCountComponent.Name = "labelCountComponent";
+            this.labelCountComponent.Name = "labelCountGuide";
             this.labelCountComponent.Size = new System.Drawing.Size(69, 13);
             this.labelCountComponent.TabIndex = 1;
             this.labelCountComponent.Text = "Количество:";
