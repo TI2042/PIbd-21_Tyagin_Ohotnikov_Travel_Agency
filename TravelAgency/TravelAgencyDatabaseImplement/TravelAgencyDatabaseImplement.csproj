@@ -3,9 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-	<PropertyGroup>
-		<GenerateRuntimeConfigurationFiles> True </GenerateRuntimeConfigurationFiles>
-	</PropertyGroup>
+	
 
 	<ItemGroup>
     <Compile Remove="Migrations\20200525133935_25.05.2020.cs" />

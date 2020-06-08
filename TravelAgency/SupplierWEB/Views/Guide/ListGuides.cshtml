@@ -36,7 +36,7 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-sm btn-block" asp-action="AddGuide" asp-route-guideId="@item.Id" asp-route-hotelId="@ViewBag.HotelId">Пополнить</a>
+                    <a class="btn btn-primary btn-sm btn-block" asp-action="AddGuides" asp-route-guideId="@item.Id" asp-route-hotelId="@ViewBag.HotelId">Пополнить</a>
                 </td>
             </tr>
         }

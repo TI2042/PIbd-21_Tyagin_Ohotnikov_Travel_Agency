@@ -27,11 +27,12 @@ namespace SupplierWEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<ISupplierLogic, TravelAgencyDatabaseImplement.Implements.SupplierLogic>();
+            services.AddTransient<ISupplierLogic, SupplierLogic>();
             services.AddTransient<IRequestLogic, RequestLogic>();
             services.AddTransient<IGuideLogic, GuideLogic>();
             services.AddTransient<IHotelLogic, HotelLogic>();
             services.AddTransient<SupplierBusinessLogic>();
+            services.AddTransient<SupplierReportLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
