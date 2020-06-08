@@ -11,6 +11,7 @@ using Unity;
 using TravelAgencyBusinessLogic.Interfaces;
 using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.BusinessLogic;
+using TravelAgencyDatabaseImplement.Models;
 
 namespace TravelAgency
 {
@@ -21,13 +22,19 @@ namespace TravelAgency
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
         private readonly ReportLogic report;
+        private readonly IRequestLogic requestLogic;
+        private readonly ITourLogic tourLogic;
+        private readonly IGuideLogic guideLogic;
 
-        public FormMain(MainLogic logic, IOrderLogic orderLogic, ReportLogic report)
+        public FormMain(MainLogic logic, IOrderLogic orderLogic, ReportLogic report, IGuideLogic guideLogic, IRequestLogic requestLogic, ITourLogic tourLogic)
         {
             InitializeComponent();
             this.logic = logic;
             this.orderLogic = orderLogic;
             this.report = report;
+            this.tourLogic = tourLogic;
+            this.requestLogic = requestLogic;
+            this.guideLogic = guideLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -42,9 +49,9 @@ namespace TravelAgency
             {
                 dataGridView.DataSource = listOrders;
                 dataGridView.Columns[0].Visible = false;
-                dataGridView.Columns[1].Visible = false;
-                dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                dataGridView.Columns[6].Visible = false;
+                dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                dataGridView.Columns[2].Visible = false;
+                dataGridView.Columns[7].Visible = false;
             }
             dataGridView.Update();
         }
@@ -137,12 +144,18 @@ namespace TravelAgency
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    report.SaveToursToWordFile(new ReportBindingModel
+                    try
                     {
-                        FileName = dialog.FileName
-                    });
-                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
+                        report.SaveOrdersToWordFile(new ReportBindingModel
+                        {
+                            FileName = dialog.FileName
+                        });
+                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

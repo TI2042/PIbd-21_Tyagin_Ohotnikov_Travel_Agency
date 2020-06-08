@@ -75,7 +75,7 @@ namespace SupplierWEB.Controllers
             {
                 return new UnauthorizedResult();
             }
-            supplierLogic.AcceptRequest(new ChangeStatusRequestGuideBindingModel
+            supplierLogic.AcceptRequest(new ChangeRequestStatusBindingModel
             {
                 RequestId = id
             });
@@ -88,7 +88,7 @@ namespace SupplierWEB.Controllers
             {
                 return new UnauthorizedResult();
             }
-            supplierLogic.CompleteRequest(new ChangeStatusRequestGuideBindingModel
+            supplierLogic.CompleteRequest(new ChangeRequestStatusBindingModel
             {
                 RequestId = id
             });

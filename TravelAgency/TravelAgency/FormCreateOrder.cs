@@ -21,18 +21,28 @@ namespace TravelAgency
         public new IUnityContainer Container { get; set; }
         private readonly ITourLogic logicP;
         private readonly MainLogic logicM;
+        private readonly IRequestLogic requestLogic;
+        private Dictionary<int, (string, int, bool)> requestGuides;
+        public int ID { set { Id = value; } }
+        private int? Id;
+        private readonly ISupplierLogic supplierLogic;
 
-        public FormCreateOrder(ITourLogic logicP, MainLogic logicM)
+        public FormCreateOrder(ITourLogic logicP, MainLogic logicM,
+            IRequestLogic requestLogic, ISupplierLogic supplierLogic)
         {
             InitializeComponent();
             this.logicP = logicP;
             this.logicM = logicM;
+            this.requestLogic = requestLogic;
+            this.supplierLogic = supplierLogic;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
+            LoadSuppliers();
             try
             {
+                //Логика загрузки списка компонент в выпадающий список
                 List<TourViewModel> listTours = logicP.Read(null);
                 if (listTours != null)
                 {
@@ -40,6 +50,22 @@ namespace TravelAgency
                     comboBoxTour.ValueMember = "Id";
                     comboBoxTour.DataSource = listTours;
                     comboBoxTour.SelectedItem = null;
+                }
+
+                if (Id.HasValue)
+                {
+                    RequestViewModel request = requestLogic.Read(new RequestBindingModel
+                    {
+                        Id = Id.Value
+                    })?[0];
+                    if (request != null)
+                    {
+                        requestGuides = request.Guides;
+                    }
+                }
+                else
+                {
+                    requestGuides = new Dictionary<int, (string, int, bool)>();
                 }
             }
             catch (Exception ex)
@@ -56,12 +82,16 @@ namespace TravelAgency
                 try
                 {
                     int id = Convert.ToInt32(comboBoxTour.SelectedValue);
-                    TourViewModel product = logicP.Read(new TourBindingModel
+                    TourViewModel tour = logicP.Read(new TourBindingModel
                     {
                         Id = id
                     })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * product?.Price ?? 0).ToString();
+                    textBoxSum.Text = (count * tour?.Price ?? 0).ToString();
+                    foreach (var p in tour.TourGuides)
+                    {
+                        requestGuides.Add(p.Key, (tour.TourGuides[p.Key].Item1, tour.TourGuides[p.Key].Item2, false));
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -80,6 +110,29 @@ namespace TravelAgency
             CalcSum();
         }
 
+        private void LoadSuppliers()
+        {
+            try
+            {
+                List<SupplierViewModel> suppliersList = supplierLogic.Read(null);
+                if (suppliersList != null)
+                {
+                    comboBoxSupplier.DisplayMember = "Login";
+                    comboBoxSupplier.ValueMember = "Id";
+                    comboBoxSupplier.DataSource = suppliersList;
+                    comboBoxSupplier.SelectedItem = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Ошибка загрузки списка поставщиков",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
@@ -90,6 +143,12 @@ namespace TravelAgency
             if (comboBoxTour.SelectedValue == null)
             {
                 MessageBox.Show("Выберите тур", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (comboBoxSupplier.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите поставщика", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -103,6 +162,24 @@ namespace TravelAgency
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
+
+                try
+                {
+                    logicM.CreateOrUpdateRequest(new RequestBindingModel
+                    {
+                        Id = Id,
+                        SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
+                        Guides = requestGuides
+                    });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        ex.Message,
+                        "Ошибка",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {

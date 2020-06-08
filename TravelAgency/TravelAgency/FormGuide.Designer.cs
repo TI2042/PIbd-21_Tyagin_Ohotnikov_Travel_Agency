@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGuide));
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -37,7 +38,7 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(35, 27);
+            this.labelName.Location = new System.Drawing.Point(12, 27);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(32, 13);
             this.labelName.TabIndex = 0;
@@ -45,14 +46,14 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(73, 24);
+            this.textBoxName.Location = new System.Drawing.Point(50, 24);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(222, 20);
             this.textBoxName.TabIndex = 1;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(124, 59);
+            this.buttonSave.Location = new System.Drawing.Point(82, 59);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(80, 24);
             this.buttonSave.TabIndex = 2;
@@ -62,7 +63,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(215, 59);
+            this.buttonCancel.Location = new System.Drawing.Point(192, 59);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(80, 24);
             this.buttonCancel.TabIndex = 3;
@@ -74,12 +75,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 96);
+            this.ClientSize = new System.Drawing.Size(284, 95);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
             this.Name = "FormGuide";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Гид";
             this.Load += new System.EventHandler(this.FormComponent_Load);
             this.ResumeLayout(false);

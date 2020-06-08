@@ -15,52 +15,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             this.requestLogic = requestLogic;
         }
 
-        public void AcceptRequest(ChangeStatusRequestGuideBindingModel model)
-        {
-            var request = requestLogic.Read(new RequestBindingModel
-            {
-                Id = model.RequestId
-            })?[0];
-            if (request == null)
-            {
-                throw new Exception("Request not found");
-            }
-            if (request.Status != RequestStatus.Created)
-            {
-                throw new Exception("Request is not in status \"Created\"");
-            }
-            requestLogic.CreateOrUpdate(new RequestBindingModel
-            {
-                Id = request.Id,
-                SupplierId = request.SupplierId,
-                Status = RequestStatus.Processed,
-                Guides = request.Guides
-            });
-        }
-
-        public void CompleteRequest(ChangeStatusRequestGuideBindingModel model)
-        {
-            var request = requestLogic.Read(new RequestBindingModel
-            {
-                Id = model.RequestId
-            })?[0];
-            if (request == null)
-            {
-                throw new Exception("Request not found");
-            }
-            if (request.Status != RequestStatus.Processed)
-            {
-                throw new Exception("Request is not in status \"Processed\"");
-            }
-            requestLogic.CreateOrUpdate(new RequestBindingModel
-            {
-                Id = request.Id,
-                SupplierId = request.SupplierId,
-                Status = RequestStatus.Executed,
-                Guides = request.Guides
-            });
-        }
-        public void ReserveGuides(ReserveGuideBindingModel model)
+        public void AcceptRequest(ChangeRequestStatusBindingModel model)
         {
             var request = requestLogic.Read(new RequestBindingModel
             {
@@ -70,7 +25,53 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             {
                 throw new Exception("Заявка не найдена");
             }
-            if (request.Status != RequestStatus.Processed)
+            if (request.Status != RequestStatus.Создана)
+            {
+                throw new Exception("Заявка не в статусе \"Создана\"");
+            }
+            requestLogic.CreateOrUpdate(new RequestBindingModel
+            {
+                Id = request.Id,
+                SupplierId = request.SupplierId,
+                Status = RequestStatus.Выполняется,
+                Guides = request.Guides
+            });
+        }
+
+        public void CompleteRequest(ChangeRequestStatusBindingModel model)
+        {
+            var request = requestLogic.Read(new RequestBindingModel
+            {
+                Id = model.RequestId
+            })?[0];
+            if (request == null)
+            {
+                throw new Exception("Заявка не найдена");
+            }
+            if (request.Status != RequestStatus.Выполняется)
+            {
+                throw new Exception("Заявка не в статусе \"Выполняется\"");
+            }
+            requestLogic.CreateOrUpdate(new RequestBindingModel
+            {
+                Id = request.Id,
+                SupplierId = request.SupplierId,
+                Status = RequestStatus.Готова,
+                Guides = request.Guides
+            });
+        }
+
+        public void ReserveFoods(ReserveGuideBindingModel model)
+        {
+            var request = requestLogic.Read(new RequestBindingModel
+            {
+                Id = model.RequestId
+            })?[0];
+            if (request == null)
+            {
+                throw new Exception("Заявка не найдена");
+            }
+            if (request.Status != RequestStatus.Выполняется)
             {
                 throw new Exception("Заявка не в статусе \"Выполняется\"");
             }

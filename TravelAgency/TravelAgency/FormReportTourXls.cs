@@ -47,7 +47,6 @@ namespace TravelAgency
                     foreach (var order in tourGuides)
                     {
                         dataGridViewGuideToTour.Rows.Add(order.Key, "", "");
-                        decimal totalPrice = 0;
                         foreach (var tour in order.Value)
                         {
                             dataGridViewGuideToTour.Rows.Add("", tour.TourName);
@@ -68,7 +67,7 @@ namespace TravelAgency
                 {
                     try
                     {
-                        logic.SaveHotelGuidesToExcelFile(new ReportBindingModel
+                        logic.SaveOrdersToExcelFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName
                         });

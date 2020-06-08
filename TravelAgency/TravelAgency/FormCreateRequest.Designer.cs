@@ -31,6 +31,7 @@ namespace TravelAgency
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreateRequest));
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
@@ -219,7 +220,6 @@ namespace TravelAgency
         private System.Windows.Forms.DataGridView guidesGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn guideId;
         private System.Windows.Forms.DataGridViewTextBoxColumn guideNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn countColumn;
         private System.Windows.Forms.ComboBox comboBoxSupplier;
         private System.Windows.Forms.Label labelSupplier;
         private System.Windows.Forms.Button buttonCancel;

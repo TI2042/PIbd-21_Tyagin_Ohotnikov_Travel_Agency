@@ -5,7 +5,6 @@ using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.Interfaces;
 using TravelAgencyBusinessLogic.ViewModels;
 using TravelAgencyDatabaseImplement.Models;
-using TravelAgencyDatabaseImplement;
 using System.Linq;
 
 namespace TravelAgencyDatabaseImplement.Implements

@@ -9,6 +9,8 @@ namespace TravelAgencyBusinessLogic.ViewModels
     public class OrderViewModel
     {
         public int Id { get; set; }
+        [DisplayName("Название тура")]
+        public string TourName { get; set; }
         [DisplayName("Количество")]
         public int Count { get; set; }
         [DisplayName("Сумма")]
@@ -20,6 +22,5 @@ namespace TravelAgencyBusinessLogic.ViewModels
         [DisplayName("Статус")]
         public Status Status { get; set; }
         public int TourId { get; set; }
-        public string TourName { get; set; }
     }
 }

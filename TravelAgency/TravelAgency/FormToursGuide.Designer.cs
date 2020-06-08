@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormToursGuide));
             this.labelComponentName = new System.Windows.Forms.Label();
             this.labelCountComponent = new System.Windows.Forms.Label();
             this.comboBoxComponent = new System.Windows.Forms.ComboBox();
@@ -36,20 +37,20 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // labelGuideName
+            // labelComponentName
             // 
             this.labelComponentName.AutoSize = true;
             this.labelComponentName.Location = new System.Drawing.Point(49, 25);
-            this.labelComponentName.Name = "labelGuideName";
+            this.labelComponentName.Name = "labelComponentName";
             this.labelComponentName.Size = new System.Drawing.Size(28, 13);
             this.labelComponentName.TabIndex = 0;
             this.labelComponentName.Text = "Гид:";
             // 
-            // labelCountGuide
+            // labelCountComponent
             // 
             this.labelCountComponent.AutoSize = true;
             this.labelCountComponent.Location = new System.Drawing.Point(12, 61);
-            this.labelCountComponent.Name = "labelCountGuide";
+            this.labelCountComponent.Name = "labelCountComponent";
             this.labelCountComponent.Size = new System.Drawing.Size(69, 13);
             this.labelCountComponent.TabIndex = 1;
             this.labelCountComponent.Text = "Количество:";
@@ -66,8 +67,10 @@
             // 
             this.textBoxCountComponent.Location = new System.Drawing.Point(80, 58);
             this.textBoxCountComponent.Name = "textBoxCountComponent";
+            this.textBoxCountComponent.ReadOnly = true;
             this.textBoxCountComponent.Size = new System.Drawing.Size(248, 20);
             this.textBoxCountComponent.TabIndex = 3;
+            this.textBoxCountComponent.Text = "1";
             // 
             // buttonSave
             // 
@@ -101,6 +104,7 @@
             this.Controls.Add(this.labelCountComponent);
             this.Controls.Add(this.labelComponentName);
             this.Name = "FormToursGuide";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Гид";
             this.ResumeLayout(false);
             this.PerformLayout();

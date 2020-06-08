@@ -15,5 +15,7 @@ namespace TravelAgencyBusinessLogic.HelperModels
         public string SupplierFIO { get; set; }
         public DateTime Date { get; set; }
         public Dictionary<int, (string, int, bool)> RequestGuides { get; set; }
+        public List<ReportTourGuideViewModel> TourGuides { get; set; }
+        public List<ReportOrdersViewModel> Orders { get; set; }
     }
 }

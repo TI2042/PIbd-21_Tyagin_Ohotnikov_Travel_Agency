@@ -6,8 +6,9 @@ namespace TravelAgencyBusinessLogic.Enums
 {
     public enum RequestStatus
     {
-        Created = 0,
-        Processed = 1,
-        Executed = 2
+        Создана = 0,
+        Выполняется = 1,
+        Готова = 2,
+        Обработана = 3
     }
 }

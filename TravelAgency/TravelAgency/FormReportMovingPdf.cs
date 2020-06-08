@@ -28,12 +28,29 @@ namespace TravelAgency
 
         private void ButtonMake_Click(object sender, EventArgs e)
         {
+            if (dateTimePickerFrom.Value.Date > dateTimePickerTo.Value.Date)
+            {
+                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
-                var dataSource = logic.GetTourGuides();
-                ReportDataSource source = new ReportDataSource("DataSetMoving", dataSource);
-                reportViewer.LocalReport.DataSources.Add(source);
-                reportViewer.RefreshReport();
+                var dict = logic.GetOrder(new ReportBindingModel { DateFrom = dateTimePickerFrom.Value.Date, DateTo = dateTimePickerTo.Value.Date });
+                List<DateTime> dates = new List<DateTime>();
+                foreach (var order in dict)
+                {
+                    if (!dates.Contains(order.CreationDate.Date))
+                    {
+                        dates.Add(order.CreationDate.Date);
+                    }
+                }
+
+                if (dict != null)
+                {
+                    ReportDataSource source = new ReportDataSource("DataSetMoving", dict);
+                    reportViewer.LocalReport.DataSources.Add(source);
+                    reportViewer.RefreshReport();
+                }
             }
             catch (Exception ex)
             {

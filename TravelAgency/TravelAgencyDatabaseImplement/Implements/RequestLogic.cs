@@ -73,7 +73,7 @@ namespace TravelAgencyDatabaseImplement.Implements
         }
         public void Delete(RequestBindingModel model)
         {
-            if (model.Status != RequestStatus.Processed)
+            if (model.Status != RequestStatus.Выполняется)
             {
                 using (var context = new TravelAgencyDatabase())
                 {
@@ -92,7 +92,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                             }
                             else
                             {
-                                throw new Exception("Элемент не найден");
+                                throw new Exception("Заявка не найдена");
                             }
                             transaction.Commit();
                         }
@@ -106,7 +106,7 @@ namespace TravelAgencyDatabaseImplement.Implements
             }
             else
             {
-                throw new Exception("It isn't possible to delete request. Request is processed");
+                throw new Exception("Заявку невозможно удалить. Заявка в процессе");
             }
         }
         public List<RequestViewModel> Read(RequestBindingModel model)

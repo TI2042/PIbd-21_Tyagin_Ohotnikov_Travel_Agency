@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTours));
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridViewTours);
             this.Name = "FormTours";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Туры";
             this.Load += new System.EventHandler(this.FormDisplayTours_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTours)).EndInit();

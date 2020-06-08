@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TravelAgencyBusinessLogic.BindingModels
 {
-    public class ChangeStatusRequestGuideBindingModel
+    public class ChangeRequestStatusBindingModel
     {       
         public int RequestId { get; set; }
      

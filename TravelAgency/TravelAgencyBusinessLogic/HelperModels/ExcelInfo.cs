@@ -10,11 +10,12 @@ namespace TravelAgencyBusinessLogic.HelperModels
     {
         public string FileName { get; set; }
         public string Title { get; set; }
-        public List<IGrouping<DateTime, OrderViewModel>> Orders { get; set; }
+        public List<ReportOrdersViewModel> Orders { get; set; }
         public List<HotelViewModel> Hotels { get; set; }
         public int RequestId { get; set; }
         public string SupplierFIO { get; set; }
         public DateTime DateComplete { get; set; }
         public Dictionary<int, (string, int, bool)> RequestGuides { get; set; }
+        public List<ReportTourGuideViewModel> TourGuides { get; set; }
     }
 }

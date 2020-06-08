@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTour));
             this.labelNameProduct = new System.Windows.Forms.Label();
             this.labelPrice = new System.Windows.Forms.Label();
             this.textBoxNameProduct = new System.Windows.Forms.TextBox();
@@ -173,6 +174,7 @@
             this.Controls.Add(this.labelPrice);
             this.Controls.Add(this.labelNameProduct);
             this.Name = "FormTour";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Тур";
             this.Load += new System.EventHandler(this.FormProduct_Load);
             this.groupBoxComponents.ResumeLayout(false);

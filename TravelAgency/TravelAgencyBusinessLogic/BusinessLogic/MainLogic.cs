@@ -4,6 +4,7 @@ using TravelAgencyBusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TravelAgencyBusinessLogic.ViewModels;
 
 namespace TravelAgencyBusinessLogic.BusinessLogic
 {
@@ -11,19 +12,21 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
     {
         private readonly IOrderLogic orderLogic;
         private readonly IRequestLogic requestLogic;
+        private readonly ITourLogic tourLogic;
 
-        public MainLogic(IOrderLogic orderLogic, IRequestLogic requestLogic)
+        public MainLogic(IOrderLogic orderLogic, IRequestLogic requestLogic, ITourLogic tourLogic)
         {
             this.orderLogic = orderLogic;
             this.requestLogic = requestLogic;
+            this.tourLogic = tourLogic;
         }
 
-        public void CreateOrder(OrderBindingModel model)
+        public void CreateOrder(OrderBindingModel order)
         {
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
-                TourId = model.TourId,
-                Count = model.Count,
+                TourId = order.TourId,
+                Count = order.Count,
                 CreationDate = DateTime.Now,
                 Status = Status.Принят
             });
@@ -32,6 +35,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
             var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
+            var request = requestLogic.Read(new RequestBindingModel { Id = model.OrderId })?[0];
 
             if (order == null)
             {
@@ -42,6 +46,16 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+
+            if (request.Status != RequestStatus.Готова)
+            {
+                throw new Exception("Гиды ещё не доставлены");
+            }
+
+            requestLogic.CreateOrUpdate(new RequestBindingModel
+            {
+                Status = RequestStatus.Обработана
+            });
 
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
@@ -106,9 +120,29 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             {
                 Id = model.Id,
                 SupplierId = model.SupplierId,
-                Status = RequestStatus.Created,
+                Status = RequestStatus.Создана,
                 Guides = model.Guides
             });
+        }
+
+        public List<ReportTourGuideViewModel> GetTourGuidesOrder()
+        {
+            var tours = tourLogic.Read(null);
+            var list = new List<ReportTourGuideViewModel>();
+            foreach (var tour in tours)
+            {
+                foreach (var pc in tour.TourGuides)
+                {
+                    var record = new ReportTourGuideViewModel
+                    {
+                        TourName = tour.TourName,
+                        GuideName = pc.Value.Item1,
+                        Count = pc.Value.Item2
+                    };
+                    list.Add(record);
+                }
+            }
+            return list;
         }
     }
 }

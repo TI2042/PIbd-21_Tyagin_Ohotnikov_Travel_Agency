@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportTourXls));
             this.dataGridViewGuideToTour = new System.Windows.Forms.DataGridView();
             this.buttonSaveToExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGuideToTour)).BeginInit();
@@ -61,7 +62,8 @@
             this.Controls.Add(this.buttonSaveToExcel);
             this.Controls.Add(this.dataGridViewGuideToTour);
             this.Name = "FormReportTourXls";
-            this.Text = "Заказы туров";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Состав туров";
             this.Load += new System.EventHandler(this.FormReportGuidesToTours_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGuideToTour)).EndInit();
             this.ResumeLayout(false);

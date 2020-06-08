@@ -38,47 +38,42 @@
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(78, 13);
-            this.textBoxLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxLogin.Location = new System.Drawing.Point(58, 11);
             this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(277, 22);
+            this.textBoxLogin.Size = new System.Drawing.Size(209, 20);
             this.textBoxLogin.TabIndex = 0;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(78, 47);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxPassword.Location = new System.Drawing.Point(58, 38);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(277, 22);
+            this.textBoxPassword.Size = new System.Drawing.Size(209, 20);
             this.textBoxPassword.TabIndex = 1;
             // 
             // labelLogin
             // 
             this.labelLogin.AutoSize = true;
-            this.labelLogin.Location = new System.Drawing.Point(13, 18);
-            this.labelLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLogin.Location = new System.Drawing.Point(10, 15);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(47, 17);
+            this.labelLogin.Size = new System.Drawing.Size(38, 13);
             this.labelLogin.TabIndex = 2;
             this.labelLogin.Text = "Логин";
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(13, 52);
-            this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPassword.Location = new System.Drawing.Point(10, 42);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(57, 17);
+            this.labelPassword.Size = new System.Drawing.Size(45, 13);
             this.labelPassword.TabIndex = 3;
             this.labelPassword.Text = "Пароль";
             // 
             // buttonEnter
             // 
-            this.buttonEnter.BackColor = System.Drawing.Color.AliceBlue;
-            this.buttonEnter.Location = new System.Drawing.Point(227, 77);
-            this.buttonEnter.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonEnter.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonEnter.Location = new System.Drawing.Point(170, 63);
             this.buttonEnter.Name = "buttonEnter";
-            this.buttonEnter.Size = new System.Drawing.Size(128, 27);
+            this.buttonEnter.Size = new System.Drawing.Size(96, 22);
             this.buttonEnter.TabIndex = 4;
             this.buttonEnter.Text = "Вход";
             this.buttonEnter.UseVisualStyleBackColor = false;
@@ -86,16 +81,15 @@
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(366, 117);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(274, 95);
             this.Controls.Add(this.buttonEnter);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxLogin);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Администратор";

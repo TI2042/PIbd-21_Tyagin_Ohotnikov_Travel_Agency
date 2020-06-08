@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.HelperModels;
@@ -48,13 +50,13 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             var list = new List<ReportHotelGuideViewModel>();
             foreach (var hotel in hotels)
             {
-                foreach (var ff in hotel.Guides)
+                foreach (var gh in hotel.Guides)
                 {
                     var record = new ReportHotelGuideViewModel
                     {
                         HotelName = hotel.HotelName,
-                        GuideName = ff.Value.Item1,
-                        Count = ff.Value.Item2
+                        GuideName = gh.Value.Item1,
+                        Count = gh.Value.Item2
                     };
                     list.Add(record);
                 }
@@ -94,15 +96,41 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             .ToList();
         }
 
-        public void SaveToursToWordFile(ReportBindingModel model)
+        public List<ReportOrdersViewModel> GetReportOrder(ReportBindingModel model)
         {
-            SaveToWord.CreateDoc(new WordInfo
+            var tours = orderLogic.Read(null);
+            var list = new List<ReportOrdersViewModel>();
+            foreach (var tour in tours)
             {
-                FileName = model.FileName,
-                Title = "Список гидов",
-                Tours = tourLogic.Read(null),
-                Hotels = null
-            });
+                var record = new ReportOrdersViewModel
+                {
+                    TourName = tour.TourName,
+                    Amount = tour.Sum,
+                    Count = tour.Count,
+                    CreationDate = tour.CreationDate,
+                    Status = tour.Status
+                };
+                list.Add(record);
+            }
+            return list;
+        }
+
+        public void SaveOrdersToWordFile(ReportBindingModel model)
+        {
+            try
+            {
+                SaveToWord.CreateDoc(new WordInfo
+                {
+                    FileName = model.FileName,
+                    Title = "Список приготовленных блюд",
+                    Orders = GetReportOrder(model),
+                    TourGuides = GetTourGuides()
+                });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void SaveOrdersToExcelFile(ReportBindingModel model)
@@ -110,9 +138,9 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список заказов",
-                Orders = GetOrders(model),
-                Hotels = null
+                Title = "Список приготовленных блюд",
+                Orders = GetReportOrder(model),
+                TourGuides = GetTourGuides()
             });
         }
 
@@ -127,37 +155,17 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             });
         }
 
-        public void SaveHotelsToWordFile(ReportBindingModel model)
+        public void SendMail(string email, string fileName, string subject)
         {
-            SaveToWord.CreateDoc(new WordInfo
-            {
-                FileName = model.FileName,
-                Title = "Список отелей",
-                Tours = null,
-                Hotels = hotelLogic.Read(null)
-            });
-        }
-
-        public void SaveHotelGuidesToExcelFile(ReportBindingModel model)
-        {
-            SaveToExcel.CreateDoc(new ExcelInfo
-            {
-                FileName = model.FileName,
-                Title = "Список гидов в отелях",
-                Orders = null,
-                Hotels = hotelLogic.Read(null)
-            }); 
-        }
-
-        public void SaveGuidesToPdfFile(ReportBindingModel model)
-        {
-            SaveToPdf.CreateDoc(new PdfInfo
-            {
-                FileName = model.FileName,
-                Title = "Список гидов ",
-                TourGuides = null,
-                HotelGuides = GetHotelGuides()
-            });
+            MailAddress from = new MailAddress("den.ohotnikov@gmail.com", "Турфирма Иван Сусанин");
+            MailAddress to = new MailAddress(email);
+            MailMessage m = new MailMessage(from, to);
+            m.Subject = subject;
+            m.Attachments.Add(new Attachment(fileName));
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new NetworkCredential("den.ohotnikov@gmail.com", "1");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
         }
     }
 }

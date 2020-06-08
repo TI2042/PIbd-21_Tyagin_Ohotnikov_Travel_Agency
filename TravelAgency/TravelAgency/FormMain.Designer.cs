@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.Menu = new System.Windows.Forms.MenuStrip();
             this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +58,7 @@
             this.dataGridView.Location = new System.Drawing.Point(0, 22);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
-            this.dataGridView.Size = new System.Drawing.Size(766, 297);
+            this.dataGridView.Size = new System.Drawing.Size(559, 310);
             this.dataGridView.TabIndex = 0;
             // 
             // Menu
@@ -70,7 +71,7 @@
             this.Menu.Location = new System.Drawing.Point(0, 0);
             this.Menu.Name = "Menu";
             this.Menu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.Menu.Size = new System.Drawing.Size(940, 24);
+            this.Menu.Size = new System.Drawing.Size(743, 24);
             this.Menu.TabIndex = 1;
             this.Menu.Text = "menuStrip1";
             // 
@@ -110,22 +111,22 @@
             // турыDocToolStripMenuItem
             // 
             this.турыDocToolStripMenuItem.Name = "турыDocToolStripMenuItem";
-            this.турыDocToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.турыDocToolStripMenuItem.Text = "Блюда (doc)";
+            this.турыDocToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.турыDocToolStripMenuItem.Text = "Туры (doc)";
             this.турыDocToolStripMenuItem.Click += new System.EventHandler(this.блюдаDocToolStripMenuItem_Click);
             // 
             // турыXlsToolStripMenuItem
             // 
             this.турыXlsToolStripMenuItem.Name = "турыXlsToolStripMenuItem";
-            this.турыXlsToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.турыXlsToolStripMenuItem.Text = "Блюда (xls)";
+            this.турыXlsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.турыXlsToolStripMenuItem.Text = "Туры (xls)";
             this.турыXlsToolStripMenuItem.Click += new System.EventHandler(this.блюдаXlsToolStripMenuItem_Click);
             // 
             // гидыPdfToolStripMenuItem
             // 
             this.гидыPdfToolStripMenuItem.Name = "гидыPdfToolStripMenuItem";
-            this.гидыPdfToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.гидыPdfToolStripMenuItem.Text = "Движение продуктов (pdf)";
+            this.гидыPdfToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.гидыPdfToolStripMenuItem.Text = "Движение гидов (pdf)";
             this.гидыPdfToolStripMenuItem.Click += new System.EventHandler(this.продуктыPdfToolStripMenuItem_Click);
             // 
             // заказыToolStripMenuItem
@@ -141,7 +142,7 @@
             // 
             this.заказатьГидыToolStripMenuItem.Name = "заказатьГидыToolStripMenuItem";
             this.заказатьГидыToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.заказатьГидыToolStripMenuItem.Text = "Заказать продукты";
+            this.заказатьГидыToolStripMenuItem.Text = "Заказать гидов";
             this.заказатьГидыToolStripMenuItem.Click += new System.EventHandler(this.заказатьПродуктыToolStripMenuItem_Click);
             // 
             // посмотретьДоступныеГидыToolStripMenuItem
@@ -153,7 +154,7 @@
             // 
             // buttonCreateOrder
             // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(772, 22);
+            this.buttonCreateOrder.Location = new System.Drawing.Point(572, 40);
             this.buttonCreateOrder.Name = "buttonCreateOrder";
             this.buttonCreateOrder.Size = new System.Drawing.Size(154, 26);
             this.buttonCreateOrder.TabIndex = 2;
@@ -163,7 +164,7 @@
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(772, 210);
+            this.buttonRefresh.Location = new System.Drawing.Point(572, 228);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(154, 26);
             this.buttonRefresh.TabIndex = 6;
@@ -173,7 +174,7 @@
             // 
             // ButtonPayOrder
             // 
-            this.ButtonPayOrder.Location = new System.Drawing.Point(772, 119);
+            this.ButtonPayOrder.Location = new System.Drawing.Point(572, 137);
             this.ButtonPayOrder.Name = "ButtonPayOrder";
             this.ButtonPayOrder.Size = new System.Drawing.Size(154, 26);
             this.ButtonPayOrder.TabIndex = 7;
@@ -183,7 +184,7 @@
             // 
             // ButtonOrderReady
             // 
-            this.ButtonOrderReady.Location = new System.Drawing.Point(772, 87);
+            this.ButtonOrderReady.Location = new System.Drawing.Point(572, 105);
             this.ButtonOrderReady.Name = "ButtonOrderReady";
             this.ButtonOrderReady.Size = new System.Drawing.Size(154, 26);
             this.ButtonOrderReady.TabIndex = 8;
@@ -193,7 +194,7 @@
             // 
             // ButtonTakeOrderInWork
             // 
-            this.ButtonTakeOrderInWork.Location = new System.Drawing.Point(772, 54);
+            this.ButtonTakeOrderInWork.Location = new System.Drawing.Point(572, 72);
             this.ButtonTakeOrderInWork.Name = "ButtonTakeOrderInWork";
             this.ButtonTakeOrderInWork.Size = new System.Drawing.Size(154, 26);
             this.ButtonTakeOrderInWork.TabIndex = 9;
@@ -205,7 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 319);
+            this.ClientSize = new System.Drawing.Size(743, 346);
             this.Controls.Add(this.ButtonTakeOrderInWork);
             this.Controls.Add(this.ButtonOrderReady);
             this.Controls.Add(this.ButtonPayOrder);
@@ -215,7 +216,8 @@
             this.Controls.Add(this.Menu);
             this.MainMenuStrip = this.Menu;
             this.Name = "FormMain";
-            this.Text = "Тур фирма";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Турфирма «Иван Сусанин»";
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.Menu.ResumeLayout(false);
