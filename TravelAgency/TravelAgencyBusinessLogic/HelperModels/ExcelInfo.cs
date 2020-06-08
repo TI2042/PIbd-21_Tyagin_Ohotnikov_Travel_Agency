@@ -6,11 +6,15 @@ using TravelAgencyBusinessLogic.ViewModels;
 
 namespace TravelAgencyBusinessLogic.HelperModels
 {
-    class ExcelInfo
+    public class ExcelInfo
     {
         public string FileName { get; set; }
         public string Title { get; set; }
         public List<IGrouping<DateTime, OrderViewModel>> Orders { get; set; }
         public List<HotelViewModel> Hotels { get; set; }
+        public int RequestId { get; set; }
+        public string SupplierFIO { get; set; }
+        public DateTime DateComplete { get; set; }
+        public Dictionary<int, (string, int, bool)> RequestGuides { get; set; }
     }
 }

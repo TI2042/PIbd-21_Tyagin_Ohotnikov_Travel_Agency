@@ -9,7 +9,8 @@ namespace TravelAgencyBusinessLogic.Interfaces
         List<HotelViewModel> Read(HotelBindingModel model);
         void CreateOrUpdate(HotelBindingModel model);
         void Delete(HotelBindingModel model);
-        void AddGuide(ReserveGuideBindingModel model);
-        void ReserveGuides(ReserveGuideBindingModel model);
+        void AddGuide(RequestGuideBindingModel model);
+        void ReserveGuides(RequestGuideBindingModel model);
+        List<HotelAvailableViewModel> GetHotelAvailable(RequestGuideBindingModel model);
     }
 }

@@ -60,5 +60,21 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 Guides = request.Guides
             });
         }
+        public void ReserveGuides(ReserveGuideBindingModel model)
+        {
+            var request = requestLogic.Read(new RequestBindingModel
+            {
+                Id = model.RequestId
+            })?[0];
+            if (request == null)
+            {
+                throw new Exception("Заявка не найдена");
+            }
+            if (request.Status != RequestStatus.Processed)
+            {
+                throw new Exception("Заявка не в статусе \"Выполняется\"");
+            }
+            requestLogic.Reserve(model);
+        }
     }
 }

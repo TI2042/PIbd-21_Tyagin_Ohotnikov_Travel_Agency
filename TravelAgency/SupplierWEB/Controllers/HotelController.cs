@@ -211,7 +211,7 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddGuide([Bind("HotelId, GuideId, Count")] ReserveGuideBindingModel model)
+        public IActionResult AddGuide([Bind("HotelId, GuideId, Count")] RequestGuideBindingModel model)
         {
             if (Program.Supplier == null)
             {
@@ -238,25 +238,31 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ReserveGuides([Bind("GuideId, Count")] ReserveGuideBindingModel model)
+        public IActionResult ReserveGuides(int hotelId, int guideId, int count, int requestId)
         {
             if (Program.Supplier == null)
             {
                 return new UnauthorizedResult();
             }
-            if (ModelState.IsValid)
+            try
             {
-                try
+                hotelLogic.ReserveGuides(new RequestGuideBindingModel
                 {
-                    hotelLogic.ReserveGuides(model);
-                }
-                catch (Exception exception)
-                {
-                    TempData["ErrorLackGuides"] = exception.Message;
-
-                }
+                   HotelId = hotelId,
+                   GuideId = guideId,
+                    Count = count
+                });
             }
-            return RedirectToAction("Details", new { id = model.HotelId });
+            catch (Exception ex)
+            {
+                TempData["ErrorGuideReserve"] = ex.Message;
+                return RedirectToAction("RequestView", "Request", new { id = requestId });
+            }
+            return RedirectToAction("Reserve", "Request", new
+            {
+                RequestId = requestId,
+                GuideId = guideId
+            });
         }
     }
 }

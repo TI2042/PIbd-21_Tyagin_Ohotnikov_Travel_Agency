@@ -51,7 +51,7 @@ namespace SupplierWEB.Controllers
             }
             ViewBag.GuideName = guide.GuideName;
             ViewBag.HotelId = HotelId;
-            return View(new ReserveGuideBindingModel
+            return View(new RequestGuideBindingModel
             {
                 GuideId = GuideId.Value,
                 HotelId = HotelId.Value,

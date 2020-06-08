@@ -76,6 +76,24 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             return list;
         }
 
+        public List<ReportOrdersViewModel> GetOrder(ReportBindingModel model)
+        {
+            return orderLogic.Read(new OrderBindingModel
+            {
+                DateFrom = model.DateFrom,
+                DateTo = model.DateTo
+            })
+            .Select(x => new ReportOrdersViewModel
+            {
+                CreationDate = x.CreationDate,
+                TourName = x.TourName,
+                Count = x.Count,
+                Amount = x.Sum,
+                Status = x.Status
+            })
+            .ToList();
+        }
+
         public void SaveToursToWordFile(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
@@ -128,7 +146,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 Title = "Список гидов в отелях",
                 Orders = null,
                 Hotels = hotelLogic.Read(null)
-            });
+            }); 
         }
 
         public void SaveGuidesToPdfFile(ReportBindingModel model)
@@ -136,7 +154,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Список гидов",
+                Title = "Список гидов ",
                 TourGuides = null,
                 HotelGuides = GetHotelGuides()
             });

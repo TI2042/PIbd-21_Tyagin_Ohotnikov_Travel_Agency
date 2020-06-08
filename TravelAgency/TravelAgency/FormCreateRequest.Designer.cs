@@ -7,7 +7,7 @@ namespace TravelAgency
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer foods = null;
+        private System.ComponentModel.IContainer guides = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -15,9 +15,9 @@ namespace TravelAgency
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (foods != null))
+            if (disposing && (guides != null))
             {
-                foods.Dispose();
+                guides.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -55,7 +55,7 @@ namespace TravelAgency
             this.buttonRefresh.TabIndex = 14;
             this.buttonRefresh.Text = "Обновить";
             this.buttonRefresh.UseVisualStyleBackColor = false;
-            this.buttonRefresh.Click += new System.EventHandler(this.UpdateFoodButton_Click);
+            this.buttonRefresh.Click += new System.EventHandler(this.UpdateGuideButton_Click);
             // 
             // buttonDelete
             // 
@@ -66,7 +66,7 @@ namespace TravelAgency
             this.buttonDelete.TabIndex = 13;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = false;
-            this.buttonDelete.Click += new System.EventHandler(this.DeleteFoodButton_Click);
+            this.buttonDelete.Click += new System.EventHandler(this.DeleteGuideButton_Click);
             // 
             // buttonUpdate
             // 
@@ -77,7 +77,7 @@ namespace TravelAgency
             this.buttonUpdate.TabIndex = 12;
             this.buttonUpdate.Text = "Изменить";
             this.buttonUpdate.UseVisualStyleBackColor = false;
-            this.buttonUpdate.Click += new System.EventHandler(this.RefreshFoodsButton_Click);
+            this.buttonUpdate.Click += new System.EventHandler(this.RefreshGuidesButton_Click);
             // 
             // buttonAdd
             // 
@@ -88,7 +88,7 @@ namespace TravelAgency
             this.buttonAdd.TabIndex = 11;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = false;
-            this.buttonAdd.Click += new System.EventHandler(this.AddFoodButton_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.AddGuideButton_Click);
             // 
             // guidesGridView
             // 

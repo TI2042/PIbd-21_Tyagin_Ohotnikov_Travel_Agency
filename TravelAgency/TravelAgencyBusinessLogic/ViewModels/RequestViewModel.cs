@@ -16,6 +16,6 @@ namespace TravelAgencyBusinessLogic.ViewModels
         
         [DisplayName("Статус")]
         public RequestStatus Status { get; set; }
-        public Dictionary<int,(string,int)> Guides { get; set; }
+        public Dictionary<int,(string,int,bool)> Guides { get; set; }
     }
 }

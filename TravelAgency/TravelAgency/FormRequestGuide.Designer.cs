@@ -1,4 +1,4 @@
-﻿namespace RestaurantView
+﻿namespace TravelAgencyView
 {
     partial class FormRequestGuide
     {

@@ -24,46 +24,40 @@ namespace TravelAgencyDatabaseImplement.Implements
                         Request request;
                         if (model.Id.HasValue)
                         {
-                            request = context.Requests.FirstOrDefault(rec => rec.Id ==model.Id);
+                            request = context.Requests.FirstOrDefault(rec => rec.Id == model.Id);
                             if (request == null)
                             {
-                                throw new Exception("Элемент не найден");
-                            }                       
-                            else if (model.Status == RequestStatus.Created)
-                            {
-                                var requestGuide = context.RequestGuides
-                                    .Where(rec => rec.RequestID == model.Id.Value).ToList();
-                                context.RequestGuides.RemoveRange(requestGuide.Where(rec => !model.Guides.ContainsKey(rec.GuideId)).ToList());
-                                foreach (var updGuide in requestGuide)
-                                {
-                                    updGuide.Count = model.Guides[updGuide.GuideId].Item2;
-                                    model.Guides.Remove(updGuide.GuideId);
-                                }
-                                context.SaveChanges();
+                                throw new Exception("Заявка не найдена");
                             }
-                            else
+                            var requestGuides = context.RequestGuides
+                                .Where(rec => rec.RequestID == model.Id.Value).ToList();
+                            context.RequestGuides.RemoveRange(requestGuides.Where(rec =>
+                                !model.Guides.ContainsKey(rec.GuideId)).ToList());
+                            foreach (var updGuide in requestGuides)
                             {
-                                throw new Exception("It isn't possible to change request. " +
-                                       "Request is processed or executed");
+                                updGuide.Count = model.Guides[updGuide.GuideId].Item2;
+                                updGuide.InHotel= model.Guides[updGuide.GuideId].Item3;
+                                model.Guides.Remove(updGuide.GuideId);
                             }
+                            context.SaveChanges();
                         }
                         else
                         {
                             request = new Request();
                             context.Requests.Add(request);
                         }
-
-                        request.SupplierId = model.SupplierId ;
+                        request.SupplierId = model.SupplierId;
                         request.Status = model.Status;
                         context.SaveChanges();
-                       
+
                         foreach (var Guide in model.Guides)
                         {
                             context.RequestGuides.Add(new RequestGuide
                             {
                                 RequestID = request.Id,
                                 GuideId = Guide.Key,
-                                Count = Guide.Value.Item2
+                                Count = Guide.Value.Item2,
+                                InHotel = false
                             });
                             context.SaveChanges();                          
                         }
@@ -127,14 +121,29 @@ namespace TravelAgencyDatabaseImplement.Implements
                     {
                         Id = rec.Id,
                         SupplierFIO = rec.Supplier.SupplierFIO,
+                        SupplierId = rec.SupplierId,
                         Status = rec.Status,
                         Guides = context.RequestGuides
-                            .Include(recRC => recRC.Guide)
-                            .Where(recRC => recRC.RequestID == rec.Id)
-                            .ToDictionary(recRC => recRC.GuideId, recPC =>
-                            (recPC.Guide?.GuideName, recPC.Count))
+                            .Include(recRF => recRF.Guide)
+                            .Where(recRF => recRF.RequestID == rec.Id)
+                            .ToDictionary(recRF => recRF.GuideId, recRF =>
+                            (recRF.Guide?.GuideName, recRF.Count, recRF.InHotel))
                     })
                     .ToList();
+            }
+        }
+        public void Reserve(ReserveGuideBindingModel model)
+        {
+            using (var context = new TravelAgencyDatabase())
+            {
+                var requestGuides = context.RequestGuides.FirstOrDefault(rec =>
+                rec.RequestID == model.RequestId && rec.GuideId == model.GuideId);
+                if (requestGuides == null)
+                {
+                    throw new Exception("Гида нет в заявке");
+                }
+                requestGuides.InHotel = true;
+                context.SaveChanges();
             }
         }
     }

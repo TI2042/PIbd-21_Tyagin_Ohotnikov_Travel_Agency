@@ -12,6 +12,6 @@ namespace TravelAgencyBusinessLogic.BindingModels
         public string SupplierFIO { get; set; }
         public decimal Sum { get; set; }
         public RequestStatus Status { get; set; }
-        public Dictionary<int, (string, int)> Guides { get; set; }
+        public Dictionary<int, (string, int, bool)> Guides { get; set; }
     }
 }

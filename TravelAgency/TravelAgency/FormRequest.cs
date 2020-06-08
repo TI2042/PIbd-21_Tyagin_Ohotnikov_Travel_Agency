@@ -12,7 +12,7 @@ using TravelAgencyBusinessLogic.ViewModels;
 using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.Interfaces;
 using TravelAgencyBusinessLogic.Enums;
-using RestaurantView;
+using TravelAgencyView;
 
 namespace TravelAgency
 {

@@ -44,7 +44,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 Hotel element = context.Hotels.FirstOrDefault(rec => rec.HotelName == model.HotelName && rec.Id != model.Id);
                 if (element != null)
                 {
-                    throw new Exception("Уже существует холодильник с таким названием");
+                    throw new Exception("Уже существует отель с таким названием");
                 }
                 if (model.Id.HasValue)
                 {
@@ -55,11 +55,11 @@ namespace TravelAgencyDatabaseImplement.Implements
                     rec.HotelId == model.Id).Sum(rec => rec.Reserved);
                     if ((free + res) > model.Capacity)
                     {
-                        throw new Exception("Вместимость не может быть меньше количества продуктов в холодильнике");
+                        throw new Exception("Вместимость не может быть меньше количества гидов в отеле");
                     }
                     if (element == null)
                     {
-                        throw new Exception("Холодильник не найден");
+                        throw new Exception("Отель не найден");
                     }
                 }
                 else
@@ -92,7 +92,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                         }
                         else
                         {
-                            throw new Exception("Холодильник не найден");
+                            throw new Exception("Отель не найден");
                         }
                         transaction.Commit();
                     }
@@ -105,7 +105,25 @@ namespace TravelAgencyDatabaseImplement.Implements
             }
         }
 
-        public void AddGuide(ReserveGuideBindingModel model)
+        public List<HotelAvailableViewModel> GetHotelAvailable(RequestGuideBindingModel model)
+        {
+            using (var context = new TravelAgencyDatabase())
+            {
+                return context.HotelGuides
+                .Include(rec => rec.Hotel)
+                .Where(rec => rec.GuideId == model.GuideId
+                && rec.Count >= model.Count)
+                .Select(rec => new HotelAvailableViewModel
+                {
+                    HotelId = rec.HotelId,
+                    HotelName = rec.Hotel.HotelName,
+                    Count = rec.Count
+                })
+                .ToList();
+            }
+        }
+
+        public void AddGuide(RequestGuideBindingModel model)
         {
             using (var context = new TravelAgencyDatabase())
             {
@@ -119,7 +137,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 rec.HotelId == model.HotelId).Sum(rec => rec.Reserved);
                 if ((free + res + model.Count) > hotel.Capacity)
                 {
-                    throw new Exception("Недостаточно места в холодильнике");
+                    throw new Exception("Недостаточно места в Отеле");
                 }
                 if (hotelGuides == null)
                 {
@@ -139,7 +157,7 @@ namespace TravelAgencyDatabaseImplement.Implements
             }
         }
 
-        public void ReserveGuides(ReserveGuideBindingModel model)
+        public void ReserveGuides(RequestGuideBindingModel model)
         {
             using (var context = new TravelAgencyDatabase())
             {
@@ -155,12 +173,12 @@ namespace TravelAgencyDatabaseImplement.Implements
                     }
                     else
                     {
-                        throw new Exception("Недостаточно продуктов для резервирования");
+                        throw new Exception("Недостаточно гидов для резервирования");
                     }
                 }
                 else
                 {
-                    throw new Exception("На складе не существует таких продуктов");
+                    throw new Exception("В отеле не существует таких гидов");
                 }
             }
         }

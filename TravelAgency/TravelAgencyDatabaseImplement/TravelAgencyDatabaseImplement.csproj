@@ -3,8 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+	<PropertyGroup>
+		<GenerateRuntimeConfigurationFiles> True </GenerateRuntimeConfigurationFiles>
+	</PropertyGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <Compile Remove="Migrations\20200525133935_25.05.2020.cs" />
     <Compile Remove="Migrations\20200525133935_25.05.2020.Designer.cs" />
     <Compile Remove="Migrations\20200525135212_25.05.2020.cs" />
@@ -31,5 +34,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TravelAgencyBusinessLogic\TravelAgencyBusinessLogic.csproj" />
   </ItemGroup>
+	
 
 </Project>

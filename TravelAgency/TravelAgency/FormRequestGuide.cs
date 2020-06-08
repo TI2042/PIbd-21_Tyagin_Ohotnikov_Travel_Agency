@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
-namespace RestaurantView
+namespace TravelAgencyView
 {
     public partial class FormRequestGuide : Form
     {

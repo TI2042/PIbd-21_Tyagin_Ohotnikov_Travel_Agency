@@ -24,7 +24,7 @@ namespace TravelAgency
         private readonly MainLogic mainLogic;
         public int ID { set { Id = value; } }
         private int? Id;
-        private Dictionary<int, (string, int)> requestGuides;
+        private Dictionary<int, (string, int,bool)> requestGuides;
 
         public FormCreateRequest(MainLogic mainLogic,
             IRequestLogic requestLogic, ISupplierLogic supplierLogic)
@@ -51,7 +51,7 @@ namespace TravelAgency
                         comboBoxSupplier.SelectedIndex =
                             comboBoxSupplier.FindStringExact(request.SupplierFIO);
                         requestGuides = request.Guides;
-                        LoadFoods();
+                        LoadGuides();
                     }
                 }
                 catch (Exception ex)
@@ -65,7 +65,7 @@ namespace TravelAgency
             }
             else
             {
-                requestGuides = new Dictionary<int, (string, int)>();
+                requestGuides = new Dictionary<int, (string, int,bool)>();
             }
         }
 
@@ -92,19 +92,19 @@ namespace TravelAgency
             }
         }
 
-        private void LoadFoods()
+        private void LoadGuides()
         {
             try
             {
                 if (requestGuides != null)
                 {
                     guidesGridView.Rows.Clear();
-                    foreach (var requestFood in requestGuides)
+                    foreach (var requestGuide in requestGuides)
                     {
                         guidesGridView.Rows.Add(new object[] {
-                            requestFood.Key,
-                            requestFood.Value.Item1,
-                            requestFood.Value.Item2
+                            requestGuide.Key,
+                            requestGuide.Value.Item1,
+                            requestGuide.Value.Item2
                         });
                     }
                 }
@@ -119,24 +119,24 @@ namespace TravelAgency
             }
         }
 
-        private void AddFoodButton_Click(object sender, EventArgs e)
+        private void AddGuideButton_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormAddGuides>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (requestGuides.ContainsKey(form.Id))
                 {
-                    requestGuides[form.Id] = (form.GuideName, form.Count);
+                    requestGuides[form.Id] = (form.GuideName, form.Count,false);
                 }
                 else
                 {
-                    requestGuides.Add(form.Id, (form.GuideName, form.Count));
+                    requestGuides.Add(form.Id, (form.GuideName, form.Count,false));
                 }
-                LoadFoods();
+                LoadGuides();
             }
         }
 
-        private void UpdateFoodButton_Click(object sender, EventArgs e)
+        private void UpdateGuideButton_Click(object sender, EventArgs e)
         {
             if (guidesGridView.SelectedRows.Count == 1)
             {
@@ -146,13 +146,13 @@ namespace TravelAgency
                 form.Count = requestGuides[Id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    requestGuides[form.Id] = (form.GuideName, form.Count);
-                    LoadFoods();
+                    requestGuides[form.Id] = (form.GuideName, form.Count,false);
+                    LoadGuides();
                 }
             }
         }
 
-        private void DeleteFoodButton_Click(object sender, EventArgs e)
+        private void DeleteGuideButton_Click(object sender, EventArgs e)
         {
             if (guidesGridView.SelectedRows.Count == 1)
             {
@@ -174,14 +174,14 @@ namespace TravelAgency
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                     }
-                    LoadFoods();
+                    LoadGuides();
                 }
             }
         }
 
-        private void RefreshFoodsButton_Click(object sender, EventArgs e)
+        private void RefreshGuidesButton_Click(object sender, EventArgs e)
         {
-            LoadFoods();
+            LoadGuides();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)

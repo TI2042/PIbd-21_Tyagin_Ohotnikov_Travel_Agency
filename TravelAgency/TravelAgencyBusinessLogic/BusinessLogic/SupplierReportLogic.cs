@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.HelperModels;
 using TravelAgencyBusinessLogic.Interfaces;
 using TravelAgencyBusinessLogic.ViewModels;
@@ -11,59 +12,43 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
 {
     public class SupplierReportLogic
     {
-        private readonly IGuideLogic guideLogic;
         private readonly IRequestLogic requestLogic;
-        private readonly IHotelLogic hotelLogic;
-
-        public SupplierReportLogic(IGuideLogic guideLogic, IRequestLogic requestLogic, IHotelLogic hotelLogic)
+        public SupplierReportLogic(IRequestLogic requestLogic)
         {
-            this.guideLogic = guideLogic;
             this.requestLogic = requestLogic;
-            this.hotelLogic = hotelLogic;
-
-        }
-        public List<ReportHotelGuideViewModel> GetGuides()
-        {
-            var hotels = hotelLogic.Read(null);
-            var list = new List<ReportHotelGuideViewModel>();
-            foreach (var hotel in hotels)
-            {
-                foreach (var ff in hotel.Guides)
-                {
-                    var record = new ReportHotelGuideViewModel
-                    {
-                        HotelName = hotel.HotelName,
-                        GuideName = ff.Value.Item1,
-                        Count = ff.Value.Item2
-                    };
-                    list.Add(record);
-                }
-            }
-            return list;
         }
 
-        public void SaveNeedGuideToWordFile(string fileName, RequestViewModel request, string email)
+        public Dictionary<int, (string, int, bool)> GetRequestGuides(int requestId)
         {
-            string title = "Список требуемых продуктов";
-            SaveToWord.CreateDoc(new WordInfo
+            var requestGuides = requestLogic.Read(new RequestBindingModel
             {
-                FileName = fileName,
-                Title = title,
-                //Guides = GetGuides()
-            });
-            SendMail(email, fileName, title);
+                Id = requestId
+            })?[0].Guides;
+            return requestGuides;
         }
-        public void SaveTravelToursToExcelFile(string fileName, RequestViewModel request, string email)
+
+        public void SaveNeedGuideToWordFile(WordInfo wordInfo, string email)
         {
-            string title = "Список требуемых гидов";
-            SaveToExcel.CreateDoc(new ExcelInfo
-            {
-                FileName = fileName,
-                Title = title,
-                //Guides = GetGuides()
-            });
-            SendMail(email, fileName, title);
+            string title = "Список требуемых гидов по заявке №" + wordInfo.RequestId;
+            wordInfo.Title = title;
+            wordInfo.FileName = wordInfo.FileName;
+            wordInfo.Date = DateTime.Now;
+            wordInfo.RequestGuides = GetRequestGuides(wordInfo.RequestId);
+            SupplierSaveToWord.CreateDoc(wordInfo);
+            SendMail(email, wordInfo.FileName, title);
         }
+
+        public void SaveNeedGuideToExcelFile(ExcelInfo excelInfo, string email)
+        {
+            string title = "Список требуемых гидов по заявке №" + excelInfo.RequestId;
+            excelInfo.Title = title;
+            excelInfo.FileName = excelInfo.FileName;
+            excelInfo.DateComplete = DateTime.Now;
+            excelInfo.RequestGuides = GetRequestGuides(excelInfo.RequestId);
+            SupplierSaveToExcel.CreateDoc(excelInfo);
+            SendMail(email, excelInfo.FileName, title);
+        }
+
         public void SendMail(string email, string fileName, string subject)
         {
             MailAddress from = new MailAddress("tis3.1415@gmail.com", "Турфирма Иван Сусанин");
@@ -72,7 +57,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             m.Subject = subject;
             m.Attachments.Add(new Attachment(fileName));
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("tis3.1415@gmail.com", "");
+            smtp.Credentials = new NetworkCredential("tis3.1415@gmail.com", "****");
             smtp.EnableSsl = true;
             smtp.Send(m);
         }
