@@ -39,17 +39,17 @@
             this.labelTo = new System.Windows.Forms.Label();
             this.labelFrom = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersViewModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReportGuideViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ReportOrdersViewModelBindingSource
-            // 
-            this.ReportOrdersViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel);
             // 
             // ReportGuideViewModelBindingSource
             // 
             this.ReportGuideViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel);
+            // 
+            // ReportOrdersViewModelBindingSource
+            // 
+            this.ReportOrdersViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel);
             // 
             // buttonCreate
             // 
@@ -78,7 +78,7 @@
             reportDataSource1.Name = "DataSetMoving";
             reportDataSource1.Value = this.ReportGuideViewModelBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "TravelAgencyView.ReportMoving.rdlc";
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "TravelAgency.ReportMoving.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(10, 45);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
