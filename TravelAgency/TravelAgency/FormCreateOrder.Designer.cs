@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreateOrder));
             this.labelTour = new System.Windows.Forms.Label();
             this.labelCount = new System.Windows.Forms.Label();
             this.labelSum = new System.Windows.Forms.Label();

@@ -76,7 +76,7 @@ namespace TravelAgency
                 List<SupplierViewModel> suppliersList = supplierLogic.Read(null);
                 if (suppliersList != null)
                 {
-                    comboBoxSupplier.DisplayMember = "Login";
+                    comboBoxSupplier.DisplayMember = "SupplierFIO";
                     comboBoxSupplier.ValueMember = "Id";
                     comboBoxSupplier.DataSource = suppliersList;
                     comboBoxSupplier.SelectedItem = null;

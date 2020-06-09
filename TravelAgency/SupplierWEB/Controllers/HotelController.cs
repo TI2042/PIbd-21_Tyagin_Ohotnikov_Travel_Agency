@@ -62,7 +62,7 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateHotel([Bind("HotelName,Capacity,Type")] Hotel hotel)
+        public IActionResult CreateHotel([Bind("HotelName,Capacity,Country")] Hotel hotel)
         {
             if (Program.Supplier == null)
             {
@@ -118,7 +118,7 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ChangeHotel(int id, [Bind("Id,HotelName,Capacity,Type")] Hotel hotel)
+        public IActionResult ChangeHotel(int id, [Bind("Id,HotelName,Capacity,Country")] Hotel hotel)
         {
             if (Program.Supplier == null)
             {

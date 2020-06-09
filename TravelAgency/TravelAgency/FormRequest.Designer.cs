@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRequest));
             this.buttonOk = new System.Windows.Forms.Button();
             this.groupBoxComponents = new System.Windows.Forms.GroupBox();
             this.dataGridViewComponents = new System.Windows.Forms.DataGridView();
