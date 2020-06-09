@@ -127,7 +127,7 @@
             this.гидыPdfToolStripMenuItem.Name = "гидыPdfToolStripMenuItem";
             this.гидыPdfToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.гидыPdfToolStripMenuItem.Text = "Движение гидов (pdf)";
-            this.гидыPdfToolStripMenuItem.Click += new System.EventHandler(this.продуктыPdfToolStripMenuItem_Click);
+            this.гидыPdfToolStripMenuItem.Click += new System.EventHandler(this.гидыPdfToolStripMenuItem_Click);
             // 
             // заказыToolStripMenuItem
             // 

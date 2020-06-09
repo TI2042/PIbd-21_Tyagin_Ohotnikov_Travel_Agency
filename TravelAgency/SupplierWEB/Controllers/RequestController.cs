@@ -30,11 +30,11 @@ namespace SupplierWEB.Controllers
             {
                 return new UnauthorizedResult();
             }
-            var requests = requestLogic.Read(new RequestBindingModel
+            var кequests = requestLogic.Read(new RequestBindingModel
             {
                 SupplierId = Program.Supplier.Id
             });
-            return View(requests);
+            return View(кequests);
         }
 
         public IActionResult RequestView(int ID)
@@ -115,7 +115,7 @@ namespace SupplierWEB.Controllers
 
         public IActionResult SendWordReport(int id)
         {
-            string fileName = "D:\\data\\" + id + ".docx";
+            string fileName = "C:\\Users\\Игорь\\Desktop\\Reports\\" + id + ".docx";
             reportLogic.SaveNeedGuideToWordFile(new WordInfo
             {
                 FileName = fileName,
@@ -126,7 +126,7 @@ namespace SupplierWEB.Controllers
         }
         public IActionResult SendExcelReport(int id)
         {
-            string fileName = "D:\\data\\" + id + ".xlsx";
+            string fileName = "C:\\Users\\Игорь\\Desktop\\Reports\\" + id + ".xlsx";
             reportLogic.SaveNeedGuideToExcelFile(new ExcelInfo
             {
                 FileName = fileName,

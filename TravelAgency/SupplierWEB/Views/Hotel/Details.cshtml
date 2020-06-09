@@ -7,10 +7,10 @@
     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
         <ul class="navbar-nav flex-grow-1">
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Request" asp-action="Request">Заявки </a>
+                <a class="nav-link text-light" asp-area="" asp-controller="Request" asp-action="Request">Заявки </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Hotel" asp-action="ListHotels">Отели </a>
+                <a class="nav-link text-light" asp-area="" asp-controller="Hotel" asp-action="ListHotels">Отели </a>
             </li>
         </ul>
     </div>
@@ -44,18 +44,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Value.Item1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Value.Item2)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Value.Item3)
-                </td>
-            </tr>
-        }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Value.Item1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Value.Item2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Value.Item3)
+    </td>
+</tr>}
     </tbody>
 </table>
 

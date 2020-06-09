@@ -12,6 +12,7 @@
             <li class="nav-item">
                 <a class="nav-link text-light" asp-area="" asp-controller="Supplier" asp-action="Logout">Выход</a>
             </li>
+            
         </ul>
     </div>
 }
@@ -49,11 +50,11 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @if (item.Status == TravelAgencyBusinessLogic.Enums.RequestStatus.Processed)
+                    @if (item.Status == TravelAgencyBusinessLogic.Enums.RequestStatus.Выполняется)
                     {
                         <a class="btn btn-outline-info btn-sm" asp-action="RequestView" asp-route-id="@item.Id">Просмотр заявки</a>
                     }
-                    @if (item.Status == TravelAgencyBusinessLogic.Enums.RequestStatus.Created)
+                    @if (item.Status == TravelAgencyBusinessLogic.Enums.RequestStatus.Создана)
                     {
                         <a class="btn btn-outline-info btn-sm" asp-action="AcceptRequest" asp-route-id="@item.Id">Принять в обработку</a>
                     }

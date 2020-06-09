@@ -4,7 +4,7 @@
 }
 
 <div class="text-left">
-    <h4>Пополнение Отеля №@ViewBag.HotelId</h4>
+    <h4>Пополнение отеля №@ViewBag.hotelId</h4>
 </div>
 
 <hr />
@@ -28,18 +28,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GuideName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    <a class="btn btn-primary btn-sm btn-block" asp-action="AddGuides" asp-route-guideId="@item.Id" asp-route-hotelId="@ViewBag.HotelId">Пополнить</a>
-                </td>
-            </tr>
-        }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.GuideName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        <a class="btn btn-primary btn-sm btn-block" asp-action="AddGuide" asp-route-guideId="@item.Id" asp-route-hotelId="@ViewBag.HotelId">Пополнить</a>
+    </td>
+</tr>}
     </tbody>
 </table>
 

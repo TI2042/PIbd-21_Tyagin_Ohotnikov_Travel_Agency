@@ -61,7 +61,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             });
         }
 
-        public void ReserveFoods(ReserveGuideBindingModel model)
+        public void ReserveGuides(ReserveGuideBindingModel model)
         {
             var request = requestLogic.Read(new RequestBindingModel
             {

@@ -132,7 +132,7 @@ namespace TravelAgency
             LoadData();
         }
 
-        private void продуктыPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        private void гидыPdfToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportMovingPdf>();
             form.ShowDialog();

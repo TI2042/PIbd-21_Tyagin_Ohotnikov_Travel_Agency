@@ -60,8 +60,8 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 );
                 table.AppendChild<TableProperties>(tblProp);
                 TableRow headerRow = new TableRow();
-                TableCell headerNumberCell = new TableCell(new Paragraph(new Run(new Text("№ продукта"))));
-                TableCell headerNameCell = new TableCell(new Paragraph(new Run(new Text("Продукт"))));
+                TableCell headerNumberCell = new TableCell(new Paragraph(new Run(new Text("№ гида"))));
+                TableCell headerNameCell = new TableCell(new Paragraph(new Run(new Text("гид"))));
                 TableCell headerCountryCell = new TableCell(new Paragraph(new Run(new Text("Количество"))));
                 headerRow.Append(headerNumberCell);
                 headerRow.Append(headerNameCell);

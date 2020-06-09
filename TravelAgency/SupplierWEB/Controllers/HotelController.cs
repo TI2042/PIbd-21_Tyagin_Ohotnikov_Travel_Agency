@@ -62,7 +62,7 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateHotel([Bind("HotelName,Capacity,Country")] Hotel hotel)
+        public IActionResult CreateHotel([Bind("HotelName,Capacity,Type")] Hotel hotel)
         {
             if (Program.Supplier == null)
             {
@@ -118,7 +118,7 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ChangeHotel(int id, [Bind("Id,HotelName,Capacity,Country")] Hotel hotel)
+        public IActionResult ChangeHotel(int id, [Bind("Id,HotelName,Capacity,Type")] Hotel hotel)
         {
             if (Program.Supplier == null)
             {
@@ -182,7 +182,6 @@ namespace SupplierWEB.Controllers
                 HotelName = hotel.HotelName,
                 Capacity = hotel.Capacity,
                 Country = hotel.Country
-
             });
         }
 
@@ -236,8 +235,6 @@ namespace SupplierWEB.Controllers
             return RedirectToAction("Details", new { id = model.HotelId });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult ReserveGuides(int hotelId, int guideId, int count, int requestId)
         {
             if (Program.Supplier == null)
@@ -248,8 +245,8 @@ namespace SupplierWEB.Controllers
             {
                 hotelLogic.ReserveGuides(new RequestGuideBindingModel
                 {
-                   HotelId = hotelId,
-                   GuideId = guideId,
+                    HotelId = hotelId,
+                    GuideId = guideId,
                     Count = count
                 });
             }

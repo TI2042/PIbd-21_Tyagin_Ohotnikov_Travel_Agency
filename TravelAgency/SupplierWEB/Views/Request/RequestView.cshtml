@@ -1,7 +1,9 @@
-﻿@model Dictionary<int, (string, int)>
+﻿@model Dictionary<int, (string, int, bool)>
 @{
     ViewData["Title"] = "Заявка";
 }
+
+@{ bool completed = true; }
 
 @section Links {
     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
@@ -10,7 +12,7 @@
                 <a class="nav-link text-light" asp-area="" asp-controller="Request" asp-action="Request">Список заявок</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" asp-area="" asp-controller="Hotel" asp-action="ListHotel">Отели</a>
+                <a class="nav-link text-light" asp-area="" asp-controller="Hotel" asp-action="ListHotels"></a>
             </li>
         </ul>
     </div>
@@ -51,10 +53,35 @@
                     @Html.DisplayFor(modelItem => item.Value.Item2)
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-sm btn-block" asp-action="ReserveGuides" asp-route-id="@item.Key">Зарезервировать</a>
+                    @if (!item.Value.Item3)
+                    {
+                        completed = false;
+                        <a class="btn btn-primary btn-sm btn-block" asp-action="ListGuideAvailable"
+                            asp-route-id="@item.Key" asp-route-name="@item.Value.Item1"
+                            asp-route-count="@item.Value.Item2" asp-route-requestId="@ViewBag.RequestId">
+                            Зарезервировать
+                        </a>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-primary btn-sm btn-block" disabled>Зарезервировано</button>
+                    }
                 </td>
             </tr>
         }
     </tbody>
 </table>
+@if (completed)
+{
+<hr />
+    <div class="row justify-content-center">
+        <a class="btn btn-primary btn-sm btn-block" asp-action="CompleteRequest" asp-route-id="@ViewBag.RequestId">Выполнить</a>
+    </div>
+ <hr />
+<p>
+    <a href="/Request/SendWordReport/@ViewBag.RequestId">Отправить список гидов в формате .docx</a>
+</p>
+<p>
+    <a href="/Request/SendExcelReport/@ViewBag.RequestId">Отправить список гидов в формате .xlsx</a>
+</p>}
 

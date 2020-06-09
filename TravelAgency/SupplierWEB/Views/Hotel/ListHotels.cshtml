@@ -14,7 +14,7 @@
 }
 
 <div class="text-left">
-    <h4>Список отелей</h4>
+    <h4>Список Отелей</h4>
 </div>
 
 <hr />
@@ -24,7 +24,7 @@
 </div>
 
 <p>
-    <a class="btn btn-primary d-block mx-auto" asp-action="CreateHotel">Добавление Отеля</a>
+    <a class="btn btn-primary d-block mx-auto" asp-action="CreateHotel">Создание отеля</a>
 </p>
 
 <table class="table table-striped table-bordered">
@@ -48,26 +48,24 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HotelName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Capacity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country)
-                </td>
-                <td>
-                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id" asp-r>Выбрать</a>|
-                    <a class="btn btn-primary btn-sm" asp-action="ChangeHotel" asp-route-id="@item.Id">Изменить</a>|
-                    <a class="btn btn-primary btn-sm" asp-action="DeleteHotel" asp-route-id="@item.Id">Удалить</a>
-                </td>
-            </tr>
-        }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HotelName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Capacity)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Country)
+    </td>
+    <td>
+        <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id" asp-r>Выбрать</a>|
+        <a class="btn btn-primary btn-sm" asp-action="ChangeHotel" asp-route-id="@item.Id">Изменить</a>|
+        <a class="btn btn-primary btn-sm" asp-action="DeleteHotel" asp-route-id="@item.Id">Удалить</a>
+    </td>
+</tr>}
     </tbody>
 </table>
-

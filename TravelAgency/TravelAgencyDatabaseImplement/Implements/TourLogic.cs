@@ -90,7 +90,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 {
                     try
                     {
-                        // удаяем записи по продуктам при удалении закуски
+                        
                         context.TourGuides.RemoveRange(context.TourGuides.Where(rec =>
                         rec.TourId == model.Id));
                         Tour element = context.Tours.FirstOrDefault(rec => rec.Id
