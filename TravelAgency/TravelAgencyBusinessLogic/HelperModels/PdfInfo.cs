@@ -9,7 +9,6 @@ namespace TravelAgencyBusinessLogic.HelperModels
     {
         public string FileName { get; set; }
         public string Title { get; set; }
-        public List<ReportTourGuideViewModel> TourGuides { get; set; }
-        public List<ReportHotelGuideViewModel> HotelGuides { get; set; }
+        public List<ReportGuideViewModel> Guides { get; set; }
     }
 }

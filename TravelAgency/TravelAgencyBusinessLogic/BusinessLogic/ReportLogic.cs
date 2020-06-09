@@ -8,6 +8,7 @@ using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.HelperModels;
 using TravelAgencyBusinessLogic.Interfaces;
 using TravelAgencyBusinessLogic.ViewModels;
+using TravelAgencyBusinessLogic.Enums;
 
 namespace TravelAgencyBusinessLogic.BusinessLogic
 {
@@ -15,13 +16,15 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
     {
         private readonly ITourLogic tourLogic;
         private readonly IOrderLogic orderLogic;
-        private readonly IHotelLogic hotelLogic;
+        private readonly IGuideLogic guideLogic;
+        private readonly IRequestLogic requestLogic;
 
-        public ReportLogic(ITourLogic tourLogic, IOrderLogic orderLogic, IHotelLogic hotelLogic)
+        public ReportLogic(ITourLogic tourLogic, IOrderLogic orderLogic, IHotelLogic hotelLogic, IGuideLogic guideLogic, IRequestLogic requestLogic)
         {
             this.tourLogic = tourLogic;
             this.orderLogic = orderLogic;
-            this.hotelLogic = hotelLogic;
+            this.guideLogic = guideLogic;
+            this.requestLogic = requestLogic;
         }
 
         public List<ReportTourGuideViewModel> GetTourGuides()
@@ -44,56 +47,46 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             return list;
         }
 
-        public List<ReportHotelGuideViewModel> GetHotelGuides()
+        public List<ReportGuideViewModel> GetGuides(DateTime from, DateTime to)
         {
-            var hotels = hotelLogic.Read(null);
-            var list = new List<ReportHotelGuideViewModel>();
-            foreach (var hotel in hotels)
+            var guides = guideLogic.Read(null);
+            var requests = requestLogic.Read(null);
+            var list = new List<ReportGuideViewModel>();
+            foreach (var request in requests)
             {
-                foreach (var gh in hotel.Guides)
+                foreach (var requestGuide in request.Guides)
                 {
-                    var record = new ReportHotelGuideViewModel
+                    foreach (var guide in guides)
                     {
-                        HotelName = hotel.HotelName,
-                        GuideName = gh.Value.Item1,
-                        Count = gh.Value.Item2
-                    };
-                    list.Add(record);
+                        if (guide.GuideName == requestGuide.Value.Item1)
+                        {
+                            var record = new ReportGuideViewModel
+                            {
+                                GuideName = requestGuide.Value.Item1,
+                                Count = requestGuide.Value.Item2,
+                                Status = StatusGuide(request.Status),
+                                CreationDate = DateTime.Now,
+                                Price = guide.Price
+                            };
+                            list.Add(record);
+                        }
+                    }
                 }
             }
             return list;
         }
 
-        public List<IGrouping<DateTime, OrderViewModel>> GetOrders(ReportBindingModel model)
+        public string StatusGuide(RequestStatus requestStatus)
         {
-            var list = orderLogic
-            .Read(new OrderBindingModel
-            {
-                DateFrom = model.DateFrom,
-                DateTo = model.DateTo
-            })
-            .GroupBy(rec => rec.CreationDate.Date)
-            .OrderBy(recG => recG.Key)
-            .ToList();
-            return list;
-        }
-
-        public List<ReportOrdersViewModel> GetOrder(ReportBindingModel model)
-        {
-            return orderLogic.Read(new OrderBindingModel
-            {
-                DateFrom = model.DateFrom,
-                DateTo = model.DateTo
-            })
-            .Select(x => new ReportOrdersViewModel
-            {
-                CreationDate = x.CreationDate,
-                TourName = x.TourName,
-                Count = x.Count,
-                Amount = x.Sum,
-                Status = x.Status
-            })
-            .ToList();
+            if (requestStatus == RequestStatus.Создана)
+                return "Ждут отправки";
+            if (requestStatus == RequestStatus.Выполняется)
+                return "В пути";
+            if (requestStatus == RequestStatus.Готова)
+                return "Поставлено";
+            if (requestStatus == RequestStatus.Обработана)
+                return "Использовано";
+            return "";
         }
 
         public List<ReportOrdersViewModel> GetReportOrder(ReportBindingModel model)
@@ -122,7 +115,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 SaveToWord.CreateDoc(new WordInfo
                 {
                     FileName = model.FileName,
-                    Title = "Список приготовленных блюд",
+                    Title = "Список выполненных туров",
                     Orders = GetReportOrder(model),
                     TourGuides = GetTourGuides()
                 });
@@ -131,6 +124,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             {
                 throw;
             }
+            SendMail("den.ohotnikov@gmail.com", model.FileName, "Список туров с гидами");
         }
 
         public void SaveOrdersToExcelFile(ReportBindingModel model)
@@ -138,32 +132,49 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список приготовленных блюд",
+                Title = "Список выполненных туров",
                 Orders = GetReportOrder(model),
                 TourGuides = GetTourGuides()
             });
+            SendMail("den.ohotnikov@gmail.com", model.FileName, "Список туров с гидами");
         }
 
-        public void SaveTourGuidesToPdfFile(ReportBindingModel model)
+        public void SaveGuidesToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Список туров с гидами",
-                TourGuides = GetTourGuides(),
-                HotelGuides = null
+                Title = "Движение гидов",
+                Guides = GetGuides(model.DateFrom, model.DateTo)
             });
+            SendMail("den.ohotnikov@gmail.com", model.FileName, "Список передвижения гидов");
         }
 
         public void SendMail(string email, string fileName, string subject)
         {
-            MailAddress from = new MailAddress("den.ohotnikov@gmail.com", "Турфирма Иван Сусанин");
+            MailAddress from = new MailAddress("labwork15kafis@gmail.com", "Турфирма Иван Сусанин");
             MailAddress to = new MailAddress(email);
             MailMessage m = new MailMessage(from, to);
             m.Subject = subject;
             m.Attachments.Add(new Attachment(fileName));
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("den.ohotnikov@gmail.com", "1");
+            smtp.Credentials = new NetworkCredential("labwork15kafis@gmail.com", "passlab15");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
+        }
+
+        public void SendMailReport(string email, string fileName, string subject, string type)
+        {
+            MailAddress from = new MailAddress("labwork15kafis@gmail.com", "Турфирма Иван Сусанин");
+            MailAddress to = new MailAddress(email);
+            MailMessage m = new MailMessage(from, to);
+            m.Subject = subject;
+            m.Attachments.Add(new Attachment(fileName + "\\order." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\request." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\tour." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\guide." + type));
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new NetworkCredential("labwork15kafis@gmail.com", "passlab15");
             smtp.EnableSsl = true;
             smtp.Send(m);
         }

@@ -113,7 +113,7 @@
             this.турыDocToolStripMenuItem.Name = "турыDocToolStripMenuItem";
             this.турыDocToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.турыDocToolStripMenuItem.Text = "Туры (doc)";
-            this.турыDocToolStripMenuItem.Click += new System.EventHandler(this.блюдаDocToolStripMenuItem_Click);
+            this.турыDocToolStripMenuItem.Click += new System.EventHandler(this.турыDocToolStripMenuItem_Click);
             // 
             // турыXlsToolStripMenuItem
             // 

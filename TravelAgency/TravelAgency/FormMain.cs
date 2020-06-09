@@ -138,7 +138,7 @@ namespace TravelAgency
             form.ShowDialog();
         }
 
-        private void блюдаDocToolStripMenuItem_Click(object sender, EventArgs e)
+        private void турыDocToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
             {
@@ -150,7 +150,7 @@ namespace TravelAgency
                         {
                             FileName = dialog.FileName
                         });
-                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Отчет отправлен на почту", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {

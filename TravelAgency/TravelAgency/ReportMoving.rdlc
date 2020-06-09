@@ -6,16 +6,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.1973cm</Width>
+              <Width>3.16543cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.1973cm</Width>
+              <Width>3.16543cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.1973cm</Width>
+              <Width>2.55688cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.29772cm</Width>
+              <Width>2.34522cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.37829cm</Width>
@@ -64,7 +64,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Tour Name</Value>
+                              <Value>Guide Name</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -154,7 +154,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Amount</Value>
+                              <Value>Price</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -212,21 +212,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TourName">
+                    <Textbox Name="GuideName">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TourName.Value</Value>
+                              <Value>=Fields!GuideName.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TourName</rd:DefaultName>
+                      <rd:DefaultName>GuideName</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -302,21 +302,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Amount">
+                    <Textbox Name="Price">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Amount.Value</Value>
+                              <Value>=Fields!Price.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Amount</rd:DefaultName>
+                      <rd:DefaultName>Price</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -328,7 +328,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -358,7 +357,7 @@
         <Top>0.65828cm</Top>
         <Left>0.66146cm</Left>
         <Height>2.9727cm</Height>
-        <Width>18.26791cm</Width>
+        <Width>13.61124cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -387,7 +386,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>3286f532-2aea-4443-ae73-167271d3edaa</rd:DataSourceID>
+      <rd:DataSourceID>2c6f3946-97e0-48ec-8bda-85ba7c80b284</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -397,10 +396,6 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="Amount">
-          <DataField>Amount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="Count">
           <DataField>Count</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -409,19 +404,23 @@
           <DataField>CreationDate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="GuideName">
+          <DataField>GuideName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Price">
+          <DataField>Price</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="Status">
           <DataField>Status</DataField>
-          <rd:TypeName>TravelAgencyBusinessLogic.Enums.Status</rd:TypeName>
-        </Field>
-        <Field Name="TourName">
-          <DataField>TourName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>TravelAgencyBusinessLogic.ViewModels</rd:DataSetName>
-        <rd:TableName>ReportOrdersViewModel</rd:TableName>
-        <rd:ObjectDataSourceType>TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel, TravelAgencyBusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ReportGuideViewModel</rd:TableName>
+        <rd:ObjectDataSourceType>TravelAgencyBusinessLogic.ViewModels.ReportGuideViewModel, TravelAgencyBusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

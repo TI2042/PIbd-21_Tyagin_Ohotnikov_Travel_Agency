@@ -356,8 +356,10 @@
     <EmbeddedResource Include="ReportMoving.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\TravelAgencyBusinessLogic.ViewModels.GuideViewModel.datasource" />
+    <None Include="Properties\DataSources\TravelAgencyBusinessLogic.ViewModels.HotelAvailableViewModel.datasource" />
     <None Include="Properties\DataSources\TravelAgencyBusinessLogic.ViewModels.HotelViewModel.datasource" />
     <None Include="Properties\DataSources\TravelAgencyBusinessLogic.ViewModels.OrderViewModel.datasource" />
+    <None Include="Properties\DataSources\TravelAgencyBusinessLogic.ViewModels.ReportGuideViewModel.datasource" />
     <None Include="Properties\DataSources\TravelAgencyBusinessLogic.ViewModels.ReportHotelGuideViewModel.datasource" />
     <None Include="Properties\DataSources\TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
     <None Include="Properties\DataSources\TravelAgencyBusinessLogic.ViewModels.ReportTourGuideViewModel.datasource" />

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.ReportGuideViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReportOrdersViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonCreateToPdf = new System.Windows.Forms.Button();
@@ -39,11 +40,16 @@
             this.labelFrom = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReportGuideViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportOrdersViewModelBindingSource
             // 
             this.ReportOrdersViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel);
+            // 
+            // ReportGuideViewModelBindingSource
+            // 
+            this.ReportGuideViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel);
             // 
             // buttonCreate
             // 
@@ -70,7 +76,7 @@
             // reportViewer
             // 
             reportDataSource1.Name = "DataSetMoving";
-            reportDataSource1.Value = this.ReportOrdersViewModelBindingSource;
+            reportDataSource1.Value = this.ReportGuideViewModelBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "TravelAgencyView.ReportMoving.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(10, 45);
@@ -129,6 +135,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Движение гидов";
             this.Load += new System.EventHandler(this.FormReportTourGuides_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ReportGuideViewModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,10 +146,11 @@
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.Button buttonCreateToPdf;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
-        private System.Windows.Forms.BindingSource ReportOrdersViewModelBindingSource;
+        private System.Windows.Forms.BindingSource ReportGuideViewModelBindingSource;
         private System.Windows.Forms.DateTimePicker dateTimePickerTo;
         private System.Windows.Forms.Label labelTo;
         private System.Windows.Forms.Label labelFrom;
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
+        private System.Windows.Forms.BindingSource ReportOrdersViewModelBindingSource;
     }
 }

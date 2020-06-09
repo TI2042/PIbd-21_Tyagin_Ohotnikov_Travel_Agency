@@ -20,81 +20,40 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             paragraph.Style = "NormalTitle";
 
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "7cm", "7cm", "3cm" };
+            List<string> columns = new List<string> { "4cm", "4cm", "4cm", "3cm", "3cm" };
 
             foreach (var elem in columns)
             {
                 table.AddColumn(elem);
             }
 
-            if (info.TourGuides != null)
+            if (info.Guides != null)
             {
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
-                    Texts = new List<string> { "Изделие", "Компонент", "Количество" },
+                    Texts = new List<string> { "Дата заказа", "Гиды", "Состояние", "Кол-во", "Стоимость" },
                     Style = "NormalTitle",
                     ParagraphAlignment = ParagraphAlignment.Center
                 });
 
-                foreach (var pc in info.TourGuides)
+                foreach (var pc in info.Guides)
                 {
                     CreateRow(new PdfRowParameters
                     {
                         Table = table,
                         Texts = new List<string>
                     {
+                        pc.CreationDate.ToString(),
                         pc.GuideName,
-                        pc.TourName,
-                        pc.Count.ToString()
+                        pc.Status,
+                        pc.Count.ToString(),
+                        pc.Price.ToString()
                     },
                         Style = "Normal",
                         ParagraphAlignment = ParagraphAlignment.Left
                     });
                 }
-            }
-            else if (info.HotelGuides != null)
-            {
-                int sum = 0;
-
-                CreateRow(new PdfRowParameters
-                {
-                    Table = table,
-                    Texts = new List<string> { "Компонент", "Склад", "Количество" },
-                    Style = "NormalTitle",
-                    ParagraphAlignment = ParagraphAlignment.Center
-                });
-
-                foreach (var wc in info.HotelGuides)
-                {
-                    CreateRow(new PdfRowParameters
-                    {
-                        Table = table,
-                        Texts = new List<string>
-                    {
-                        wc.GuideName,
-                        wc.HotelName,
-                        wc.Count.ToString()
-                    },
-                        Style = "Normal",
-                        ParagraphAlignment = ParagraphAlignment.Left
-                    });
-
-                    sum += wc.Count;
-                }
-
-                CreateRow(new PdfRowParameters
-                {
-                    Table = table,
-                    Texts = new List<string>
-                    {
-                        "Всего",
-                        "",
-                        sum.ToString()
-                    },
-                    Style = "Normal",
-                    ParagraphAlignment = ParagraphAlignment.Left
-                });
             }
 
             PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always) { Document = document };
