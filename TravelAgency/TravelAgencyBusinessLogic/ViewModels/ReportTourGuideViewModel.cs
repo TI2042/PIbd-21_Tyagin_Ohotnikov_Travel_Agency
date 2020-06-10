@@ -7,7 +7,7 @@ namespace TravelAgencyBusinessLogic.ViewModels
     public class ReportTourGuideViewModel
     {
         public string TourName { get; set; }
-        public string GuideName { get; set; }
+        public string GuideThemeName { get; set; }
         public int Count { get; set; }
     }
 }

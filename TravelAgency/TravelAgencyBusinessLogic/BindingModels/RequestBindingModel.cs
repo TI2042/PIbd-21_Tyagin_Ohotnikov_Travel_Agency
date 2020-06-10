@@ -13,5 +13,8 @@ namespace TravelAgencyBusinessLogic.BindingModels
         public decimal Sum { get; set; }
         public RequestStatus Status { get; set; }
         public Dictionary<int, (string, int, bool)> Guides { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
+        public DateTime Date { get; set; }
     }
 }

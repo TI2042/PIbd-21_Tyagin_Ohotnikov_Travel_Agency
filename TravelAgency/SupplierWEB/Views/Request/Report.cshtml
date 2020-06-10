@@ -1,0 +1,61 @@
+﻿@model ReportModel
+
+@{ ViewData["Title"] = "Отчет по Гидам"; }
+
+@section Links {
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Request" asp-action="Request">Список заявок</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Hotel" asp-action="ListHotels">Отели</a>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="text-left">
+    <h4>Отчет по гидам</h4>
+</div>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <p>
+        Выберите даты для отображения отчета по гидам
+    </p>
+    <p>
+        От: @Html.EditorFor(model => model.From)
+    </p>
+    <p>
+        До: @Html.EditorFor(model => model.To)
+    </p>
+    <p>
+        @Html.EditorFor(model => model.SendMail) Отправить отчёт по гидам на почту
+    </p>
+    <p>
+        <button type="submit" class="btn btn-primary btn-sm">Получить</button>
+    </p>
+}
+<hr />
+@foreach (var request in ViewBag.requests)
+{
+    <p>Дата выполнения: @request.Date</p>
+    <p>ФИО: @request.SupplierFIO</p>
+    <p>Статус: @request.Status</p>
+    <p>Состав:</p>
+    <table class="table">
+        <tr>
+            <td>Гид</td>
+            <td>Количество</td>
+        </tr>
+        @foreach (var guide in request.Guides)
+        {
+            <tr>
+                <td>@guide.Value.Item1</td>
+                <td>@guide.Value.Item2</td>
+            </tr>
+        }
+    </table>
+}

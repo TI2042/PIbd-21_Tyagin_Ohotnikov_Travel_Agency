@@ -126,11 +126,11 @@ namespace TravelAgency
             {
                 if (requestGuides.ContainsKey(form.Id))
                 {
-                    requestGuides[form.Id] = (form.GuideName, form.Count,false);
+                    requestGuides[form.Id] = (form.GuideThemeName, form.Count,false);
                 }
                 else
                 {
-                    requestGuides.Add(form.Id, (form.GuideName, form.Count,false));
+                    requestGuides.Add(form.Id, (form.GuideThemeName, form.Count,false));
                 }
                 LoadGuides();
             }
@@ -146,7 +146,7 @@ namespace TravelAgency
                 form.Count = requestGuides[Id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    requestGuides[form.Id] = (form.GuideName, form.Count,false);
+                    requestGuides[form.Id] = (form.GuideThemeName, form.Count,false);
                     LoadGuides();
                 }
             }

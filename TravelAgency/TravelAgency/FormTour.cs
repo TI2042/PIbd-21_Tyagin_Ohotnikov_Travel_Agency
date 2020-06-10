@@ -22,7 +22,7 @@ namespace TravelAgency
         {
             InitializeComponent();
             dataGridViewComponents.Columns.Add("Id", "Id");
-            dataGridViewComponents.Columns.Add("GuideName", "Материал");
+            dataGridViewComponents.Columns.Add("GuideThemeName", "Материал");
             dataGridViewComponents.Columns.Add("Count", "Количество");
             dataGridViewComponents.Columns[0].Visible = false;
             dataGridViewComponents.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -81,11 +81,11 @@ namespace TravelAgency
             {
                 if (tourGuides.ContainsKey(form.Id))
                 {
-                    tourGuides[form.Id] = (form.GuideName, form.Count);
+                    tourGuides[form.Id] = (form.GuideThemeName, form.Count);
                 }
                 else
                 {
-                    tourGuides.Add(form.Id, (form.GuideName, form.Count));
+                    tourGuides.Add(form.Id, (form.GuideThemeName, form.Count));
                 }
                 LoadData();
             }
@@ -101,7 +101,7 @@ namespace TravelAgency
                 form.Count = tourGuides[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    tourGuides[form.Id] = (form.GuideName, form.Count);
+                    tourGuides[form.Id] = (form.GuideThemeName, form.Count);
                     LoadData();
                 }
             }

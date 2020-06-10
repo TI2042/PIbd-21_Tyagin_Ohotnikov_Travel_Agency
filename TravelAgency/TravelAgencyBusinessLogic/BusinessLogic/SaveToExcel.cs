@@ -198,7 +198,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                                         ShareStringPart = shareStringPart,
                                         ColumnName = "A",
                                         RowIndex = rowIndex,
-                                        Text = tour.GuideName,
+                                        Text = tour.GuideThemeName,
                                         StyleIndex = 0U
                                     });
                                     rowIndex++;

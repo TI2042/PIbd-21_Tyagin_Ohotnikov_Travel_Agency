@@ -12,5 +12,9 @@ namespace TravelAgencyBusinessLogic.Interfaces
         void AddGuide(RequestGuideBindingModel model);
         void ReserveGuides(RequestGuideBindingModel model);
         List<HotelAvailableViewModel> GetHotelAvailable(RequestGuideBindingModel model);
+        void SaveJsonHotel(string folderName);
+        void SaveJsonHotelGuide(string folderName);
+        void SaveXmlHotel(string filderName);
+        void SaveXmlHotelGuide(string filderName);
     }
 }

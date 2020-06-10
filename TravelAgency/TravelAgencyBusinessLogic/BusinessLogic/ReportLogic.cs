@@ -38,7 +38,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                     var record = new ReportTourGuideViewModel
                     {
                         TourName = tour.TourName,
-                        GuideName = pc.Value.Item1,
+                        GuideThemeName = pc.Value.Item1,
                         Count = pc.Value.Item2
                     };
                     list.Add(record);
@@ -58,14 +58,14 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 {
                     foreach (var guide in guides)
                     {
-                        if (guide.GuideName == requestGuide.Value.Item1)
+                        if (guide.GuideThemeName == requestGuide.Value.Item1)
                         {
                             var record = new ReportGuideViewModel
                             {
-                                GuideName = requestGuide.Value.Item1,
+                                GuideThemeName = requestGuide.Value.Item1,
                                 Count = requestGuide.Value.Item2,
                                 Status = StatusGuide(request.Status),
-                                CreationDate = DateTime.Now,
+                                Date = DateTime.Now,
                                 Price = guide.Price
                             };
                             list.Add(record);

@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Xml.Serialization;
 using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.Interfaces;
 using TravelAgencyBusinessLogic.ViewModels;
@@ -77,6 +80,31 @@ namespace TravelAgencyDatabaseImplement.Implements
                 CompletionDate = rec.CompletionDate
             })
             .ToList();
+            }
+        }
+        public void SaveJson(string folderName)
+        {
+            string fileName = $"{folderName}\\order.json";
+            using (var context = new TravelAgencyDatabase())
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Order>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(fs, context.Orders);
+                }
+            }
+        }
+
+        public void SaveXml(string folderName)
+        {
+            string fileName = $"{folderName}\\order.xml";
+            using (var context = new TravelAgencyDatabase())
+            {
+                XmlSerializer fomatter = new XmlSerializer(typeof(DbSet<Order>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    fomatter.Serialize(fs, context.Orders);
+                }
             }
         }
     }

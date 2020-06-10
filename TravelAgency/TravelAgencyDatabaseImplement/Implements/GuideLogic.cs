@@ -5,6 +5,10 @@ using TravelAgencyDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Json;
+using System.IO;
+using System.Xml.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace TravelAgencyDatabaseImplement.Implements
 {
@@ -15,7 +19,7 @@ namespace TravelAgencyDatabaseImplement.Implements
             using (var context = new TravelAgencyDatabase())
             {
                 Guide element = context.Guides.FirstOrDefault(rec =>
-               rec.GuideName == model.GuideName && rec.Id != model.Id);
+               rec.GuideThemeName == model.GuideThemeName && rec.Id != model.Id);
                 if (element != null)
                 {
                     throw new Exception("Уже есть гид с таким названием");
@@ -34,7 +38,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                     element = new Guide();
                     context.Guides.Add(element);
                 }
-                element.GuideName = model.GuideName;
+                element.GuideThemeName = model.GuideThemeName;
                 element.Price = model.Price;
                 context.SaveChanges();
             }
@@ -65,10 +69,36 @@ namespace TravelAgencyDatabaseImplement.Implements
                 .Select(rec => new GuideViewModel
                 {
                     Id = rec.Id,
-                    GuideName = rec.GuideName,
+                    GuideThemeName = rec.GuideThemeName,
                     Price = rec.Price
                 })
                 .ToList();
+            }
+        }
+
+        public void SaveJsonGuide(string folderName)
+        {
+            string fileName = $"{folderName}\\guide.json";
+            using (var context = new TravelAgencyDatabase())
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<Guide>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(fs, context.Guides);
+                }
+            }
+        }
+
+        public void SaveXmlGuide(string folderName)
+        {
+            string fileName = $"{folderName}\\guide.xml";
+            using (var context = new TravelAgencyDatabase())
+            {
+                XmlSerializer fomatter = new XmlSerializer(typeof(DbSet<Guide>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    fomatter.Serialize(fs, context.Guides);
+                }
             }
         }
     }

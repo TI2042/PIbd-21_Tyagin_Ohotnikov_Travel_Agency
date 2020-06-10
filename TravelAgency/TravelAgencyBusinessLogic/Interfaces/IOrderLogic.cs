@@ -11,5 +11,7 @@ namespace TravelAgencyBusinessLogic.Interfaces
         List<OrderViewModel> Read(OrderBindingModel model);
         void CreateOrUpdate(OrderBindingModel model);
         void Delete(OrderBindingModel model);
+        void SaveJson(string folderName);
+        void SaveXml(string folderName);
     }
 }

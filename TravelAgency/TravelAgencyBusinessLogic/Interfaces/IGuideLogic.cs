@@ -9,5 +9,7 @@ namespace TravelAgencyBusinessLogic.Interfaces
         List<GuideViewModel> Read(GuideBindingModel model);
         void CreateOrUpdate(GuideBindingModel model);
         void Delete(GuideBindingModel model);
+        void SaveJsonGuide(string folderName);
+        void SaveXmlGuide(string folderName);
     }
 }

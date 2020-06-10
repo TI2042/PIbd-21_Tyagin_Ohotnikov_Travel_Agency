@@ -97,7 +97,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                     ShareStringPart = shareStringPart,
                     ColumnName = "B",
                     RowIndex = 4,
-                    Text = "Гид",
+                    Text = "Тема гида",
                     StyleIndex = 0U
                 });
                 InsertCellInWorksheet(new ExcelCellParameters
@@ -138,10 +138,11 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                         RowIndex = i + 4,
                         Text = guide.Value.Item2.ToString(),
                         StyleIndex = 0U
-                    });
+                    });                   
                     i++;
                 }
                 workbookpart.Workbook.Save();
+                
             }
         }
         private static void CreateStyles(WorkbookPart workbookpart)

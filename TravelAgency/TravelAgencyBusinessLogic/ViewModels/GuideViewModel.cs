@@ -9,7 +9,7 @@ namespace TravelAgencyBusinessLogic.ViewModels
     {
         public int Id { get; set; }
         [DisplayName("Имя гида")]
-        public string GuideName { get; set; }
+        public string GuideThemeName { get; set; }
         [DisplayName("Цена")]
         public decimal Price { get; set; }
     }

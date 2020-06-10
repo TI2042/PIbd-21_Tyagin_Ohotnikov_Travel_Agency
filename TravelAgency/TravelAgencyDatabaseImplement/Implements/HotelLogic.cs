@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using TravelAgencyDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Json;
 
 namespace TravelAgencyDatabaseImplement.Implements
 {
@@ -31,7 +34,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                             .Include(recCC => recCC.Guide)
                             .Where(recCC => recCC.HotelId == rec.Id)
                             .ToDictionary(recCC => recCC.GuideId, recCC =>
-                            (recCC.Guide?.GuideName, recCC.Count, recCC.Reserved))
+                            (recCC.Guide?.GuideThemeName, recCC.Count, recCC.Reserved))
                 })
                     .ToList();
             }
@@ -179,6 +182,58 @@ namespace TravelAgencyDatabaseImplement.Implements
                 else
                 {
                     throw new Exception("В отеле не существует таких гидов");
+                }
+            }
+        }
+
+        public void SaveJsonHotel(string folderName)
+        {
+            string fileName = $"{folderName}\\Hotel.json";
+            using (var context = new TravelAgencyDatabase())
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<Hotel>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(fs, context.Hotels);
+                }
+            }
+        }
+
+        public void SaveJsonHotelGuide(string folderName)
+        {
+            string fileName = $"{folderName}\\HotelGuide.json";
+            using (var context = new TravelAgencyDatabase())
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<HotelGuide>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(fs, context.HotelGuides);
+                }
+            }
+        }
+
+        public void SaveXmlHotel(string folderName)
+        {
+            string fileNameDop = $"{folderName}\\Hotel.xml";
+            using (var context = new TravelAgencyDatabase())
+            {
+                XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<Hotel>));
+                using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
+                {
+                    fomatterXml.Serialize(fs, context.Hotels);
+                }
+            }
+        }
+
+        public void SaveXmlHotelGuide(string folderName)
+        {
+            string fileNameDop = $"{folderName}\\HotelGuide.xml";
+            using (var context = new TravelAgencyDatabase())
+            {
+                XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<HotelGuide>));
+                using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
+                {
+                    fomatterXml.Serialize(fs, context.HotelGuides);
                 }
             }
         }

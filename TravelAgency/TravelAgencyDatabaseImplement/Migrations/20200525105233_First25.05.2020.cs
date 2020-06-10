@@ -13,7 +13,7 @@ namespace TravelAgencyDatabaseImplement.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GuideName = table.Column<string>(nullable: false),
+                    GuideThemeName = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>

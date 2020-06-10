@@ -27,7 +27,7 @@ namespace TravelAgencyView
         {
             InitializeComponent();
             dataGridView.Columns.Add("Id", "Id");
-            dataGridView.Columns.Add("GuideName", "Гид");
+            dataGridView.Columns.Add("GuideThemeName", "Гид");
             dataGridView.Columns.Add("Count", "Количество");
             dataGridView.Columns[0].Visible = false;
             dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;

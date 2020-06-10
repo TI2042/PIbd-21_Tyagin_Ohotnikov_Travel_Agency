@@ -24,7 +24,7 @@ namespace TravelAgency
             get { return Convert.ToInt32(comboBoxGuide.SelectedValue); }
             set { comboBoxGuide.SelectedValue = value; }
         }
-        public string GuideName { get { return comboBoxGuide.Text; } }
+        public string GuideThemeName { get { return comboBoxGuide.Text; } }
         public int Count
         {
             get { return Convert.ToInt32(textBoxCount.Text); }
@@ -37,7 +37,7 @@ namespace TravelAgency
             List<GuideViewModel> list = logic.Read(null);
             if (list != null)
             {
-                comboBoxGuide.DisplayMember = "GuideName";
+                comboBoxGuide.DisplayMember = "GuideThemeName";
                 comboBoxGuide.ValueMember = "Id";
                 comboBoxGuide.DataSource = list;
                 comboBoxGuide.SelectedItem = null;

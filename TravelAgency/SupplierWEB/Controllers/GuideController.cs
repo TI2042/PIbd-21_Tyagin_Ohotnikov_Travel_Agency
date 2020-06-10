@@ -49,7 +49,7 @@ namespace SupplierWEB.Controllers
             {
                 return NotFound();
             }
-            ViewBag.GuideName = guide.GuideName;
+            ViewBag.GuideThemeName = guide.GuideThemeName;
             ViewBag.HotelId = HotelId;
             return View(new RequestGuideBindingModel
             {

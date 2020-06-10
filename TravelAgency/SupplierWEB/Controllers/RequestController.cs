@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SupplierWEB.Models;
 using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.BusinessLogic;
 using TravelAgencyBusinessLogic.HelperModels;
 using TravelAgencyBusinessLogic.Interfaces;
+using TravelAgencyBusinessLogic.ViewModels;
 
 namespace SupplierWEB.Controllers
 {
@@ -35,6 +37,29 @@ namespace SupplierWEB.Controllers
                 SupplierId = Program.Supplier.Id
             });
             return View(кequests);
+        }
+
+        public IActionResult Report(ReportModel model)
+        {
+            var requests = new List<RequestViewModel>();
+            requests = requestLogic.Read(new RequestBindingModel
+            {
+                SupplierId = Program.Supplier.Id,
+                DateFrom = model.From,
+                DateTo = model.To
+            });
+            ViewBag.Requests = requests;
+            string fileName = "C:\\Users\\Игорь\\Desktop\\Reports\\Reportpdf.pdf";
+            if (model.SendMail)
+            {
+                reportLogic.SaveGuidesToPdfFile(fileName, new RequestBindingModel
+                {
+                    SupplierId = Program.Supplier.Id,
+                    DateFrom = model.From,
+                    DateTo = model.To
+                }, Program.Supplier.Email);
+            }
+            return View();
         }
 
         public IActionResult RequestView(int ID)
@@ -101,7 +126,7 @@ namespace SupplierWEB.Controllers
             {
                 return new UnauthorizedResult();
             }
-            ViewBag.GuideName = name;
+            ViewBag.GuideThemeName = name;
             ViewBag.Count = count;
             ViewBag.GuideId = id;
             ViewBag.RequestId = requestId;

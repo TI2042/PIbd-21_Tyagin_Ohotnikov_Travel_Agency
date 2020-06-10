@@ -136,7 +136,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                     var record = new ReportTourGuideViewModel
                     {
                         TourName = tour.TourName,
-                        GuideName = pc.Value.Item1,
+                        GuideThemeName = pc.Value.Item1,
                         Count = pc.Value.Item2
                     };
                     list.Add(record);

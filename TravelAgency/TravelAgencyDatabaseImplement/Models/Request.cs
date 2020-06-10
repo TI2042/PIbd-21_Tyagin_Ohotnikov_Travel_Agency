@@ -17,5 +17,6 @@ namespace TravelAgencyDatabaseImplement.Models
         [ForeignKey("RequestID")]
         public virtual List<RequestGuide> RequestGuides { get; set; }
         public virtual Supplier Supplier { get; set; }
+        public DateTime Date { get; set; }
     }
 }

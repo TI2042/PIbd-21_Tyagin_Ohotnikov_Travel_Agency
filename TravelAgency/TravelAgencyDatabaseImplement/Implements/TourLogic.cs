@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TravelAgencyDatabaseImplement;
+using System.Runtime.Serialization.Json;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace TravelAgencyDatabaseImplement.Implements
 {
@@ -129,9 +132,35 @@ namespace TravelAgencyDatabaseImplement.Implements
                                         .Include(recPC => recPC.Guide)
                                         .Where(recPC => recPC.TourId == rec.Id)
                                         .ToDictionary(recPC => recPC.GuideId, recPC => (
-                                            recPC.Guide?.GuideName, recPC.Count
+                                            recPC.Guide?.GuideThemeName, recPC.Count
                                          ))
                 }).ToList();
+            }
+        }
+
+        public void SaveJson(string folderName)
+        {
+            string fileName = $"{folderName}\\tour.json";
+            using (var context = new TravelAgencyDatabase())
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Tour>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(fs, context.Tours);
+                }
+            }
+        }
+
+        public void SaveXml(string folderName)
+        {
+            string fileName = $"{folderName}\\tour.xml";
+            using (var context = new TravelAgencyDatabase())
+            {
+                XmlSerializer fomatter = new XmlSerializer(typeof(DbSet<Tour>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    fomatter.Serialize(fs, context.Tours);
+                }
             }
         }
     }

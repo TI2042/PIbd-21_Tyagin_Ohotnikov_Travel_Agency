@@ -7,7 +7,7 @@ namespace TravelAgencyBusinessLogic.BindingModels
     public class GuideBindingModel
     {
         public int? Id { get; set; }
-        public string GuideName { get; set; }
+        public string GuideThemeName { get; set; }
         public decimal Price { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace TravelAgency
                     var view = logic.Read(new GuideBindingModel { Id = id.Value })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.GuideName;
+                        textBoxName.Text = view.GuideThemeName;
                     }
                 }
                 catch (Exception ex)
@@ -58,7 +58,7 @@ namespace TravelAgency
                 logic.CreateOrUpdate(new GuideBindingModel
                 {
                     Id = id ?? null,
-                    GuideName = textBoxName.Text
+                    GuideThemeName = textBoxName.Text
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

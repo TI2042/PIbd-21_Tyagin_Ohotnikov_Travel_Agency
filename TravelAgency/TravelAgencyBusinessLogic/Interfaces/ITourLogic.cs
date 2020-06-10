@@ -11,5 +11,7 @@ namespace TravelAgencyBusinessLogic.Interfaces
         List<TourViewModel> Read(TourBindingModel model);
         void CreateOrUpdate(TourBindingModel model);
         void Delete(TourBindingModel model);
+        void SaveJson(string folderName);
+        void SaveXml(string folderName);
     }
 }

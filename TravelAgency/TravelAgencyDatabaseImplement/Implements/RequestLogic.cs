@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Xml.Serialization;
 using TravelAgencyBusinessLogic.BindingModels;
 using TravelAgencyBusinessLogic.Enums;
 using TravelAgencyBusinessLogic.Interfaces;
@@ -39,6 +42,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                                 updGuide.InHotel= model.Guides[updGuide.GuideId].Item3;
                                 model.Guides.Remove(updGuide.GuideId);
                             }
+                            request.Date = model.Date;
                             context.SaveChanges();
                         }
                         else
@@ -115,19 +119,21 @@ namespace TravelAgencyDatabaseImplement.Implements
             {
                 return context.Requests
                     .Include(rec => rec.Supplier)
-                    .Where(rec => model == null || rec.Id == model.Id || rec.SupplierId == model.SupplierId)
+                    .Where(rec => model == null || rec.Id == model.Id || (rec.SupplierId == model.SupplierId) && (model.DateFrom == null && model.DateTo == null ||
+                    rec.Date >= model.DateFrom && rec.Date <= model.DateTo && rec.Status == RequestStatus.Готова))
                     .ToList()
                     .Select(rec => new RequestViewModel
                     {
                         Id = rec.Id,
                         SupplierFIO = rec.Supplier.SupplierFIO,
                         SupplierId = rec.SupplierId,
+                        Date = rec.Date,
                         Status = rec.Status,
                         Guides = context.RequestGuides
                             .Include(recRF => recRF.Guide)
                             .Where(recRF => recRF.RequestID == rec.Id)
                             .ToDictionary(recRF => recRF.GuideId, recRF =>
-                            (recRF.Guide?.GuideName, recRF.Count, recRF.InHotel))
+                            (recRF.Guide?.GuideThemeName, recRF.Count, recRF.InHotel))
                     })
                     .ToList();
             }
@@ -144,6 +150,57 @@ namespace TravelAgencyDatabaseImplement.Implements
                 }
                 requestGuides.InHotel = true;
                 context.SaveChanges();
+            }
+        }
+        public void SaveJsonRequest(string folderName)
+        {
+            string fileName = $"{folderName}\\Request.json";
+            using (var context = new TravelAgencyDatabase())
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<Request>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(fs, context.Requests);
+                }
+            }
+        }
+
+        public void SaveJsonRequestGuide(string folderName)
+        {
+            string fileName = $"{folderName}\\RequestGuide.json";
+            using (var context = new TravelAgencyDatabase())
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<RequestGuide>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(fs, context.RequestGuides);
+                }
+            }
+        }
+
+        public void SaveXmlRequest(string folderName)
+        {
+            string fileNameDop = $"{folderName}\\Request.xml";
+            using (var context = new TravelAgencyDatabase())
+            {
+                XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<Request>));
+                using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
+                {
+                    fomatterXml.Serialize(fs, context.Requests);
+                }
+            }
+        }
+
+        public void SaveXmlRequestGuide(string folderName)
+        {
+            string fileNameDop = $"{folderName}\\RequestGuide.xml";
+            using (var context = new TravelAgencyDatabase())
+            {
+                XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<RequestGuide>));
+                using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
+                {
+                    fomatterXml.Serialize(fs, context.RequestGuides);
+                }
             }
         }
     }
