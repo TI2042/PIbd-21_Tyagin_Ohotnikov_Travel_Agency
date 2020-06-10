@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TravelAgencyDatabaseImplement.Migrations
 {
-    public partial class First25052020 : Migration
+    public partial class _10062020 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,9 +27,9 @@ namespace TravelAgencyDatabaseImplement.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SupplierFIO = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false)
+                    SupplierFIO = table.Column<string>(nullable: true),
+                    Login = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,8 +58,8 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HotelName = table.Column<string>(nullable: false),
                     Capacity = table.Column<int>(nullable: false),
-                    Country = table.Column<string>(nullable: true),
-                    SupplierId = table.Column<int>(nullable: true)
+                    Country = table.Column<string>(nullable: false),
+                    SupplierId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,7 +69,7 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         column: x => x.SupplierId,
                         principalTable: "Suppliers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,10 +79,8 @@ namespace TravelAgencyDatabaseImplement.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SupplierId = table.Column<int>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    Sum = table.Column<decimal>(nullable: false),
-                    DateImplement = table.Column<DateTime>(nullable: true),
-                    Status = table.Column<int>(nullable: false)
+                    Status = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -155,7 +153,7 @@ namespace TravelAgencyDatabaseImplement.Migrations
                     HotelId = table.Column<int>(nullable: false),
                     GuideId = table.Column<int>(nullable: false),
                     Count = table.Column<int>(nullable: false),
-                    IsReserved = table.Column<int>(nullable: false)
+                    Reserved = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -180,9 +178,10 @@ namespace TravelAgencyDatabaseImplement.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RequestId = table.Column<int>(nullable: false),
+                    RequestID = table.Column<int>(nullable: false),
                     GuideId = table.Column<int>(nullable: false),
-                    Count = table.Column<int>(nullable: false)
+                    Count = table.Column<int>(nullable: false),
+                    InHotel = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -194,8 +193,8 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RequestGuides_Requests_RequestId",
-                        column: x => x.RequestId,
+                        name: "FK_RequestGuides_Requests_RequestID",
+                        column: x => x.RequestID,
                         principalTable: "Requests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -227,9 +226,9 @@ namespace TravelAgencyDatabaseImplement.Migrations
                 column: "GuideId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RequestGuides_RequestId",
+                name: "IX_RequestGuides_RequestID",
                 table: "RequestGuides",
-                column: "RequestId");
+                column: "RequestID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Requests_SupplierId",

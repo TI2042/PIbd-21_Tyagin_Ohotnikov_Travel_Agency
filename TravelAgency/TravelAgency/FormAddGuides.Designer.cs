@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddGuides));
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxCount = new System.Windows.Forms.TextBox();
@@ -63,10 +62,8 @@
             // 
             this.textBoxCount.Location = new System.Drawing.Point(81, 39);
             this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.ReadOnly = true;
             this.textBoxCount.Size = new System.Drawing.Size(253, 20);
             this.textBoxCount.TabIndex = 9;
-            this.textBoxCount.Text = "1";
             // 
             // comboBoxGuide
             // 
@@ -79,7 +76,7 @@
             // labelCountGuide
             // 
             this.labelCountGuide.AutoSize = true;
-            this.labelCountGuide.Location = new System.Drawing.Point(10, 39);
+            this.labelCountGuide.Location = new System.Drawing.Point(9, 42);
             this.labelCountGuide.Name = "labelCountGuide";
             this.labelCountGuide.Size = new System.Drawing.Size(66, 13);
             this.labelCountGuide.TabIndex = 7;

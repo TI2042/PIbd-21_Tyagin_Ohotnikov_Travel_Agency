@@ -3,22 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-	
-
-	<ItemGroup>
-    <Compile Remove="Migrations\20200525133935_25.05.2020.cs" />
-    <Compile Remove="Migrations\20200525133935_25.05.2020.Designer.cs" />
-    <Compile Remove="Migrations\20200525135212_25.05.2020.cs" />
-    <Compile Remove="Migrations\20200525135212_25.05.2020.Designer.cs" />
-    <Compile Remove="Migrations\20200525135506_25.05.2020.cs" />
-    <Compile Remove="Migrations\20200525135506_25.05.2020.Designer.cs" />
-    <Compile Remove="Migrations\20200525140158_25.05.2020.cs" />
-    <Compile Remove="Migrations\20200525140158_25.05.2020.Designer.cs" />
-    <Compile Remove="Migrations\20200525140855_25.05.2020.cs" />
-    <Compile Remove="Migrations\20200525140855_25.05.2020.Designer.cs" />
-    <Compile Remove="Migrations\20200525141429_25.05.2020.cs" />
-    <Compile Remove="Migrations\20200525141429_25.05.2020.Designer.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />

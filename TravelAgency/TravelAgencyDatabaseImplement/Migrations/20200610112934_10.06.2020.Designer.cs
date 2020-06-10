@@ -10,8 +10,8 @@ using TravelAgencyDatabaseImplement;
 namespace TravelAgencyDatabaseImplement.Migrations
 {
     [DbContext(typeof(TravelAgencyDatabase))]
-    [Migration("20200525105233_First25.05.2020")]
-    partial class First25052020
+    [Migration("20200610112934_10.06.2020")]
+    partial class _10062020
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("GuideName")
+                    b.Property<string>("GuideThemeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -51,13 +51,14 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HotelName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SupplierId")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -83,7 +84,7 @@ namespace TravelAgencyDatabaseImplement.Migrations
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IsReserved")
+                    b.Property<int>("Reserved")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -134,17 +135,11 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateImplement")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("Sum")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
@@ -169,14 +164,17 @@ namespace TravelAgencyDatabaseImplement.Migrations
                     b.Property<int>("GuideId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RequestId")
+                    b.Property<bool>("InHotel")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RequestID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GuideId");
 
-                    b.HasIndex("RequestId");
+                    b.HasIndex("RequestID");
 
                     b.ToTable("RequestGuides");
                 });
@@ -188,16 +186,13 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("Login")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SupplierFIO")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -252,14 +247,16 @@ namespace TravelAgencyDatabaseImplement.Migrations
             modelBuilder.Entity("TravelAgencyDatabaseImplement.Models.Hotel", b =>
                 {
                     b.HasOne("TravelAgencyDatabaseImplement.Models.Supplier", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId");
+                        .WithMany("Hotels")
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TravelAgencyDatabaseImplement.Models.HotelGuide", b =>
                 {
                     b.HasOne("TravelAgencyDatabaseImplement.Models.Guide", "Guide")
-                        .WithMany()
+                        .WithMany("HotelGuides")
                         .HasForeignKey("GuideId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -298,8 +295,8 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("TravelAgencyDatabaseImplement.Models.Request", "Request")
-                        .WithMany()
-                        .HasForeignKey("RequestId")
+                        .WithMany("RequestGuides")
+                        .HasForeignKey("RequestID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -307,7 +304,7 @@ namespace TravelAgencyDatabaseImplement.Migrations
             modelBuilder.Entity("TravelAgencyDatabaseImplement.Models.TourGuide", b =>
                 {
                     b.HasOne("TravelAgencyDatabaseImplement.Models.Guide", "Guide")
-                        .WithMany("TourGuides")
+                        .WithMany()
                         .HasForeignKey("GuideId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

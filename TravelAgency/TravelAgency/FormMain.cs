@@ -177,5 +177,53 @@ namespace TravelAgency
             var form = Container.Resolve<FormRequest>();
             form.ShowDialog();
         }
+
+        private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var fbd = new FolderBrowserDialog();
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    orderLogic.SaveXml(fbd.SelectedPath);
+                    orderLogic.SaveXml(fbd.SelectedPath);
+                    guideLogic.SaveXmlGuide(fbd.SelectedPath);
+                    tourLogic.SaveXml(fbd.SelectedPath);
+                    requestLogic.SaveXmlRequest(fbd.SelectedPath);
+                    report.SendMailReport("den.ohotnikov@gmail.com", fbd.SelectedPath, "XML бекап", "xml");
+                    MessageBox.Show("Бэкап отправлен на почту", "Сообщение",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
+        }
+
+        private void jSONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var fbd = new FolderBrowserDialog();
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    orderLogic.SaveJson(fbd.SelectedPath);
+                    orderLogic.SaveJson(fbd.SelectedPath);
+                    guideLogic.SaveJsonGuide(fbd.SelectedPath);
+                    tourLogic.SaveJson(fbd.SelectedPath);
+                    requestLogic.SaveJsonRequest(fbd.SelectedPath);
+                    report.SendMailReport("den.ohotnikov@gmail.com", fbd.SelectedPath, "JSON бекап", "json");
+                    MessageBox.Show("Бэкап отправлен на почту", "Сообщение",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
+        }
     }
 }
