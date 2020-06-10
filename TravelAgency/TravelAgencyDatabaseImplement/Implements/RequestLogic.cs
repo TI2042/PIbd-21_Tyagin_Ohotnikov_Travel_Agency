@@ -39,10 +39,10 @@ namespace TravelAgencyDatabaseImplement.Implements
                             foreach (var updGuide in requestGuides)
                             {
                                 updGuide.Count = model.Guides[updGuide.GuideId].Item2;
-                                updGuide.InHotel= model.Guides[updGuide.GuideId].Item3;
+                                updGuide.InHotel = model.Guides[updGuide.GuideId].Item3;
                                 model.Guides.Remove(updGuide.GuideId);
                             }
-                            request.Date = model.Date;
+                            request.CompletionDate = model.CompletionDate;
                             context.SaveChanges();
                         }
                         else
@@ -53,17 +53,16 @@ namespace TravelAgencyDatabaseImplement.Implements
                         request.SupplierId = model.SupplierId;
                         request.Status = model.Status;
                         context.SaveChanges();
-
-                        foreach (var Guide in model.Guides)
+                        foreach (var Food in model.Guides)
                         {
                             context.RequestGuides.Add(new RequestGuide
                             {
                                 RequestID = request.Id,
-                                GuideId = Guide.Key,
-                                Count = Guide.Value.Item2,
+                                GuideId = Food.Key,
+                                Count = Food.Value.Item2,
                                 InHotel = false
                             });
-                            context.SaveChanges();                          
+                            context.SaveChanges();
                         }
                         transaction.Commit();
                     }
@@ -75,6 +74,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 }
             }
         }
+
         public void Delete(RequestBindingModel model)
         {
             if (model.Status != RequestStatus.Выполняется)
@@ -85,13 +85,12 @@ namespace TravelAgencyDatabaseImplement.Implements
                     {
                         try
                         {
-                            context.RequestGuides.RemoveRange(context.RequestGuides.Where(rec =>
-                            rec.RequestID == model.Id));
-                            Request element = context.Requests.FirstOrDefault(rec => rec.Id
-                            == model.Id);
-                            if (element != null)
+                            context.RequestGuides.RemoveRange(context
+                                .RequestGuides.Where(rec => rec.RequestID == model.Id));
+                            Request request = context.Requests.FirstOrDefault(rec => rec.Id == model.Id);
+                            if (request != null)
                             {
-                                context.Requests.Remove(element);
+                                context.Requests.Remove(request);
                                 context.SaveChanges();
                             }
                             else
@@ -113,6 +112,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 throw new Exception("Заявку невозможно удалить. Заявка в процессе");
             }
         }
+
         public List<RequestViewModel> Read(RequestBindingModel model)
         {
             using (var context = new TravelAgencyDatabase())
@@ -120,20 +120,20 @@ namespace TravelAgencyDatabaseImplement.Implements
                 return context.Requests
                     .Include(rec => rec.Supplier)
                     .Where(rec => model == null || rec.Id == model.Id || (rec.SupplierId == model.SupplierId) && (model.DateFrom == null && model.DateTo == null ||
-                    rec.Date >= model.DateFrom && rec.Date <= model.DateTo && rec.Status == RequestStatus.Готова))
+                    rec.CompletionDate >= model.DateFrom && rec.CompletionDate <= model.DateTo && rec.Status == RequestStatus.Готова))
                     .ToList()
                     .Select(rec => new RequestViewModel
                     {
                         Id = rec.Id,
                         SupplierFIO = rec.Supplier.SupplierFIO,
                         SupplierId = rec.SupplierId,
-                        Date = rec.Date,
+                        Date = rec.CompletionDate,
                         Status = rec.Status,
                         Guides = context.RequestGuides
                             .Include(recRF => recRF.Guide)
                             .Where(recRF => recRF.RequestID == rec.Id)
-                            .ToDictionary(recRF => recRF.GuideId, recRF =>
-                            (recRF.Guide?.GuideThemeName, recRF.Count, recRF.InHotel))
+                            .ToDictionary(recRF => recRF.GuideId, recRH =>
+                            (recRH.Guide?.GuideThemeName, recRH.Count, recRH.InHotel))
                     })
                     .ToList();
             }
@@ -152,6 +152,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 context.SaveChanges();
             }
         }
+
         public void SaveJsonRequest(string folderName)
         {
             string fileName = $"{folderName}\\Request.json";
@@ -167,7 +168,7 @@ namespace TravelAgencyDatabaseImplement.Implements
 
         public void SaveJsonRequestGuide(string folderName)
         {
-            string fileName = $"{folderName}\\RequestGuide.json";
+            string fileName = $"{folderName}\\RequestFood.json";
             using (var context = new TravelAgencyDatabase())
             {
                 DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<RequestGuide>));

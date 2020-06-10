@@ -19,7 +19,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
         private readonly IGuideLogic guideLogic;
         private readonly IRequestLogic requestLogic;
 
-        public ReportLogic(ITourLogic tourLogic, IOrderLogic orderLogic, IHotelLogic hotelLogic, IGuideLogic guideLogic, IRequestLogic requestLogic)
+        public ReportLogic(ITourLogic tourLogic, IOrderLogic orderLogic, IGuideLogic guideLogic, IRequestLogic requestLogic)
         {
             this.tourLogic = tourLogic;
             this.orderLogic = orderLogic;

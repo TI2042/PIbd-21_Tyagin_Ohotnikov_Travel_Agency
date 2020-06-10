@@ -49,7 +49,7 @@ namespace TravelAgency
                         dataGridViewGuideToTour.Rows.Add(order.Key, "", "");
                         foreach (var tour in order.Value)
                         {
-                            dataGridViewGuideToTour.Rows.Add("", tour.TourName);
+                            dataGridViewGuideToTour.Rows.Add("", tour.GuideThemeName);
                         }
                     }
                 }

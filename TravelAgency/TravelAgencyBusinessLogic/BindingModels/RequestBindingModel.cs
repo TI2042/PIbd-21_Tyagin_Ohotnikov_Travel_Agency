@@ -15,6 +15,6 @@ namespace TravelAgencyBusinessLogic.BindingModels
         public Dictionary<int, (string, int, bool)> Guides { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime CompletionDate { get; set; }
     }
 }

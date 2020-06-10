@@ -36,7 +36,6 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
         {
             var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
             var request = requestLogic.Read(new RequestBindingModel { Id = model.OrderId })?[0];
-
             if (order == null)
             {
                 throw new Exception("Не найден заказ");

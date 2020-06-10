@@ -73,7 +73,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                                 {
                                     docBody.AppendChild(CreateParagraph(new WordParagraph
                                     {
-                                        Texts = new List<string> { tour.TourName },
+                                        Texts = new List<string> { tour.GuideThemeName },
                                         TextProperties = new WordParagraphProperties
                                         {
                                             Bold = false,

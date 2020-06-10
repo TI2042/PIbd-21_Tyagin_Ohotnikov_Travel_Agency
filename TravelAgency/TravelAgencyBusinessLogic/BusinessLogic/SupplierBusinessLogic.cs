@@ -56,6 +56,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             {
                 Id = request.Id,
                 SupplierId = request.SupplierId,
+                CompletionDate = DateTime.Now,
                 Status = RequestStatus.Готова,
                 Guides = request.Guides
             });

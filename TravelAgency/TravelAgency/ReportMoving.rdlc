@@ -9,7 +9,7 @@
               <Width>3.16543cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.16543cm</Width>
+              <Width>3.77397cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.55688cm</Width>
@@ -182,21 +182,21 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="CreationDate">
+                    <Textbox Name="Date">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!CreationDate.Value</Value>
+                              <Value>=Fields!Date.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>CreationDate</rd:DefaultName>
+                      <rd:DefaultName>Date</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -212,21 +212,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="GuideName">
+                    <Textbox Name="GuideThemeName">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!GuideName.Value</Value>
+                              <Value>=Fields!GuideThemeName.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>GuideName</rd:DefaultName>
+                      <rd:DefaultName>GuideThemeName</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -357,7 +357,7 @@
         <Top>0.65828cm</Top>
         <Left>0.66146cm</Left>
         <Height>2.9727cm</Height>
-        <Width>13.61124cm</Width>
+        <Width>14.21979cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -400,12 +400,12 @@
           <DataField>Count</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="CreationDate">
-          <DataField>CreationDate</DataField>
+        <Field Name="Date">
+          <DataField>Date</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="GuideName">
-          <DataField>GuideName</DataField>
+        <Field Name="GuideThemeName">
+          <DataField>GuideThemeName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Price">
@@ -414,6 +414,10 @@
         </Field>
         <Field Name="Status">
           <DataField>Status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SupplierFIO">
+          <DataField>SupplierFIO</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

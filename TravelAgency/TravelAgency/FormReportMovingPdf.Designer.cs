@@ -45,7 +45,7 @@
             // 
             // ReportGuideViewModelBindingSource
             // 
-            this.ReportGuideViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportOrdersViewModel);
+            this.ReportGuideViewModelBindingSource.DataSource = typeof(TravelAgencyBusinessLogic.ViewModels.ReportGuideViewModel);
             // 
             // ReportOrdersViewModelBindingSource
             // 

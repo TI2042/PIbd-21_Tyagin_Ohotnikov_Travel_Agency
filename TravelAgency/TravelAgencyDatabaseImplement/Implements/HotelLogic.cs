@@ -156,6 +156,8 @@ namespace TravelAgencyDatabaseImplement.Implements
                 {
                     hotelGuides.Count += model.Count;
                 }
+                Guide element = context.Guides.FirstOrDefault(rec => rec.Id == model.GuideId);
+                element.Price = model.Count;
                 context.SaveChanges();
             }
         }

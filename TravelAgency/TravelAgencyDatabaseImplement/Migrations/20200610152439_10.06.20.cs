@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TravelAgencyDatabaseImplement.Migrations
 {
-    public partial class _10062020 : Migration
+    public partial class _100620 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,7 +80,7 @@ namespace TravelAgencyDatabaseImplement.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SupplierId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false)
+                    CompletionDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
