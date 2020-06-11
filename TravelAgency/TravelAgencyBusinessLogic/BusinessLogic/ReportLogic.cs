@@ -69,6 +69,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                                     Count = requestGuide.Value.Item2,
                                     Status = StatusGuide(request.Status),
                                     CreationDate = request.CreationDate,
+                                    CompletionDate = request.CompletionDate,
                                     Price = guide.Price * requestGuide.Value.Item2
                                 };
                                 list.Add(record);

@@ -40,14 +40,14 @@
             this.заказыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заказатьГидыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.посмотретьДоступныеГидыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.создатьБэкапToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.ButtonPayOrder = new System.Windows.Forms.Button();
             this.ButtonOrderReady = new System.Windows.Forms.Button();
             this.ButtonTakeOrderInWork = new System.Windows.Forms.Button();
-            this.создатьБэкапToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
@@ -57,10 +57,10 @@
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView.Location = new System.Drawing.Point(0, 22);
+            this.dataGridView.Location = new System.Drawing.Point(0, 27);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
-            this.dataGridView.Size = new System.Drawing.Size(566, 289);
+            this.dataGridView.Size = new System.Drawing.Size(551, 289);
             this.dataGridView.TabIndex = 0;
             // 
             // Menu
@@ -155,56 +155,6 @@
             this.посмотретьДоступныеГидыToolStripMenuItem.Text = "Посмотреть доступных гидов";
             this.посмотретьДоступныеГидыToolStripMenuItem.Click += new System.EventHandler(this.посмотретьДоступныеПродуктыToolStripMenuItem_Click);
             // 
-            // buttonCreateOrder
-            // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(572, 40);
-            this.buttonCreateOrder.Name = "buttonCreateOrder";
-            this.buttonCreateOrder.Size = new System.Drawing.Size(154, 26);
-            this.buttonCreateOrder.TabIndex = 2;
-            this.buttonCreateOrder.Text = "Создать заказ";
-            this.buttonCreateOrder.UseVisualStyleBackColor = true;
-            this.buttonCreateOrder.Click += new System.EventHandler(this.ButtonCreateOrder_Click);
-            // 
-            // buttonRefresh
-            // 
-            this.buttonRefresh.Location = new System.Drawing.Point(572, 228);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(154, 26);
-            this.buttonRefresh.TabIndex = 6;
-            this.buttonRefresh.Text = "Обновить список";
-            this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.ButtonRef_Click);
-            // 
-            // ButtonPayOrder
-            // 
-            this.ButtonPayOrder.Location = new System.Drawing.Point(572, 137);
-            this.ButtonPayOrder.Name = "ButtonPayOrder";
-            this.ButtonPayOrder.Size = new System.Drawing.Size(154, 26);
-            this.ButtonPayOrder.TabIndex = 7;
-            this.ButtonPayOrder.Text = "Заказ оплачен";
-            this.ButtonPayOrder.UseVisualStyleBackColor = true;
-            this.ButtonPayOrder.Click += new System.EventHandler(this.ButtonPayOrder_Click);
-            // 
-            // ButtonOrderReady
-            // 
-            this.ButtonOrderReady.Location = new System.Drawing.Point(572, 105);
-            this.ButtonOrderReady.Name = "ButtonOrderReady";
-            this.ButtonOrderReady.Size = new System.Drawing.Size(154, 26);
-            this.ButtonOrderReady.TabIndex = 8;
-            this.ButtonOrderReady.Text = "Заказ готов";
-            this.ButtonOrderReady.UseVisualStyleBackColor = true;
-            this.ButtonOrderReady.Click += new System.EventHandler(this.ButtonOrderReady_Click);
-            // 
-            // ButtonTakeOrderInWork
-            // 
-            this.ButtonTakeOrderInWork.Location = new System.Drawing.Point(572, 72);
-            this.ButtonTakeOrderInWork.Name = "ButtonTakeOrderInWork";
-            this.ButtonTakeOrderInWork.Size = new System.Drawing.Size(154, 26);
-            this.ButtonTakeOrderInWork.TabIndex = 9;
-            this.ButtonTakeOrderInWork.Text = "Выполнить";
-            this.ButtonTakeOrderInWork.UseVisualStyleBackColor = true;
-            this.ButtonTakeOrderInWork.Click += new System.EventHandler(this.ButtonTakeOrderInWork_Click);
-            // 
             // создатьБэкапToolStripMenuItem
             // 
             this.создатьБэкапToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -217,22 +167,72 @@
             // xMLToolStripMenuItem
             // 
             this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
-            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.xMLToolStripMenuItem.Text = "XML";
             this.xMLToolStripMenuItem.Click += new System.EventHandler(this.xMLToolStripMenuItem_Click);
             // 
             // jSONToolStripMenuItem
             // 
             this.jSONToolStripMenuItem.Name = "jSONToolStripMenuItem";
-            this.jSONToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jSONToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.jSONToolStripMenuItem.Text = "JSON";
             this.jSONToolStripMenuItem.Click += new System.EventHandler(this.jSONToolStripMenuItem_Click);
+            // 
+            // buttonCreateOrder
+            // 
+            this.buttonCreateOrder.Location = new System.Drawing.Point(570, 40);
+            this.buttonCreateOrder.Name = "buttonCreateOrder";
+            this.buttonCreateOrder.Size = new System.Drawing.Size(154, 36);
+            this.buttonCreateOrder.TabIndex = 2;
+            this.buttonCreateOrder.Text = "Создать заказ";
+            this.buttonCreateOrder.UseVisualStyleBackColor = true;
+            this.buttonCreateOrder.Click += new System.EventHandler(this.ButtonCreateOrder_Click);
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Location = new System.Drawing.Point(570, 271);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(154, 36);
+            this.buttonRefresh.TabIndex = 6;
+            this.buttonRefresh.Text = "Обновить список";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.ButtonRef_Click);
+            // 
+            // ButtonPayOrder
+            // 
+            this.ButtonPayOrder.Location = new System.Drawing.Point(570, 166);
+            this.ButtonPayOrder.Name = "ButtonPayOrder";
+            this.ButtonPayOrder.Size = new System.Drawing.Size(154, 36);
+            this.ButtonPayOrder.TabIndex = 7;
+            this.ButtonPayOrder.Text = "Заказ оплачен";
+            this.ButtonPayOrder.UseVisualStyleBackColor = true;
+            this.ButtonPayOrder.Click += new System.EventHandler(this.ButtonPayOrder_Click);
+            // 
+            // ButtonOrderReady
+            // 
+            this.ButtonOrderReady.Location = new System.Drawing.Point(570, 124);
+            this.ButtonOrderReady.Name = "ButtonOrderReady";
+            this.ButtonOrderReady.Size = new System.Drawing.Size(154, 36);
+            this.ButtonOrderReady.TabIndex = 8;
+            this.ButtonOrderReady.Text = "Заказ готов";
+            this.ButtonOrderReady.UseVisualStyleBackColor = true;
+            this.ButtonOrderReady.Click += new System.EventHandler(this.ButtonOrderReady_Click);
+            // 
+            // ButtonTakeOrderInWork
+            // 
+            this.ButtonTakeOrderInWork.Location = new System.Drawing.Point(570, 82);
+            this.ButtonTakeOrderInWork.Name = "ButtonTakeOrderInWork";
+            this.ButtonTakeOrderInWork.Size = new System.Drawing.Size(154, 36);
+            this.ButtonTakeOrderInWork.TabIndex = 9;
+            this.ButtonTakeOrderInWork.Text = "Выполнить";
+            this.ButtonTakeOrderInWork.UseVisualStyleBackColor = true;
+            this.ButtonTakeOrderInWork.Click += new System.EventHandler(this.ButtonTakeOrderInWork_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 312);
+            this.ClientSize = new System.Drawing.Size(736, 316);
             this.Controls.Add(this.ButtonTakeOrderInWork);
             this.Controls.Add(this.ButtonOrderReady);
             this.Controls.Add(this.ButtonPayOrder);

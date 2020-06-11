@@ -12,7 +12,7 @@ namespace TravelAgencyDatabaseImplement
                 //DESKTOP-JQJN4MA\SQLSERVER
                 //HOME-PC
                 //IGOR\SQLEXPRESS
-                optionsBuilder.UseSqlServer(@"Data Source=IGOR\SQLEXPRESS;
+                optionsBuilder.UseSqlServer(@"Data Source=HOME-PC;
                     Initial Catalog=TravelAgencyDatabase;
                     Integrated Security=True;MultipleActiveResultSets=True;");
             }

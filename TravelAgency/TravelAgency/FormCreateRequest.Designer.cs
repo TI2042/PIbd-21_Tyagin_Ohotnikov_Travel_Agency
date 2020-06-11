@@ -31,7 +31,6 @@ namespace TravelAgency
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreateRequest));
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
@@ -56,7 +55,7 @@ namespace TravelAgency
             this.buttonRefresh.TabIndex = 14;
             this.buttonRefresh.Text = "Обновить";
             this.buttonRefresh.UseVisualStyleBackColor = false;
-            this.buttonRefresh.Click += new System.EventHandler(this.UpdateGuideButton_Click);
+            this.buttonRefresh.Click += new System.EventHandler(this.RefreshGuidesButton_Click);
             // 
             // buttonDelete
             // 
@@ -78,7 +77,7 @@ namespace TravelAgency
             this.buttonUpdate.TabIndex = 12;
             this.buttonUpdate.Text = "Изменить";
             this.buttonUpdate.UseVisualStyleBackColor = false;
-            this.buttonUpdate.Click += new System.EventHandler(this.RefreshGuidesButton_Click);
+            this.buttonUpdate.Click += new System.EventHandler(this.UpdateGuideButton_Click);
             // 
             // buttonAdd
             // 
@@ -113,7 +112,7 @@ namespace TravelAgency
             this.guidesGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.guidesGridView.GridColor = System.Drawing.SystemColors.Control;
             this.guidesGridView.Location = new System.Drawing.Point(11, 55);
-            this.guidesGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guidesGridView.Margin = new System.Windows.Forms.Padding(2);
             this.guidesGridView.MultiSelect = false;
             this.guidesGridView.Name = "guidesGridView";
             this.guidesGridView.ReadOnly = true;

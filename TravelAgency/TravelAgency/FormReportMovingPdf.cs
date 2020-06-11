@@ -28,14 +28,14 @@ namespace TravelAgency
 
         private void ButtonMake_Click(object sender, EventArgs e)
         {
-            if (dateTimePickerTo.Value.Date > dateTimePickerFrom.Value.Date)
+            if (dateTimePickerFrom.Value.Date > dateTimePickerTo.Value.Date)
             {
                 MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                var dataSource = logic.GetGuides(dateTimePickerTo.Value.Date, dateTimePickerFrom.Value.Date);
+                var dataSource = logic.GetGuides(dateTimePickerFrom.Value.Date, dateTimePickerTo.Value.Date);
                 ReportDataSource source = new ReportDataSource("DataSetMoving", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
@@ -60,7 +60,7 @@ namespace TravelAgency
                             DateTo = dateTimePickerTo.Value.Date,
                             DateFrom = dateTimePickerFrom.Value.Date
                         });
-                        MessageBox.Show("Отчет отправлен на почту", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Отчет сохранен и отправлен на почту", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
@@ -70,8 +70,9 @@ namespace TravelAgency
             }
         }
 
-        private void FormReportTourGuides_Load(object sender, EventArgs e)
+        private void FormReportMovingPdf_Load(object sender, EventArgs e)
         {
+
             this.reportViewer.RefreshReport();
         }
     }

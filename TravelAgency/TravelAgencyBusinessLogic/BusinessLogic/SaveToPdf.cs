@@ -23,7 +23,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             paragraph1.Style = "NormalTitle";
 
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "4cm", "4cm", "4cm", "3cm", "3cm" };
+            List<string> columns = new List<string> { "3cm", "3cm", "3cm", "4cm", "2cm", "3cm" };
 
             foreach (var elem in columns)
             {
@@ -35,7 +35,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
-                    Texts = new List<string> { "Дата заказа", "Гиды", "Состояние", "Кол-во", "Стоимость" },
+                    Texts = new List<string> { "Дата заказа", "Дата поставки", "Название темы гида", "Состояние", "Кол-во", "Стоимость" },
                     Style = "NormalTitle",
                     ParagraphAlignment = ParagraphAlignment.Center
                 });
@@ -48,6 +48,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                         Texts = new List<string>
                     {
                         pc.CreationDate.ToString(),
+                        pc.CompletionDate.ToString(),
                         pc.GuideThemeName,
                         pc.Status,
                         pc.Count.ToString(),

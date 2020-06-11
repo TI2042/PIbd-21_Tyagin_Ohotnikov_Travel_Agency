@@ -43,6 +43,7 @@ namespace TravelAgency
                 dataGridViewComponents.Columns[0].Visible = false;
                 dataGridViewComponents.Columns[1].Visible = false;
                 dataGridViewComponents.Columns[4].Visible = false;
+                dataGridViewComponents.Columns[5].Visible = false;
                 dataGridViewComponents.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             }
             dataGridViewComponents.Update();

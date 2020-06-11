@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRequest));
             this.buttonOk = new System.Windows.Forms.Button();
             this.groupBoxComponents = new System.Windows.Forms.GroupBox();
             this.dataGridViewComponents = new System.Windows.Forms.DataGridView();
@@ -41,7 +40,7 @@
             // buttonOk
             // 
             this.buttonOk.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonOk.Location = new System.Drawing.Point(326, 236);
+            this.buttonOk.Location = new System.Drawing.Point(478, 236);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(72, 24);
             this.buttonOk.TabIndex = 13;
@@ -54,7 +53,7 @@
             this.groupBoxComponents.Controls.Add(this.dataGridViewComponents);
             this.groupBoxComponents.Location = new System.Drawing.Point(16, 11);
             this.groupBoxComponents.Name = "groupBoxComponents";
-            this.groupBoxComponents.Size = new System.Drawing.Size(390, 219);
+            this.groupBoxComponents.Size = new System.Drawing.Size(534, 219);
             this.groupBoxComponents.TabIndex = 11;
             this.groupBoxComponents.TabStop = false;
             this.groupBoxComponents.Text = "Гиды";
@@ -66,13 +65,13 @@
             this.dataGridViewComponents.Location = new System.Drawing.Point(8, 17);
             this.dataGridViewComponents.Name = "dataGridViewComponents";
             this.dataGridViewComponents.RowHeadersWidth = 51;
-            this.dataGridViewComponents.Size = new System.Drawing.Size(374, 196);
+            this.dataGridViewComponents.Size = new System.Drawing.Size(517, 196);
             this.dataGridViewComponents.TabIndex = 0;
             // 
             // buttonUpdate
             // 
             this.buttonUpdate.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonUpdate.Location = new System.Drawing.Point(239, 236);
+            this.buttonUpdate.Location = new System.Drawing.Point(389, 236);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(72, 24);
             this.buttonUpdate.TabIndex = 14;
@@ -83,7 +82,7 @@
             // buttonContent
             // 
             this.buttonContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonContent.Location = new System.Drawing.Point(16, 236);
+            this.buttonContent.Location = new System.Drawing.Point(262, 236);
             this.buttonContent.Name = "buttonContent";
             this.buttonContent.Size = new System.Drawing.Size(111, 24);
             this.buttonContent.TabIndex = 15;
@@ -96,7 +95,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(416, 272);
+            this.ClientSize = new System.Drawing.Size(563, 273);
             this.Controls.Add(this.buttonContent);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonOk);

@@ -49,9 +49,9 @@ namespace TravelAgency
             {
                 dataGridView.DataSource = listOrders;
                 dataGridView.Columns[0].Visible = false;
-                dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                dataGridView.Columns[2].Visible = false;
-                dataGridView.Columns[7].Visible = false;
+                dataGridView.Columns[1].Visible = false;
+                dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                dataGridView.Columns[6].Visible = false;
             }
             dataGridView.Update();
         }
