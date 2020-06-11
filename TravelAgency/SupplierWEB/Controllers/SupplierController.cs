@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SupplierWEB.Models;
@@ -13,7 +14,9 @@ namespace SupplierWEB.Controllers
     public class SupplierController : Controller
     {
         private readonly ISupplierLogic supplierLogic;
+        private readonly int _passwordMaxLength = 25;
 
+        private readonly int _passwordMinLength = 5;
         public SupplierController(ISupplierLogic supplierLogic)
         {
             this.supplierLogic = supplierLogic;
@@ -70,6 +73,16 @@ namespace SupplierWEB.Controllers
             {
                 ModelState.AddModelError("", "Такая почта уже существует");
                 return View(supplier);
+            }
+            if (supplier.Password.Length > _passwordMaxLength ||
+                supplier.Password.Length < _passwordMinLength || 
+                !Regex.IsMatch(supplier.Password, 
+                @"^((\w+\d+\W+)|(\w+\W+\d+)|(\d+\w+\W+)|(\d+\W+\w+)|(\W+\w+\d+)|(\W+\d+\w+))[\w\d\W]*$")
+                )
+            {
+                ModelState.AddModelError("", $"Пароль не соответсвует требованиям:  длина от {_passwordMinLength} до {_passwordMaxLength} символов ,  буквы, цифры, небуквенные символы. ");
+                return View(supplier);
+                //throw new Exception($"Пароль длиной от {_passwordMinLength} до {_passwordMaxLength} должен быть и из цифр, букв и небуквенных символов должен состоять");
             }
             if (String.IsNullOrEmpty(supplier.SupplierFIO)
             || String.IsNullOrEmpty(supplier.Login)
