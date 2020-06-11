@@ -1,0 +1,23 @@
+﻿@{ ViewData["Title"] = "Бэкап базы данных"; }
+
+@section Links {
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Request" asp-action="Request">Список заявок</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-area="" asp-controller="Hotel" asp-action="ListHotels">Отели</a>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="text-left">
+    <h4>Бэкап базы данных</h4>
+</div>
+<hr />
+<div>
+    <p> <strong> <a class="btn btn-primary btn-sm" asp-area="" asp-controller="BackUp" asp-action="BackUpToJson">Бэкап в .json и отправка на почту</a></strong></p>
+    <p> <strong> <a class="btn btn-primary btn-sm" asp-area="" asp-controller="BackUp" asp-action="BackUpToXml">Бэкап в .xml и отправка на почту</a></strong></p>
+</div>
