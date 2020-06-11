@@ -30,7 +30,7 @@ namespace SupplierWEB.Controllers
         }
         public IActionResult BackUpToJson()
         {
-            string fileName = "C:\\Users\\Игорь\\Desktop\\Reports\\BackupJson";
+            string fileName = "C:\\Users\\Игорь\\Desktop\\Reports";
             if (Directory.Exists(fileName))
             {
                 _request.SaveJsonRequest(fileName);
@@ -49,7 +49,7 @@ namespace SupplierWEB.Controllers
         }
         public IActionResult BackUpToXml()
         {
-            string fileName = "C:\\Users\\Игорь\\Desktop\\Reports\\BackupXml";
+            string fileName = "C:\\Users\\Игорь\\Desktop\\Reports";
             if (Directory.Exists(fileName))
             {
                 _request.SaveXmlRequest(fileName);
