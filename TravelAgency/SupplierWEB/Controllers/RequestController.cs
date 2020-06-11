@@ -51,7 +51,7 @@ namespace SupplierWEB.Controllers
                 DateTo = model.To
             });
             ViewBag.Requests = requests;
-            string fileName = "C:\\Users\\Денис\\Desktop\\Reportpdf.pdf";
+            string fileName = "C:\\Users\\Игорь\\Desktop\\Reports\\Reportpdf.pdf";
             if (model.SendMail)
             {
                 reportLogic.SaveGuidesToPdfFile(fileName, new RequestBindingModel
