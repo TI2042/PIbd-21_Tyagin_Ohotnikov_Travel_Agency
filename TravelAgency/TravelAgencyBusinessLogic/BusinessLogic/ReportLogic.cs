@@ -19,7 +19,8 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
         private readonly IGuideLogic guideLogic;
         private readonly IRequestLogic requestLogic;
 
-        public ReportLogic(ITourLogic tourLogic, IOrderLogic orderLogic, IGuideLogic guideLogic, IRequestLogic requestLogic)
+        public ReportLogic(ITourLogic tourLogic, IOrderLogic orderLogic,
+            IGuideLogic guideLogic, IRequestLogic requestLogic)
         {
             this.tourLogic = tourLogic;
             this.orderLogic = orderLogic;
@@ -54,21 +55,24 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             var list = new List<ReportGuideViewModel>();
             foreach (var request in requests)
             {
-                foreach (var requestGuide in request.Guides)
+                if (request.CreationDate >= from && request.CreationDate.Value.AddDays(-1) <= to)
                 {
-                    foreach (var guide in guides)
+                    foreach (var requestGuide in request.Guides)
                     {
-                        if (guide.GuideThemeName == requestGuide.Value.Item1)
+                        foreach (var guide in guides)
                         {
-                            var record = new ReportGuideViewModel
+                            if (guide.GuideThemeName == requestGuide.Value.Item1)
                             {
-                                GuideThemeName = requestGuide.Value.Item1,
-                                Count = requestGuide.Value.Item2,
-                                Status = StatusGuide(request.Status),
-                                Date = DateTime.Now,
-                                Price = guide.Price
-                            };
-                            list.Add(record);
+                                var record = new ReportGuideViewModel
+                                {
+                                    GuideThemeName = requestGuide.Value.Item1,
+                                    Count = requestGuide.Value.Item2,
+                                    Status = StatusGuide(request.Status),
+                                    CreationDate = request.CreationDate,
+                                    Price = guide.Price * requestGuide.Value.Item2
+                                };
+                                list.Add(record);
+                            }
                         }
                     }
                 }
@@ -144,10 +148,12 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Движение гидов",
-                Guides = GetGuides(model.DateFrom, model.DateTo)
+                Title = "Отчет по движению гидов",
+                Guides = GetGuides(model.DateFrom, model.DateTo),
+                DateTo = model.DateTo,
+                DateFrom = model.DateFrom
             });
-            SendMail("den.ohotnikov@gmail.com", model.FileName, "Список передвижения гидов");
+            SendMail("den.ohotnikov@gmail.com", model.FileName, "Отчет по движению гидов");
         }
 
         public void SendMail(string email, string fileName, string subject)
@@ -169,10 +175,12 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             MailAddress to = new MailAddress(email);
             MailMessage m = new MailMessage(from, to);
             m.Subject = subject;
-            m.Attachments.Add(new Attachment(fileName + "\\order." + type));
-            m.Attachments.Add(new Attachment(fileName + "\\request." + type));
-            m.Attachments.Add(new Attachment(fileName + "\\tour." + type));
-            m.Attachments.Add(new Attachment(fileName + "\\guide." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\Order." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\Request." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\RequestGuide." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\Tour." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\TourGuide." + type));
+            m.Attachments.Add(new Attachment(fileName + "\\Guide." + type));
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.Credentials = new NetworkCredential("labwork15kafis@gmail.com", "passlab15");
             smtp.EnableSsl = true;

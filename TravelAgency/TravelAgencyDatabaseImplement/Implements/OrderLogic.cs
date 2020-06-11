@@ -82,9 +82,9 @@ namespace TravelAgencyDatabaseImplement.Implements
             .ToList();
             }
         }
-        public void SaveJson(string folderName)
+        public void SaveJsonOrder(string folderName)
         {
-            string fileName = $"{folderName}\\order.json";
+            string fileName = $"{folderName}\\Order.json";
             using (var context = new TravelAgencyDatabase())
             {
                 DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Order>));
@@ -95,9 +95,9 @@ namespace TravelAgencyDatabaseImplement.Implements
             }
         }
 
-        public void SaveXml(string folderName)
+        public void SaveXmlOrder(string folderName)
         {
-            string fileName = $"{folderName}\\order.xml";
+            string fileName = $"{folderName}\\Order.xml";
             using (var context = new TravelAgencyDatabase())
             {
                 XmlSerializer fomatter = new XmlSerializer(typeof(DbSet<Order>));

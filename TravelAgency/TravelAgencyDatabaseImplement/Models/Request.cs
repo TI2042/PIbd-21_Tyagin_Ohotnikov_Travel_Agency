@@ -12,12 +12,14 @@ namespace TravelAgencyDatabaseImplement.Models
         public int Id { get; set; }
         public int SupplierId { get; set; }
         [Required]
-
         public RequestStatus Status { get; set; }
         [ForeignKey("RequestID")]
         public virtual List<RequestGuide> RequestGuides { get; set; }
         public virtual Supplier Supplier { get; set; }
-        public DateTime CompletionDate { get; set; }
+        public DateTime? CompletionDate { get; set; }
+        [Required]
+        public DateTime? CreationDate { get; set; }
+        [Required]
         public decimal Sum { get; set; }
     }
 }

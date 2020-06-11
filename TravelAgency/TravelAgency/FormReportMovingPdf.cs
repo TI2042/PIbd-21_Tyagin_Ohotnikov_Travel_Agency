@@ -28,14 +28,14 @@ namespace TravelAgency
 
         private void ButtonMake_Click(object sender, EventArgs e)
         {
-            if (dateTimePickerFrom.Value.Date > dateTimePickerTo.Value.Date)
+            if (dateTimePickerTo.Value.Date > dateTimePickerFrom.Value.Date)
             {
                 MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                var dataSource = logic.GetGuides(dateTimePickerFrom.Value.Date, dateTimePickerTo.Value.Date);
+                var dataSource = logic.GetGuides(dateTimePickerTo.Value.Date, dateTimePickerFrom.Value.Date);
                 ReportDataSource source = new ReportDataSource("DataSetMoving", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
@@ -57,8 +57,8 @@ namespace TravelAgency
                         logic.SaveGuidesToPdfFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName,
-                            DateTo = dateTimePickerFrom.Value.Date,
-                            DateFrom = dateTimePickerTo.Value.Date
+                            DateTo = dateTimePickerTo.Value.Date,
+                            DateFrom = dateTimePickerFrom.Value.Date
                         });
                         MessageBox.Show("Отчет отправлен на почту", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

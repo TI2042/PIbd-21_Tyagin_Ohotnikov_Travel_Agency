@@ -27,7 +27,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                        rec.TourName == model.TourName && rec.Id != model.Id);
                         if (element != null)
                         {
-                            throw new Exception("Уже есть изделие с таким названием");
+                            throw new Exception("Уже есть тур с таким названием");
                         }
                         if (model.Id.HasValue)
                         {
@@ -35,7 +35,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                            model.Id);
                             if (element == null)
                             {
-                                throw new Exception("Элемент не найден");
+                                throw new Exception("Тур не найден");
                             }
                         }
                         else
@@ -93,7 +93,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 {
                     try
                     {
-                        
+                        // удаяем записи по гидам при удалении тура
                         context.TourGuides.RemoveRange(context.TourGuides.Where(rec =>
                         rec.TourId == model.Id));
                         Tour element = context.Tours.FirstOrDefault(rec => rec.Id
@@ -121,7 +121,8 @@ namespace TravelAgencyDatabaseImplement.Implements
         {
             using (var context = new TravelAgencyDatabase())
             {
-                return context.Tours.Where(rec => model == null || rec.Id == model.Id)
+                return context.Tours
+                .Where(rec => model == null || rec.Id == model.Id)
                 .ToList()
                 .Select(rec => new TourViewModel
                 {
@@ -138,12 +139,12 @@ namespace TravelAgencyDatabaseImplement.Implements
             }
         }
 
-        public void SaveJson(string folderName)
+        public void SaveJsonTour(string folderName)
         {
-            string fileName = $"{folderName}\\tour.json";
+            string fileName = $"{folderName}\\Tour.json";
             using (var context = new TravelAgencyDatabase())
             {
-                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Tour>));
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<Tour>));
                 using (FileStream fs = new FileStream(fileName, FileMode.Create))
                 {
                     jsonFormatter.WriteObject(fs, context.Tours);
@@ -151,15 +152,41 @@ namespace TravelAgencyDatabaseImplement.Implements
             }
         }
 
-        public void SaveXml(string folderName)
+        public void SaveJsonTourGuide(string folderName)
         {
-            string fileName = $"{folderName}\\tour.xml";
+            string fileName = $"{folderName}\\TourGuide.json";
+            using (var context = new TravelAgencyDatabase())
+            {
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<TourGuide>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(fs, context.TourGuides);
+                }
+            }
+        }
+
+        public void SaveXmlTour(string folderName)
+        {
+            string fileName = $"{folderName}\\Tour.xml";
             using (var context = new TravelAgencyDatabase())
             {
                 XmlSerializer fomatter = new XmlSerializer(typeof(DbSet<Tour>));
                 using (FileStream fs = new FileStream(fileName, FileMode.Create))
                 {
                     fomatter.Serialize(fs, context.Tours);
+                }
+            }
+        }
+
+        public void SaveXmlTourGuide(string folderName)
+        {
+            string fileName = $"{folderName}\\TourGuide.xml";
+            using (var context = new TravelAgencyDatabase())
+            {
+                XmlSerializer fomatter = new XmlSerializer(typeof(DbSet<TourGuide>));
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    fomatter.Serialize(fs, context.TourGuides);
                 }
             }
         }

@@ -10,5 +10,7 @@ namespace TravelAgencyBusinessLogic.HelperModels
         public string FileName { get; set; }
         public string Title { get; set; }
         public List<ReportGuideViewModel> Guides { get; set; }
+        public DateTime DateTo { get; set; }
+        public DateTime DateFrom { get; set; }
     }
 }

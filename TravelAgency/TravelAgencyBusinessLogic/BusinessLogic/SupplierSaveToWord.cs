@@ -39,7 +39,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 }));
                 docBody.AppendChild(CreateParagraph(new WordParagraph
                 {
-                    Texts = new List<string> { "Дата выполнения:" + " " + info.Date },
+                    Texts = new List<string> { "Дата выполнения:" + " " + info.CompletionDate },
                     TextProperties = new WordParagraphProperties
                     {
                         Bold = false,

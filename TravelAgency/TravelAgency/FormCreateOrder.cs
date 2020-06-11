@@ -82,15 +82,15 @@ namespace TravelAgency
                 try
                 {
                     int id = Convert.ToInt32(comboBoxTour.SelectedValue);
-                    TourViewModel tour = logicP.Read(new TourBindingModel
+                    TourViewModel product = logicP.Read(new TourBindingModel
                     {
                         Id = id
                     })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * tour?.Price ?? 0).ToString();
-                    foreach (var p in tour.TourGuides)
+                    textBoxSum.Text = (count * product?.Price ?? 0).ToString();
+                    foreach (var p in product.TourGuides)
                     {
-                        requestGuides.Add(p.Key, (tour.TourGuides[p.Key].Item1, tour.TourGuides[p.Key].Item2, false));
+                        requestGuides.Add(p.Key, (product.TourGuides[p.Key].Item1, product.TourGuides[p.Key].Item2, false));
                     }
                 }
                 catch (Exception ex)
@@ -142,7 +142,7 @@ namespace TravelAgency
             }
             if (comboBoxTour.SelectedValue == null)
             {
-                MessageBox.Show("Выберите тур", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Выберите гида", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -159,27 +159,15 @@ namespace TravelAgency
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
+                logicM.CreateOrUpdateRequest(new RequestBindingModel
+                {
+                    Id = Id,
+                    SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
+                    Guides = requestGuides
+                });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
-
-                try
-                {
-                    logicM.CreateOrUpdateRequest(new RequestBindingModel
-                    {
-                        Id = Id,
-                        SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
-                        Guides = requestGuides
-                    });
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(
-                        ex.Message,
-                        "Ошибка",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
             }
             catch (Exception ex)
             {

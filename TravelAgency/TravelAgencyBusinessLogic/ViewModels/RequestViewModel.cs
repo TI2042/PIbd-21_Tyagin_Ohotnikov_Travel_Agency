@@ -13,13 +13,14 @@ namespace TravelAgencyBusinessLogic.ViewModels
         public int SupplierId { get; set; }
         [DisplayName("ФИО")]
         public string SupplierFIO { get; set; }
-        
         [DisplayName("Статус")]
         public RequestStatus Status { get; set; }
-        [DisplayName("Дата ")]
-        public DateTime Date { get; set; }
+        [DisplayName("Дата создания")]
+        public DateTime? CreationDate { get; set; }
+        public Dictionary<int, (string, int, bool)> Guides { get; set; }
+        [DisplayName("Дата выполнения")]
+        public DateTime? CompletionDate { get; set; }
         [DisplayName("Сумма")]
         public decimal Sum { get; set; }
-        public Dictionary<int,(string,int,bool)> Guides { get; set; }
     }
 }

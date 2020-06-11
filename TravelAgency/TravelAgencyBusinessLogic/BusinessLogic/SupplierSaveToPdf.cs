@@ -45,7 +45,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                         Texts = new List<string>
                         {
                             pc.RequestId.ToString(),
-                            pc.Date.ToString(),
+                            pc.CreationDate.ToString(),
                             pc.SupplierFIO,
                             pc.GuideThemeName,
                             pc.Status,

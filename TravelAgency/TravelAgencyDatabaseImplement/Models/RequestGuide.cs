@@ -11,7 +11,7 @@ namespace TravelAgencyDatabaseImplement.Models
         public int Count { get; set; }
         [Required]
         public bool InHotel { get; set; }
-        public virtual Guide Guide { get; set; }
         public virtual Request Request { get; set; }
+        public virtual Guide Guide { get; set; }
     }
 }

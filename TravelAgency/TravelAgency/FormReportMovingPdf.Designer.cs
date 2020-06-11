@@ -35,10 +35,10 @@
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonCreateToPdf = new System.Windows.Forms.Button();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.labelTo = new System.Windows.Forms.Label();
             this.labelFrom = new System.Windows.Forms.Label();
-            this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.ReportGuideViewModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -86,12 +86,12 @@
             this.reportViewer.TabIndex = 4;
             this.reportViewer.Load += new System.EventHandler(this.FormReportTourGuides_Load);
             // 
-            // dateTimePickerTo
+            // dateTimePickerFrom
             // 
-            this.dateTimePickerTo.Location = new System.Drawing.Point(232, 14);
-            this.dateTimePickerTo.Name = "dateTimePickerTo";
-            this.dateTimePickerTo.Size = new System.Drawing.Size(122, 20);
-            this.dateTimePickerTo.TabIndex = 14;
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(232, 14);
+            this.dateTimePickerFrom.Name = "dateTimePickerFrom";
+            this.dateTimePickerFrom.Size = new System.Drawing.Size(122, 20);
+            this.dateTimePickerFrom.TabIndex = 14;
             // 
             // labelTo
             // 
@@ -111,12 +111,12 @@
             this.labelFrom.TabIndex = 12;
             this.labelFrom.Text = "С";
             // 
-            // dateTimePickerFrom
+            // dateTimePickerTo
             // 
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(48, 14);
-            this.dateTimePickerFrom.Name = "dateTimePickerFrom";
-            this.dateTimePickerFrom.Size = new System.Drawing.Size(122, 20);
-            this.dateTimePickerFrom.TabIndex = 11;
+            this.dateTimePickerTo.Location = new System.Drawing.Point(48, 14);
+            this.dateTimePickerTo.Name = "dateTimePickerTo";
+            this.dateTimePickerTo.Size = new System.Drawing.Size(122, 20);
+            this.dateTimePickerTo.TabIndex = 11;
             // 
             // FormReportMovingPdf
             // 
@@ -124,10 +124,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(604, 359);
-            this.Controls.Add(this.dateTimePickerTo);
+            this.Controls.Add(this.dateTimePickerFrom);
             this.Controls.Add(this.labelTo);
             this.Controls.Add(this.labelFrom);
-            this.Controls.Add(this.dateTimePickerFrom);
+            this.Controls.Add(this.dateTimePickerTo);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.buttonCreateToPdf);
             this.Controls.Add(this.buttonCreate);
@@ -147,10 +147,10 @@
         private System.Windows.Forms.Button buttonCreateToPdf;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.BindingSource ReportGuideViewModelBindingSource;
-        private System.Windows.Forms.DateTimePicker dateTimePickerTo;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
         private System.Windows.Forms.Label labelTo;
         private System.Windows.Forms.Label labelFrom;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
+        private System.Windows.Forms.DateTimePicker dateTimePickerTo;
         private System.Windows.Forms.BindingSource ReportOrdersViewModelBindingSource;
     }
 }

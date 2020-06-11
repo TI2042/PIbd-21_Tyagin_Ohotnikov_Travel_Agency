@@ -34,7 +34,8 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 Id = request.Id,
                 SupplierId = request.SupplierId,
                 Status = RequestStatus.Выполняется,
-                Guides = request.Guides
+                Guides = request.Guides,
+                CreationDate = request.CreationDate
             });
         }
 

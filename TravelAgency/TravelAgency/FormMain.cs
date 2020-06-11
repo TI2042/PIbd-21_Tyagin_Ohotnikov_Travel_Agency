@@ -150,7 +150,7 @@ namespace TravelAgency
                         {
                             FileName = dialog.FileName
                         });
-                        MessageBox.Show("Отчет отправлен на почту", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Отчет сохранен и отправлен на почту", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
@@ -185,13 +185,15 @@ namespace TravelAgency
                 var fbd = new FolderBrowserDialog();
                 if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    orderLogic.SaveXml(fbd.SelectedPath);
-                    orderLogic.SaveXml(fbd.SelectedPath);
+                    requestLogic.SaveXmlRequest(fbd.SelectedPath);
+                    requestLogic.SaveXmlRequestGuide(fbd.SelectedPath);
+                    tourLogic.SaveXmlTour(fbd.SelectedPath);
+                    tourLogic.SaveXmlTourGuide(fbd.SelectedPath);
+                    orderLogic.SaveXmlOrder(fbd.SelectedPath);
                     guideLogic.SaveXmlGuide(fbd.SelectedPath);
-                    tourLogic.SaveXml(fbd.SelectedPath);
                     requestLogic.SaveXmlRequest(fbd.SelectedPath);
                     report.SendMailReport("den.ohotnikov@gmail.com", fbd.SelectedPath, "XML бекап", "xml");
-                    MessageBox.Show("Бэкап отправлен на почту", "Сообщение",
+                    MessageBox.Show("Бэкап сохранен и отправлен на почту", "Сообщение",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -209,13 +211,14 @@ namespace TravelAgency
                 var fbd = new FolderBrowserDialog();
                 if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    orderLogic.SaveJson(fbd.SelectedPath);
-                    orderLogic.SaveJson(fbd.SelectedPath);
-                    guideLogic.SaveJsonGuide(fbd.SelectedPath);
-                    tourLogic.SaveJson(fbd.SelectedPath);
                     requestLogic.SaveJsonRequest(fbd.SelectedPath);
+                    requestLogic.SaveJsonRequestGuide(fbd.SelectedPath);
+                    tourLogic.SaveJsonTour(fbd.SelectedPath);
+                    tourLogic.SaveJsonTourGuide(fbd.SelectedPath);
+                    orderLogic.SaveJsonOrder(fbd.SelectedPath);
+                    guideLogic.SaveJsonGuide(fbd.SelectedPath);
                     report.SendMailReport("den.ohotnikov@gmail.com", fbd.SelectedPath, "JSON бекап", "json");
-                    MessageBox.Show("Бэкап отправлен на почту", "Сообщение",
+                    MessageBox.Show("Бэкап сохранен и отправлен на почту", "Сообщение",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

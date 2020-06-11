@@ -53,7 +53,12 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
 
             requestLogic.CreateOrUpdate(new RequestBindingModel
             {
-                Status = RequestStatus.Обработана
+                Id = request.Id,
+                SupplierId = request.SupplierId,
+                Guides = request.Guides,
+                CreationDate = request.CreationDate,
+                Status = RequestStatus.Обработана,
+                CompletionDate = request.CompletionDate
             });
 
             orderLogic.CreateOrUpdate(new OrderBindingModel
@@ -120,7 +125,8 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 Id = model.Id,
                 SupplierId = model.SupplierId,
                 Status = RequestStatus.Создана,
-                Guides = model.Guides
+                Guides = model.Guides,
+                CreationDate = DateTime.Now
             });
         }
 

@@ -50,7 +50,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                                 GuideThemeName = requestGuide.Value.Item1,
                                 Count = requestGuide.Value.Item2,
                                 Status = StatusGuide(request.Status),
-                                Date = request.Date,
+                                CompletionDate = request.CompletionDate,
                                 Price = guide.Price,
                                 Sum = request.Sum
                             };

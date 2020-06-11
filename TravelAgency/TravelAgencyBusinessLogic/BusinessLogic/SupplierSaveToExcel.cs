@@ -61,7 +61,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                     ShareStringPart = shareStringPart,
                     ColumnName = "A",
                     RowIndex = 3,
-                    Text = "Дата выполнения:" + " " + info.DateComplete.ToString(),
+                    Text = "Дата выполнения:" + " " + info.CompletionDate.ToString(),
                     StyleIndex = 0U
                 });
                 MergeCells(new ExcelMergeParameters

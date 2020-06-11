@@ -53,6 +53,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                         request.SupplierId = model.SupplierId;
                         request.Sum = model.Sum;
                         request.Status = model.Status;
+                        request.CreationDate = model.CreationDate;
                         context.SaveChanges();
                         foreach (var Guide in model.Guides)
                         {
@@ -128,12 +129,13 @@ namespace TravelAgencyDatabaseImplement.Implements
                         Id = rec.Id,
                         SupplierFIO = rec.Supplier.SupplierFIO,
                         SupplierId = rec.SupplierId,
-                        Date = rec.CompletionDate,
+                        CompletionDate = rec.CompletionDate,
+                        CreationDate = rec.CreationDate,
                         Status = rec.Status,
                         Guides = context.RequestGuides
                             .Include(recRF => recRF.Guide)
                             .Where(recRF => recRF.RequestID == rec.Id)
-                            .ToDictionary(recRF => recRF.GuideId, recRF=>
+                            .ToDictionary(recRF => recRF.GuideId, recRF =>
                             (recRF.Guide?.GuideThemeName, recRF.Count, recRF.InHotel)),
                         Sum = Decimal.Round(context.RequestGuides
                             .Include(recRF => recRF.Guide)
