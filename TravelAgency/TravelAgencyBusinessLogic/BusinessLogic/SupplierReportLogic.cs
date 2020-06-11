@@ -49,10 +49,10 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                                 SupplierFIO = request.SupplierFIO,
                                 GuideThemeName = requestGuide.Value.Item1,
                                 Count = requestGuide.Value.Item2,
+                                CreationDate = request.CreationDate,
                                 Status = StatusGuide(request.Status),
                                 CompletionDate = request.CompletionDate,
-                                Price = guide.Price,
-                                Sum = request.Sum
+                                Price = guide.Price * requestGuide.Value.Item2
                             };
                             list.Add(record);
                         }

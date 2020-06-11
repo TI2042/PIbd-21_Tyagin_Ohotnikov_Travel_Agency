@@ -54,16 +54,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                     RowIndex = 2,
                     Text = "Поставщик:" + " " + info.SupplierFIO,
                     StyleIndex = 0U
-                });
-                InsertCellInWorksheet(new ExcelCellParameters
-                {
-                    Worksheet = worksheetPart.Worksheet,
-                    ShareStringPart = shareStringPart,
-                    ColumnName = "A",
-                    RowIndex = 3,
-                    Text = "Дата выполнения:" + " " + info.CompletionDate.ToString(),
-                    StyleIndex = 0U
-                });
+                });               
                 MergeCells(new ExcelMergeParameters
                 {
                     Worksheet = worksheetPart.Worksheet,
@@ -75,19 +66,13 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                     Worksheet = worksheetPart.Worksheet,
                     CellFromName = "A2",
                     CellToName = "C2"
-                });
-                MergeCells(new ExcelMergeParameters
-                {
-                    Worksheet = worksheetPart.Worksheet,
-                    CellFromName = "A3",
-                    CellToName = "C3"
-                });
+                });                
                 InsertCellInWorksheet(new ExcelCellParameters
                 {
                     Worksheet = worksheetPart.Worksheet,
                     ShareStringPart = shareStringPart,
                     ColumnName = "A",
-                    RowIndex = 4,
+                    RowIndex = 3,
                     Text = "№ гида",
                     StyleIndex = 0U
                 });
@@ -96,7 +81,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                     Worksheet = worksheetPart.Worksheet,
                     ShareStringPart = shareStringPart,
                     ColumnName = "B",
-                    RowIndex = 4,
+                    RowIndex = 3,
                     Text = "Тема гида",
                     StyleIndex = 0U
                 });
@@ -105,7 +90,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                     Worksheet = worksheetPart.Worksheet,
                     ShareStringPart = shareStringPart,
                     ColumnName = "C",
-                    RowIndex = 4,
+                    RowIndex = 3,
                     Text = "Количество",
                     StyleIndex = 0U
                 });
@@ -117,7 +102,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                         Worksheet = worksheetPart.Worksheet,
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
-                        RowIndex = i + 4,
+                        RowIndex = i + 3,
                         Text = guide.Key.ToString(),
                         StyleIndex = 0U
                     });
@@ -126,7 +111,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                         Worksheet = worksheetPart.Worksheet,
                         ShareStringPart = shareStringPart,
                         ColumnName = "B",
-                        RowIndex = i + 4,
+                        RowIndex = i + 3,
                         Text = guide.Value.Item1,
                         StyleIndex = 0U
                     });
@@ -135,7 +120,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                         Worksheet = worksheetPart.Worksheet,
                         ShareStringPart = shareStringPart,
                         ColumnName = "C",
-                        RowIndex = i + 4,
+                        RowIndex = i + 3,
                         Text = guide.Value.Item2.ToString(),
                         StyleIndex = 0U
                     });                   

@@ -37,16 +37,6 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                         JustificationValues = JustificationValues.Left
                     }
                 }));
-                docBody.AppendChild(CreateParagraph(new WordParagraph
-                {
-                    Texts = new List<string> { "Дата выполнения:" + " " + info.CompletionDate },
-                    TextProperties = new WordParagraphProperties
-                    {
-                        Bold = false,
-                        Size = "18",
-                        JustificationValues = JustificationValues.Left
-                    }
-                }));
                 Table table = new Table();
                 TableProperties tblProp = new TableProperties(
                     new TableBorders(
@@ -61,7 +51,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 table.AppendChild<TableProperties>(tblProp);
                 TableRow headerRow = new TableRow();
                 TableCell headerNumberCell = new TableCell(new Paragraph(new Run(new Text("№ гида"))));
-                TableCell headerNameCell = new TableCell(new Paragraph(new Run(new Text("гид"))));
+                TableCell headerNameCell = new TableCell(new Paragraph(new Run(new Text("Тема гида"))));
                 TableCell headerCountryCell = new TableCell(new Paragraph(new Run(new Text("Количество"))));
                 headerRow.Append(headerNumberCell);
                 headerRow.Append(headerNameCell);

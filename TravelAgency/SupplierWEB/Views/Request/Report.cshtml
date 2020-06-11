@@ -42,14 +42,15 @@
 @foreach (var request in ViewBag.requests)
 {
     <p>Номер заявки: @request.Id</p>
-    <p>Дата выполнения: @request.Date</p>
+    <p>Дата создания: @request.CreationDate</p>
+    <p>Дата выполнения: @request.CompletionDate</p>
     <p>ФИО: @request.SupplierFIO</p>
     <p>Статус: @request.Status</p>
     <p>Сумма: @request.Sum</p>
     <p>Состав:</p>
     <table class="table">
         <tr>
-            <td>Гид</td>
+            <td>Тема гида</td>
             <td>Количество</td>
         </tr>
         @foreach (var guide in request.Guides)
