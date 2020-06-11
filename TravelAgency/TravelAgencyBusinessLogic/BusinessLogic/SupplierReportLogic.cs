@@ -30,10 +30,10 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             return requestGuides;
         }
 
-        public List<ReportGuideViewModel> GetGuides(DateTime? from, DateTime? to)
+        public List<ReportGuideViewModel> GetGuides(RequestBindingModel model)
         {
             var guides = guideLogic.Read(null);
-            var requests = requestLogic.Read(null);
+            var requests = requestLogic.Read(model);
             var list = new List<ReportGuideViewModel>();
             foreach (var request in requests)
             {
@@ -45,12 +45,14 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                         {
                             var record = new ReportGuideViewModel
                             {
+                                RequestId = request.Id,
                                 SupplierFIO = request.SupplierFIO,
                                 GuideThemeName = requestGuide.Value.Item1,
                                 Count = requestGuide.Value.Item2,
                                 Status = StatusGuide(request.Status),
                                 Date = request.Date,
-                                Price = guide.Price
+                                Price = guide.Price,
+                                Sum = request.Sum
                             };
                             list.Add(record);
                         }
@@ -87,7 +89,7 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
             {
                 FileName = fileName,
                 Title = title,
-                Guides = GetGuides(model.DateFrom, model.DateTo)
+                Guides = GetGuides(model)
             });
             SendMail(email, fileName, title);
         }

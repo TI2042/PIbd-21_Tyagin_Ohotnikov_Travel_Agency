@@ -51,15 +51,16 @@ namespace TravelAgencyDatabaseImplement.Implements
                             context.Requests.Add(request);
                         }
                         request.SupplierId = model.SupplierId;
+                        request.Sum = model.Sum;
                         request.Status = model.Status;
                         context.SaveChanges();
-                        foreach (var Food in model.Guides)
+                        foreach (var Guide in model.Guides)
                         {
                             context.RequestGuides.Add(new RequestGuide
                             {
                                 RequestID = request.Id,
-                                GuideId = Food.Key,
-                                Count = Food.Value.Item2,
+                                GuideId = Guide.Key,
+                                Count = Guide.Value.Item2,
                                 InHotel = false
                             });
                             context.SaveChanges();
@@ -132,8 +133,12 @@ namespace TravelAgencyDatabaseImplement.Implements
                         Guides = context.RequestGuides
                             .Include(recRF => recRF.Guide)
                             .Where(recRF => recRF.RequestID == rec.Id)
-                            .ToDictionary(recRF => recRF.GuideId, recRH =>
-                            (recRH.Guide?.GuideThemeName, recRH.Count, recRH.InHotel))
+                            .ToDictionary(recRF => recRF.GuideId, recRF=>
+                            (recRF.Guide?.GuideThemeName, recRF.Count, recRF.InHotel)),
+                        Sum = Decimal.Round(context.RequestGuides
+                            .Include(recRF => recRF.Guide)
+                            .Where(recRF => recRF.RequestID == rec.Id)
+                            .Sum(recRF => recRF.Guide.Price * recRF.Count), 2)
                     })
                     .ToList();
             }
@@ -168,7 +173,7 @@ namespace TravelAgencyDatabaseImplement.Implements
 
         public void SaveJsonRequestGuide(string folderName)
         {
-            string fileName = $"{folderName}\\RequestFood.json";
+            string fileName = $"{folderName}\\RequestGuide.json";
             using (var context = new TravelAgencyDatabase())
             {
                 DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(IEnumerable<RequestGuide>));

@@ -18,6 +18,8 @@ namespace TravelAgencyBusinessLogic.ViewModels
         public RequestStatus Status { get; set; }
         [DisplayName("Дата ")]
         public DateTime Date { get; set; }
+        [DisplayName("Сумма")]
+        public decimal Sum { get; set; }
         public Dictionary<int,(string,int,bool)> Guides { get; set; }
     }
 }

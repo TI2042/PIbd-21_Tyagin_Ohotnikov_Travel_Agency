@@ -210,7 +210,7 @@ namespace SupplierWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddGuide([Bind("HotelId, GuideId, Count")] RequestGuideBindingModel model)
+        public IActionResult AddGuide([Bind("HotelId, GuideId, Count, Price")] RequestGuideBindingModel model)
         {
             if (Program.Supplier == null)
             {

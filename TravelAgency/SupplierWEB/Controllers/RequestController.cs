@@ -18,12 +18,14 @@ namespace SupplierWEB.Controllers
         private readonly IHotelLogic hotelLogic;
         private readonly SupplierBusinessLogic supplierLogic;
         private readonly SupplierReportLogic reportLogic;
-        public RequestController(IRequestLogic requestLogic, IHotelLogic hotelLogic, SupplierBusinessLogic supplierLogic, SupplierReportLogic reportLogic)
+        private readonly IGuideLogic guideLogic;
+        public RequestController(IRequestLogic requestLogic, IHotelLogic hotelLogic, SupplierBusinessLogic supplierLogic, SupplierReportLogic reportLogic, IGuideLogic guideLogic)
         {
             this.requestLogic = requestLogic;
             this.hotelLogic = hotelLogic;
             this.supplierLogic = supplierLogic;
             this.reportLogic = reportLogic;
+            this.guideLogic = guideLogic;
         }
 
         public IActionResult Request()

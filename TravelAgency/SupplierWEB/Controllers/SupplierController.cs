@@ -74,6 +74,11 @@ namespace SupplierWEB.Controllers
                 ModelState.AddModelError("", "Такая почта уже существует");
                 return View(supplier);
             }
+            if (!Regex.IsMatch(supplier.Login, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                ModelState.AddModelError("", "Такой почты не существует, проверьте корректность введенных данных.");
+                return View(supplier);
+            }
             if (supplier.Password.Length > _passwordMaxLength ||
                 supplier.Password.Length < _passwordMinLength || 
                 !Regex.IsMatch(supplier.Password, 
@@ -82,7 +87,6 @@ namespace SupplierWEB.Controllers
             {
                 ModelState.AddModelError("", $"Пароль не соответсвует требованиям:  длина от {_passwordMinLength} до {_passwordMaxLength} символов ,  буквы, цифры, небуквенные символы. ");
                 return View(supplier);
-                //throw new Exception($"Пароль длиной от {_passwordMinLength} до {_passwordMaxLength} должен быть и из цифр, букв и небуквенных символов должен состоять");
             }
             if (String.IsNullOrEmpty(supplier.SupplierFIO)
             || String.IsNullOrEmpty(supplier.Login)

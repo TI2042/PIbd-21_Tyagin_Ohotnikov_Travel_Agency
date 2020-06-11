@@ -17,7 +17,7 @@ namespace TravelAgencyDatabaseImplement.Models
         [DisplayName("Вместимость")]
         public int Capacity { get; set; }
         [Required(ErrorMessage = "Заполните поле")]
-        [DisplayName("Тип")]
+        [DisplayName("Страна")]
         public string Country { get; set; }
         [ForeignKey("HotelId")]
         public virtual List<HotelGuide> HotelGuides { get; set; }

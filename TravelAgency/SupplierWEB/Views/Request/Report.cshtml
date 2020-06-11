@@ -41,9 +41,11 @@
 <hr />
 @foreach (var request in ViewBag.requests)
 {
+    <p>Номер заявки: @request.Id</p>
     <p>Дата выполнения: @request.Date</p>
     <p>ФИО: @request.SupplierFIO</p>
     <p>Статус: @request.Status</p>
+    <p>Сумма: @request.Sum</p>
     <p>Состав:</p>
     <table class="table">
         <tr>

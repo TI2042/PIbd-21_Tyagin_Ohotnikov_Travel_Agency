@@ -18,5 +18,6 @@ namespace TravelAgencyDatabaseImplement.Models
         public virtual List<RequestGuide> RequestGuides { get; set; }
         public virtual Supplier Supplier { get; set; }
         public DateTime CompletionDate { get; set; }
+        public decimal Sum { get; set; }
     }
 }
