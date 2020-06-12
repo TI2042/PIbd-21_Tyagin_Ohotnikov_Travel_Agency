@@ -28,7 +28,8 @@ namespace TravelAgencyBusinessLogic.BusinessLogic
                 TourId = order.TourId,
                 Count = order.Count,
                 CreationDate = DateTime.Now,
-                Status = Status.Принят
+                Status = Status.Принят,
+                Sum = order.Sum
             });
         }
 

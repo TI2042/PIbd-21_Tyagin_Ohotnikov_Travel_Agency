@@ -89,7 +89,7 @@
             this.labelGuideName.Name = "labelGuideName";
             this.labelGuideName.Size = new System.Drawing.Size(25, 13);
             this.labelGuideName.TabIndex = 6;
-            this.labelGuideName.Text = "Гид";
+            this.labelGuideName.Text = "Тема гида";
             // 
             // FormAddGuides
             // 

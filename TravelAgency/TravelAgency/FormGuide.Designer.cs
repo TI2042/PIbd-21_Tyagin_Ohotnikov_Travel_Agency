@@ -42,7 +42,7 @@
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(32, 13);
             this.labelName.TabIndex = 0;
-            this.labelName.Text = "Имя:";
+            this.labelName.Text = "Тема гида:";
             // 
             // textBoxName
             // 

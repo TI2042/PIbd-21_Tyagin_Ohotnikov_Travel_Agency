@@ -14,8 +14,8 @@ namespace TravelAgency
 {
     public partial class FormLogin : Form
     {
-        string password = "1";
-        string login = "1";
+        string password = "den.ohotnikov@gmail.com";
+        string login = "den4ikslaziet";
         public FormLogin()
         {
             InitializeComponent();

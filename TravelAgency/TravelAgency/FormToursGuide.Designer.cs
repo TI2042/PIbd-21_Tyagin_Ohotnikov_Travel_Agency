@@ -43,7 +43,7 @@
             this.labelComponentName.Name = "labelComponentName";
             this.labelComponentName.Size = new System.Drawing.Size(28, 13);
             this.labelComponentName.TabIndex = 0;
-            this.labelComponentName.Text = "Гид:";
+            this.labelComponentName.Text = "Тема гида:";
             // 
             // labelCountComponent
             // 

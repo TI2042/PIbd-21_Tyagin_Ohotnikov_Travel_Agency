@@ -74,7 +74,7 @@ namespace TravelAgencyDatabaseImplement.Implements
                 Id = rec.Id,
                 TourName = rec.Tour.TourName,
                 Count = rec.Count,
-                Sum = rec.Tour.Price,
+                Sum = rec.Sum,
                 Status = rec.Status,
                 CreationDate = rec.CreationDate,
                 CompletionDate = rec.CompletionDate
