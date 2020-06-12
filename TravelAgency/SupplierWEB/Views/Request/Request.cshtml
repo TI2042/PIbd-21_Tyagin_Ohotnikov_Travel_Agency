@@ -4,7 +4,7 @@
 }
 
 @section Links {
-    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+    <div class="navbar navbar-dark bg-dark">
         <ul class="navbar-nav flex-grow-1">
             <li class="nav-item">
                 <a class="nav-link text-light" asp-area="" asp-controller="Hotel" asp-action="ListHotels">Отели</a>
@@ -32,8 +32,8 @@
 </div>
 <hr />
 
-<table class="table table-striped table-bordered">
-    <thead class="thead thead-dark">
+<table class="table table-striped table-dark">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -57,11 +57,11 @@
                 <td>
                     @if (item.Status == TravelAgencyBusinessLogic.Enums.RequestStatus.Выполняется)
                     {
-                        <a class="btn btn-outline-info btn-sm" asp-action="RequestView" asp-route-id="@item.Id">Просмотр заявки</a>
+                        <a class="btn btn-outline-light btn-sm" asp-action="RequestView" asp-route-id="@item.Id">Просмотр заявки</a>
                     }
                     @if (item.Status == TravelAgencyBusinessLogic.Enums.RequestStatus.Создана)
                     {
-                        <a class="btn btn-outline-info btn-sm" asp-action="AcceptRequest" asp-route-id="@item.Id">Принять в обработку</a>
+                        <a class="btn btn-outline-light btn-sm" asp-action="AcceptRequest" asp-route-id="@item.Id">Принять в обработку</a>
                     }
                 </td>
             </tr>
